@@ -23,7 +23,6 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
     { label: "HOME", href: "#/" },
     { label: "ABOUT", href: "#/about" },
     { label: "PORTFOLIO", href: "#/portfolio" },
-    { label: "MEDIA", href: "#/media" },
     { label: "BLOG", href: "#/blog" },
     { label: "BALINESE STYLE", href: "#/balinese-style" },
     { label: "CAREERS", href: "#/careers" },
