@@ -15,6 +15,7 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
         setIsScrolled(false);
       }
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -25,7 +26,7 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
     { label: "PORTFOLIO", href: "#/portfolio" },
     { label: "BLOG", href: "#/blog" },
     { label: "BALINESE STYLE", href: "#/balinese-style" },
-    { label: "CAREERS", href: "#/careers" },
+    { label: "CAREERS", href: "#/our-team" },
     { label: "CONTACT", href: "#/contact" },
   ];
 
@@ -37,16 +38,17 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
       onNavigate(label);
     }
     setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const isSolid = isScrolled || mobileMenuOpen;
+  const isScrolledOrOpen = isScrolled || mobileMenuOpen;
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xs transition-all duration-300 ${
-        isScrolled
-          ? "shadow-md border-b border-stone-200 py-2 sm:py-2.5"
-          : "shadow-sm border-b border-stone-200/60 py-2.5 sm:py-3"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolledOrOpen
+        ? "bg-white/95 backdrop-blur-md shadow-md border-b border-stone-200/80 py-3 sm:py-3.5"
+        : "bg-transparent shadow-none border-b border-transparent py-4 sm:py-5"
+        }`}
     >
       <div className="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
@@ -59,7 +61,10 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
             <img
               src={logoImg}
               alt="Lumbung Architect Logo"
-              className="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className={`h-7 sm:h-8 md:h-9 w-auto object-contain transition-all duration-300 group-hover:scale-105 ${isSolid
+                ? "filter-none"
+                : "brightness-0 invert drop-shadow-md"
+                }`}
               onError={(e) => {
                 e.currentTarget.style.display = "none";
               }}
@@ -67,7 +72,7 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex items-center gap-7 2xl:gap-9">
+          <nav className="hidden xl:flex items-center gap-6 2xl:gap-8">
             {navItems.map((item) => {
               const isActive = currentRoute === item.label;
               return (
@@ -75,13 +80,21 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleNavClick(item.label, e)}
-                  className={`relative py-1.5 text-xs font-bold tracking-wider transition-colors duration-200 uppercase cursor-pointer ${
-                    isActive ? "text-black" : "text-stone-700 hover:text-black"
-                  }`}
+                  className={`relative py-1.5 text-xs font-bold tracking-wider transition-colors duration-200 uppercase cursor-pointer ${isSolid
+                    ? isActive
+                      ? "text-[#0b3b24]"
+                      : "text-stone-700 hover:text-black"
+                    : isActive
+                      ? "text-white"
+                      : "text-white/85 hover:text-white"
+                    }`}
                 >
                   {item.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-black rounded-full animate-in fade-in duration-200" />
+                    <span
+                      className={`absolute bottom-0 left-0 right-0 h-0.5 rounded-full transition-colors duration-200 ${isSolid ? "bg-[#0b3b24]" : "bg-white"
+                        }`}
+                    />
                   )}
                 </a>
               );
@@ -95,15 +108,17 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
               <button
                 type="button"
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                className="inline-flex items-center justify-center gap-1.5 bg-black text-white px-3.5 py-1.5 rounded-xs text-xs font-bold tracking-wider hover:bg-stone-800 transition-colors shadow-xs cursor-pointer"
+                className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xs text-xs font-bold tracking-wider transition-all duration-300 cursor-pointer ${isSolid
+                  ? "bg-[#0b3b24] text-white hover:bg-[#072919] shadow-xs"
+                  : "border border-white/60 bg-black/25 text-white hover:bg-black/40 backdrop-blur-xs shadow-sm"
+                  }`}
                 aria-expanded={langDropdownOpen}
                 aria-label="Select Language"
               >
                 <span>{selectedLang}</span>
                 <svg
-                  className={`w-3 h-3 transition-transform duration-200 ${
-                    langDropdownOpen ? "rotate-180" : ""
-                  }`}
+                  className={`w-3 h-3 transition-transform duration-200 ${langDropdownOpen ? "rotate-180" : ""
+                    }`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -124,7 +139,7 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
                     className="fixed inset-0 z-40"
                     onClick={() => setLangDropdownOpen(false)}
                   />
-                  <div className="absolute right-0 mt-1.5 w-20 bg-white border border-stone-200 rounded-sm shadow-lg py-1 z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="absolute right-0 mt-2 w-24 bg-white border border-stone-200 rounded-sm shadow-xl py-1 z-50 animate-in fade-in zoom-in-95 duration-150">
                     {languages.map((lang) => (
                       <button
                         key={lang}
@@ -133,11 +148,10 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
                           setSelectedLang(lang);
                           setLangDropdownOpen(false);
                         }}
-                        className={`w-full text-left px-3 py-1.5 text-xs font-bold tracking-wider transition-colors cursor-pointer ${
-                          selectedLang === lang
-                            ? "bg-stone-100 text-black"
-                            : "text-stone-600 hover:bg-stone-50 hover:text-black"
-                        }`}
+                        className={`w-full text-left px-3 py-1.5 text-xs font-bold tracking-wider transition-colors cursor-pointer ${selectedLang === lang
+                          ? "bg-[#0b3b24]/10 text-[#0b3b24]"
+                          : "text-stone-700 hover:bg-stone-50 hover:text-black"
+                          }`}
                       >
                         {lang}
                       </button>
@@ -151,7 +165,10 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-md text-stone-700 hover:text-black hover:bg-stone-100 transition-colors cursor-pointer"
+              className={`xl:hidden p-2 rounded-md transition-colors cursor-pointer ${isSolid
+                ? "text-stone-700 hover:text-black hover:bg-stone-100"
+                : "text-white hover:bg-white/20"
+                }`}
               aria-label="Toggle navigation menu"
             >
               <svg
@@ -189,11 +206,10 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleNavClick(item.label, e)}
-                  className={`px-3 py-2 rounded-md text-xs font-bold tracking-wider uppercase transition-colors cursor-pointer ${
-                    isActive
-                      ? "bg-stone-100 text-black border-l-4 border-black"
-                      : "text-stone-700 hover:bg-stone-50 hover:text-black"
-                  }`}
+                  className={`px-3 py-2 rounded-md text-xs font-bold tracking-wider uppercase transition-colors cursor-pointer ${isActive
+                    ? "bg-[#0b3b24]/10 text-[#0b3b24] border-l-4 border-[#0b3b24]"
+                    : "text-stone-700 hover:bg-stone-50 hover:text-black"
+                    }`}
                 >
                   {item.label}
                 </a>

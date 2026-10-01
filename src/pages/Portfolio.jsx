@@ -93,7 +93,7 @@ export default function Portfolio({ onNavigate }) {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <div className="w-full bg-white text-[#111111] pt-16 sm:pt-18">
+    <div className="w-full bg-white text-[#111111]">
       {/* ========================================================================= */}
       {/* HERO BANNER PORTFOLIO */}
       {/* ========================================================================= */}

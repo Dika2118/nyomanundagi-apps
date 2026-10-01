@@ -47,7 +47,7 @@ export default function Blog({ onNavigate }) {
   const [activeCategory, setActiveCategory] = useState("ALL");
 
   return (
-    <div className="w-full bg-white text-[#111111] pt-16 sm:pt-18">
+    <div className="w-full bg-white text-[#111111]">
       {/* ================= HERO BANNER BLOG ================= */}
       <section className="relative w-full h-[55vh] sm:h-[62vh] min-h-[400px] max-h-[580px] bg-stone-900 overflow-hidden flex items-end">
         <div className="absolute inset-0 z-0">

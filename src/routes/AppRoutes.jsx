@@ -4,6 +4,8 @@ import About from "../pages/About";
 import Portfolio from "../pages/Portfolio";
 import Contact from "../pages/Contact";
 import Blog from "../pages/Blog";
+import BalineseStyle from "../pages/BalineseStyle";
+import OurTeam from "../pages/OurTeam";
 
 export default function AppRoutes({ currentRoute, onNavigate }) {
   switch (currentRoute) {
@@ -17,9 +19,10 @@ export default function AppRoutes({ currentRoute, onNavigate }) {
     case "MEDIA":
       return <Blog onNavigate={onNavigate} />;
     case "BALINESE STYLE":
-      return <About onNavigate={onNavigate} />;
+      return <BalineseStyle onNavigate={onNavigate} />;
+    case "OUR TEAM":
     case "CAREERS":
-      return <Contact onNavigate={onNavigate} />;
+      return <OurTeam onNavigate={onNavigate} />;
     case "HOME":
     default:
       return <Home onNavigate={onNavigate} />;

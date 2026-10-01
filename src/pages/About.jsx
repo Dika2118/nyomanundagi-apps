@@ -59,7 +59,7 @@ export default function About({ onNavigate }) {
   ];
 
   return (
-    <div className="w-full bg-white text-[#111111] overflow-hidden pt-16 sm:pt-18">
+    <div className="w-full bg-white text-[#111111] overflow-hidden">
       {/* ========================================================================= */}
       {/* 1. HERO BANNER ABOUT (Sesuai Referensi Gambar) */}
       {/* ========================================================================= */}

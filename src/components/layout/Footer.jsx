@@ -32,7 +32,6 @@ export default function Footer({ onNavigate }) {
     if (e) e.preventDefault();
     if (onNavigate) {
       onNavigate(route);
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -86,6 +85,20 @@ export default function Footer({ onNavigate }) {
                   className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
                 >
                   Portofolio
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => handleNav("BALINESE STYLE", e)}
+                  className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
+                >
+                  Gaya Bali (Balinese Style)
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => handleNav("OUR TEAM", e)}
+                  className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
+                >
+                  Tim Kami (Our Team)
                 </button>
                 <button
                   type="button"

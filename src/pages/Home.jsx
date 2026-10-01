@@ -6,41 +6,37 @@ import banner4 from "../assets/images/banner4.webp";
 import banner5 from "../assets/images/banner5.webp";
 import porto1 from "../assets/images/porto1.webp";
 import nyomanImg from "../assets/images/nyoman.png";
+import HomeFeatureSection from "../components/home/HomeFeatureSection";
 
 const slides = [
   {
     image: banner1,
-    theme: "BALI TROPICAL MODERN ARCHITECTURE",
-    title: "DJELANTIK HOUSE",
-    location: "DEWI SRI",
-    type: "COMPLEX VILLA",
-  },
-  {
-    image: banner2,
-    theme: "CONTEMPORARY BALINESE VERNACULAR",
-    title: "AMALA RETREAT",
-    location: "UBUD",
-    type: "LUXURY SANCTUARY",
+    title: "INCOGNITO HOUSE",
+    location: "TUMBAK BAYUH, BALI",
+    type: "VILLA",
   },
   {
     image: banner3,
-    theme: "MODERN TROPICAL LUXURY RESIDENCE",
     title: "SAMUDRA RESIDENCE",
-    location: "CANGGU",
+    location: "CANGGU, BALI",
     type: "PRIVATE VILLA",
   },
   {
+    image: banner2,
+    title: "AMALA RETREAT",
+    location: "UBUD, BALI",
+    type: "LUXURY SANCTUARY",
+  },
+  {
     image: banner4,
-    theme: "MINIMALIST COASTAL ARCHITECTURE",
     title: "NIRVANA CLIFF ESTATE",
-    location: "ULUWATU",
+    location: "ULUWATU, BALI",
     type: "RESORT ESTATE",
   },
   {
     image: banner5,
-    theme: "AUTHENTIC TIMBER CRAFTSMANSHIP",
     title: "VILLA SUKMA",
-    location: "SANUR",
+    location: "SANUR, BALI",
     type: "BOUTIQUE VILLA",
   },
 ];
@@ -115,6 +111,14 @@ export default function Home({ onNavigate }) {
     return () => clearInterval(timer);
   }, []);
 
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
   const filteredProjects =
     activeFilter === "all"
       ? allProjects
@@ -122,113 +126,119 @@ export default function Home({ onNavigate }) {
 
   return (
     <div className="w-full bg-white text-[#111111]">
-      {/* ================= HERO SECTION ================= */}
-      <section id="hero" className="relative w-full pt-18 sm:pt-20 pb-16 sm:pb-24">
-        <div className="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Main Hero Card */}
-          <div className="relative w-full h-[calc(100dvh-9rem)] sm:h-[calc(100dvh-7rem)] min-h-100 sm:min-h-120 max-h-170 rounded-3xl md:rounded-4xl overflow-hidden bg-stone-900 group">
-            {/* Background Images & Text Content Carousel */}
-            {slides.map((slide, index) => {
-              const isActive = index === currentSlide;
-              return (
-                <div
-                  key={index}
-                  className={`absolute inset-0 transition-opacity duration-1200 ease-in-out ${isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-                    }`}
-                >
-                  <img
-                    src={slide.image}
-                    alt={slide.title}
-                    className={`w-full h-full object-cover object-center transition-transform duration-1400 ease-out ${isActive ? "scale-100" : "scale-105"
-                      }`}
-                  />
-                  <div className="absolute inset-0 bg-linear-to-r from-black/85 via-black/40 to-transparent pointer-events-none" />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
-                  <div className="absolute inset-0 flex flex-col justify-end px-6 sm:px-10 md:px-16 lg:px-20 pb-24 sm:pb-28 md:pb-24 lg:pb-24 max-w-4xl">
-                    <p
-                      className={`text-[11px] sm:text-xs md:text-sm font-semibold tracking-[0.22em] text-stone-200/90 uppercase drop-shadow-sm transition-all duration-1000 delay-100 ease-out ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                        }`}
-                    >
-                      {slide.theme}
-                    </p>
-                    <h1
-                      className={`mt-1.5 sm:mt-2 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white uppercase leading-[1.1] drop-shadow-md transition-all duration-1000 delay-200 ease-out ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-                        }`}
-                    >
-                      {slide.title}
-                    </h1>
-                    <p
-                      className={`mt-2 sm:mt-3 text-[11px] sm:text-xs md:text-sm font-medium tracking-[0.18em] text-stone-300 uppercase drop-shadow-sm transition-all duration-1000 delay-300 ease-out ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                        }`}
-                    >
-                      {slide.location} <span className="mx-2 text-white/40">|</span> {slide.type}
-                    </p>
-                    <div
-                      className={`mt-3.5 sm:mt-4 flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 w-fit transition-all duration-1000 delay-400 ease-out ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
-                        }`}
-                    >
-                      {slides.map((_, idx) => (
-                        <button
-                          key={idx}
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setCurrentSlide(idx);
-                          }}
-                          aria-label={`Go to slide ${idx + 1}`}
-                          className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${idx === currentSlide ? "w-6 bg-white" : "w-1.5 bg-white/40 hover:bg-white/70"
-                            }`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+      {/* ================= HERO BANNER SECTION (Full-Bleed Matching Reference) ================= */}
+      <section id="hero" className="relative w-full h-[100dvh] min-h-[580px] max-h-[1100px] overflow-hidden bg-stone-950 flex flex-col justify-end">
+        {/* Background Images & Crossfade Carousel */}
+        {slides.map((slide, index) => {
+          const isActive = index === currentSlide;
+          return (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                }`}
+            >
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className={`w-full h-full object-cover object-center transition-transform duration-1200 ease-out ${isActive ? "scale-100" : "scale-105"
+                  }`}
+              />
+              {/* Top Gradient for Navbar legibility */}
+              <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/25 to-transparent h-48 pointer-events-none" />
+              {/* Overall Subtle Dark Tint */}
+              <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+              {/* Bottom Gradient for Title & Subtitle legibility */}
+              <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+            </div>
+          );
+        })}
 
-            {/* Bottom-left Cutout Dock with inverted rounded curves */}
-            <div className="absolute bottom-0 left-0 z-20 hidden sm:flex items-end">
-              <div className="relative bg-white pt-3 pr-4 sm:pt-4 sm:pr-5 pb-0 pl-0 rounded-tr-3xl sm:rounded-tr-4xl flex items-center">
-                <svg
-                  className="absolute -top-7 left-0 w-7 h-7 sm:-top-8 sm:w-8 sm:h-8 pointer-events-none text-white fill-current"
-                  viewBox="0 0 32 32"
-                  aria-hidden="true"
-                >
-                  <path d="M0 0 A 32 32 0 0 0 32 32 H 0 Z" />
-                </svg>
-                <svg
-                  className="absolute -right-7 bottom-0 w-7 h-7 sm:-right-8 sm:w-8 sm:h-8 pointer-events-none text-white fill-current"
-                  viewBox="0 0 32 32"
-                  aria-hidden="true"
-                >
-                  <path d="M0 0 A 32 32 0 0 0 32 32 H 0 Z" />
-                </svg>
-                <button
-                  type="button"
-                  onClick={() => onNavigate ? onNavigate("PORTFOLIO") : document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" })}
-                  id="hero-cta-consultation"
-                  className="inline-flex items-center justify-center bg-[#141414] hover:bg-black text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-                >
-                  Lihat Portofolio
-                </button>
+        {/* Hero Overlay Content: Bottom-Left Typography + Bottom-Right Arrow Controls */}
+        <div className="relative z-20 w-full max-w-360 mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pb-12 sm:pb-16 md:pb-20">
+          <div className="flex items-end justify-between gap-6">
+            {/* Left Side: Title, Subtitle, Slide Indicator Dashes */}
+            <div className="max-w-3xl">
+              <h1
+                key={`title-${currentSlide}`}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-[0.14em] sm:tracking-[0.18em] text-white uppercase leading-[1.15] font-sans drop-shadow-md animate-in fade-in slide-in-from-bottom-2 duration-700"
+              >
+                {slides[currentSlide].title}
+              </h1>
+              <p
+                key={`sub-${currentSlide}`}
+                className="mt-2.5 sm:mt-3.5 text-xs sm:text-sm md:text-[14px] font-normal tracking-[0.22em] sm:tracking-[0.26em] text-stone-300 uppercase drop-shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100"
+              >
+                {slides[currentSlide].location} <span className="mx-2 text-white/50">|</span> {slides[currentSlide].type}
+              </p>
+
+              {/* Minimal Line Indicators */}
+              <div className="mt-6 sm:mt-8 flex items-center gap-2 sm:gap-2.5">
+                {slides.map((_, idx) => {
+                  const isActive = idx === currentSlide;
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setCurrentSlide(idx)}
+                      aria-label={`Go to slide ${idx + 1}`}
+                      className={`h-[2px] transition-all duration-400 rounded-full cursor-pointer ${isActive
+                        ? "w-10 sm:w-14 bg-white shadow-xs"
+                        : "w-5 sm:w-7 bg-white/35 hover:bg-white/70"
+                        }`}
+                    />
+                  );
+                })}
               </div>
             </div>
-          </div>
 
-          {/* Mobile CTA Button */}
-          <div className="sm:hidden mt-4">
-            <button
-              type="button"
-              onClick={() => onNavigate ? onNavigate("PORTFOLIO") : document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" })}
-              id="hero-cta-consultation-mobile"
-              className="w-full inline-flex items-center justify-center bg-[#141414] hover:bg-black text-white px-6 py-3.5 rounded-full text-sm font-medium tracking-wide transition-all shadow-md active:scale-[0.98] cursor-pointer"
-            >
-              Lihat Portofolio
-            </button>
+            {/* Right Side: Sleek Arrow Navigation Controls (< >) */}
+            <div className="hidden sm:flex items-center border border-white/25 bg-black/25 backdrop-blur-xs rounded-xs overflow-hidden shrink-0">
+              <button
+                type="button"
+                onClick={handlePrevSlide}
+                className="p-2.5 sm:p-3 text-white/70 hover:text-white hover:bg-white/15 transition-colors cursor-pointer"
+                aria-label="Previous Slide"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+              </button>
+              <div className="w-px h-5 bg-white/25" />
+              <button
+                type="button"
+                onClick={handleNextSlide}
+                className="p-2.5 sm:p-3 text-white/70 hover:text-white hover:bg-white/15 transition-colors cursor-pointer"
+                aria-label="Next Slide"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+              </button>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* ================= MAIN CONTENT WRAPPER ================= */}
+      <div className="w-full">
+        <div className="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
+          {/* ================= FEATURE & VALUE PROPOSITION (BELOW BANNER) ================= */}
+          <HomeFeatureSection onNavigate={onNavigate} />
 
           {/* ================= PROYEK PILIHAN / PORTFOLIO SECTION ================= */}
-          <div id="portfolio" className="mt-20 sm:mt-28 md:mt-32">
+          <div id="portfolio" className="pt-20 sm:pt-28 md:pt-32">
             {/* Section Header */}
             <div className="text-center mb-10 sm:mb-14">
               <div className="inline-flex items-center justify-center gap-3 mb-3">
@@ -449,7 +459,7 @@ export default function Home({ onNavigate }) {
           </div>
 
           {/* ================= KENALI PRINSIPAL KAMI / ABOUT FOUNDER ================= */}
-          <div id="about" className="mt-28 sm:mt-36 pt-16 sm:pt-20 border-t border-[#eaeaea]">
+          <div id="about" className="mt-28 sm:mt-36 pt-16 sm:pt-20 pb-16 sm:pb-24 border-t border-[#eaeaea]">
             <div className="max-w-270 mx-auto">
               {/* Top Grid: Photo & Bio */}
               <div className="grid grid-cols-1 md:grid-cols-[140px_1fr] lg:grid-cols-[160px_1fr] gap-8 md:gap-10 lg:gap-14 items-start">
@@ -500,9 +510,9 @@ export default function Home({ onNavigate }) {
               </div>
 
               {/* Bottom Section: Philosophy & Slogan */}
-              <div className="mt-16 sm:mt-20 pt-6 flex flex-col items-start">
-                <div className="w-12 h-px bg-[#cccccc] mb-6" />
-                <p className="text-[13px] sm:text-[13.5px] text-[#737373] font-light leading-relaxed mb-3">
+              <div className="mt-8 sm:mt-10 pt-1 flex flex-col items-start">
+                <div className="w-12 h-px bg-[#cccccc] mb-4" />
+                <p className="text-[13px] sm:text-[13.5px] text-[#737373] font-light leading-relaxed mb-2.5">
                   Hal ini menginspirasi kami untuk memberikan perjalanan desain yang bermakna bagi klien kami, bukan sekadar desain atau gambar.
                 </p>
                 <h4 className="text-xl sm:text-2xl md:text-[26px] font-normal italic text-[#111111] tracking-tight">
@@ -512,67 +522,7 @@ export default function Home({ onNavigate }) {
             </div>
           </div>
         </div>
-
-        {/* ================= STATS / AWARDS SPLIT BAR (FULL WIDTH EDGE-TO-EDGE) ================= */}
-        <div className="w-full mt-28 sm:mt-36 border-y border-stone-200">
-          <div className="w-full grid grid-cols-1 md:grid-cols-2">
-            {/* Left Card: Penghargaan Internasional (Black) */}
-            <div className="bg-[#111111] hover:bg-black text-white py-8 sm:py-10 lg:py-12 pl-6 sm:pl-10 md:pl-14 lg:pl-20 xl:pl-32 pr-6 sm:pr-10 lg:pr-16 flex items-center justify-between group transition-colors duration-300">
-              <div className="flex items-center gap-6 sm:gap-8">
-                <span className="text-4xl sm:text-5xl lg:text-6xl font-extralight text-stone-200 tracking-tight shrink-0">
-                  4
-                </span>
-                <div className="flex flex-col">
-                  <h4 className="text-sm sm:text-base font-bold text-white tracking-wide mb-1">
-                    Penghargaan Internasional
-                  </h4>
-                  <p className="text-xs sm:text-[13px] text-stone-400 font-light leading-relaxed">
-                    Asia Pacific Property Awards, IAI Bali, dan lainnya
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Card: Mitra (White) */}
-            <div className="bg-white hover:bg-stone-50 text-[#111111] py-8 sm:py-10 lg:py-12 pl-6 sm:pl-10 md:pl-12 lg:pl-16 pr-6 sm:pr-10 md:pr-14 lg:pr-20 xl:pr-32 flex items-center justify-between border-t md:border-t-0 md:border-l border-stone-200 group transition-colors duration-300">
-              <div className="flex items-center gap-6 sm:gap-8">
-                <span className="text-4xl sm:text-5xl lg:text-6xl font-extralight text-stone-900 tracking-tight shrink-0">
-                  20+
-                </span>
-                <div className="flex flex-col">
-                  <h4 className="text-sm sm:text-base font-bold text-[#111111] tracking-wide mb-1">
-                    Mitra
-                  </h4>
-                  <p className="text-xs sm:text-[13px] text-stone-500 font-light leading-relaxed">
-                    Dipercaya di Bali, Singapura, Thailand, Bahama, Nigeria, dan India
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ================= MULAI KONSULTASI DESAIN / CTA SECTION ================= */}
-        <div className="max-w-360 mx-auto px-4 sm:px-6 lg:px-8">
-          <div id="contact" className="mt-24 sm:mt-32 md:mt-36 text-center pb-4 sm:pb-8">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold tracking-tight text-[#111111] mb-4">
-              Mulai Konsultasi Desain
-            </h3>
-            <p className="text-xs sm:text-sm md:text-[14.5px] text-[#737373] font-light max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-4">
-              Bali (Pusat), Jakarta, Thailand. Untuk pertanyaan proyek, kemitraan, atau informasi umum.
-            </p>
-            <a
-              href="https://wa.me/62859106532925"
-              target="_blank"
-              rel="noopener noreferrer"
-              id="kirim-pesan-btn"
-              className="inline-block px-10 sm:px-12 py-3.5 sm:py-4 bg-[#181818] hover:bg-black text-white text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-            >
-              KIRIM PESAN
-            </a>
-          </div>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
