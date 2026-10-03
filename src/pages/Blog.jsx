@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import BlogDetail from "./BlogDetail";
 import banner1 from "../assets/images/banner1.jpg";
 import banner2 from "../assets/images/banner2.jpg";
 import banner3 from "../assets/images/banner3.jpg";
@@ -20,7 +21,8 @@ const featuredArticle = {
   id: "featured-1",
   title: "Lumbung Architect Featured in Bali Interiors",
   category: "NEWS",
-  date: "17 Jun 2025",
+  date: "17 June 2025",
+  readTime: "1 min read",
   image: porto1,
   excerpt:
     "Lumbung Architect has been featured in Bali Interiors, celebrating our signature approach to tropical contemporary living, seamless indoor-outdoor connections, and the timeless artistry of Balinese Undagi craftsmanship.",
@@ -32,6 +34,7 @@ const blogPosts = [
     title: "Lumbung Architect: A Story of Growth and Vision",
     category: "NEWS",
     date: "14 Mar 2025",
+    readTime: "3 min read",
     image: nyomanImg,
     isPortrait: true,
     excerpt:
@@ -42,6 +45,7 @@ const blogPosts = [
     title: "5 Benefits of Professional Architectural Consultation for Your Bali Project",
     category: "NEWS",
     date: "11 Feb 2025",
+    readTime: "4 min read",
     image: banner2,
     excerpt:
       "Bali's breathtaking landscapes make it a top-choice location for construction. Here's how partnering with an expert architectural firm protects your investment and elevates lifestyle value.",
@@ -51,6 +55,7 @@ const blogPosts = [
     title: "Lumbung Architect Featured by Liputan6",
     category: "NEWS",
     date: "01 Dec 2024",
+    readTime: "2 min read",
     image: banner3,
     excerpt:
       "Lumbung Architect featured by Liputan6, highlighting the importance of harmonizing tradition with modernity in Balinese architectural landscapes across regional and global destinations.",
@@ -60,6 +65,7 @@ const blogPosts = [
     title: "Asia Pacific Property Awards 2024 Winner",
     category: "ACHIEVEMENT",
     date: "24 Oct 2024",
+    readTime: "3 min read",
     image: aboutBanner,
     excerpt:
       "Lumbung Architect was honored with the prestigious Asia Pacific Property Awards in Bangkok for outstanding architecture in single residential design.",
@@ -69,6 +75,7 @@ const blogPosts = [
     title: "Best Residential Architecture Indonesia",
     category: "ACHIEVEMENT",
     date: "15 Aug 2024",
+    readTime: "4 min read",
     image: banner4,
     excerpt:
       "Recognized for excellence in single residential architecture and bespoke tropical sanctuary design at the International Property Awards.",
@@ -78,6 +85,7 @@ const blogPosts = [
     title: "Expanding Sustainable Modern Tropical Architecture",
     category: "PRESS RELEASE",
     date: "10 Jun 2024",
+    readTime: "3 min read",
     image: banner1,
     excerpt:
       "Press release on our ongoing commitment to climate-responsive vernacular design, reclaimed timber materiality, and energy-efficient building systems.",
@@ -87,6 +95,18 @@ const blogPosts = [
 export default function Blog({ onNavigate }) {
   const [activeCategory, setActiveCategory] = useState("ALL");
   const [selectedPost, setSelectedPost] = useState(null);
+
+  // If user clicked any article, render the full BlogDetail view
+  if (selectedPost) {
+    return (
+      <BlogDetail
+        article={selectedPost}
+        onBack={() => setSelectedPost(null)}
+        onNavigate={onNavigate}
+        onSelectArticle={(article) => setSelectedPost(article)}
+      />
+    );
+  }
 
   const filteredPosts =
     activeCategory === "ALL"
@@ -249,75 +269,6 @@ export default function Blog({ onNavigate }) {
           ))}
         </div>
       </section>
-
-      {/* ========================================================================= */}
-      {/* ARTICLE DETAIL MODAL */}
-      {/* ========================================================================= */}
-      {selectedPost && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
-          onClick={() => setSelectedPost(null)}
-        >
-          <div
-            className="relative w-full max-w-3xl max-h-[90vh] bg-white rounded-2xl overflow-y-auto shadow-2xl p-6 sm:p-10 animate-in zoom-in-95 duration-300"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              type="button"
-              onClick={() => setSelectedPost(null)}
-              className="absolute top-5 right-5 z-10 w-9 h-9 rounded-full bg-stone-100 hover:bg-black hover:text-white text-stone-700 flex items-center justify-center transition-colors cursor-pointer"
-            >
-              &times;
-            </button>
-
-            <div className="aspect-16/10 w-full overflow-hidden rounded-xl bg-stone-100 mb-6">
-              <img
-                src={selectedPost.image}
-                alt={selectedPost.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-
-            <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-stone-500 uppercase mb-3">
-              <span className="text-black">{selectedPost.category}</span>
-              <span>&bull;</span>
-              <span className="text-stone-400 font-light">{selectedPost.date}</span>
-            </div>
-
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#111111] mb-4">
-              {selectedPost.title}
-            </h2>
-
-            <div className="space-y-4 text-stone-600 text-sm sm:text-base font-light leading-relaxed">
-              <p>{selectedPost.excerpt}</p>
-              <p>
-                Melalui dedikasi terhadap arsitektur tropis kontemporer, Lumbung Architect terus merancang ruang yang tidak hanya memukau secara estetika, tetapi juga menghormati kearifan lokal Bali dan keberlanjutan lingkungan. Setiap proyek merupakan perjalanan kolaboratif yang menggabungkan rekayasa modern dan kehangatan tradisi.
-              </p>
-            </div>
-
-            <div className="mt-8 pt-6 border-t border-stone-200 flex flex-wrap items-center justify-between gap-4">
-              <a
-                href={`https://wa.me/62859106532925?text=Halo%20Lumbung%20Architect,%20saya%20tertarik%20dengan%20artikel%20${encodeURIComponent(selectedPost.title)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-black hover:bg-stone-800 text-white text-xs font-bold tracking-widest uppercase rounded-lg transition-colors"
-              >
-                Diskusikan Bersama Kami
-              </a>
-              <button
-                type="button"
-                onClick={() => setSelectedPost(null)}
-                className="px-6 py-3 bg-stone-100 hover:bg-stone-200 text-stone-900 text-xs font-bold tracking-widest uppercase rounded-lg transition-colors cursor-pointer"
-              >
-                Tutup
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import logoImg from "../../assets/images/logo_removebg.png";
 
-export default function Navbar({ currentRoute = "HOME", onNavigate }) {
+export default function Navbar({ currentRoute = "HOME", onNavigate, forceSolid: propForceSolid }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [selectedLang, setSelectedLang] = useState("ID");
+  const [isLightModePage, setIsLightModePage] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,10 +16,29 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
         setIsScrolled(false);
       }
     };
+
+    const checkLightPage = () => {
+      const hasLightPage = Boolean(
+        document.querySelector("[data-navbar-light='true']")
+      );
+      setIsLightModePage(hasLightPage);
+    };
+
     handleScroll();
+    checkLightPage();
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+
+    const observer = new MutationObserver(() => {
+      checkLightPage();
+    });
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
+  }, [currentRoute]);
 
   const navItems = [
     { label: "HOME", href: "#/" },
@@ -40,8 +60,8 @@ export default function Navbar({ currentRoute = "HOME", onNavigate }) {
     setMobileMenuOpen(false);
   };
 
-  const isSolid = isScrolled || mobileMenuOpen;
-  const isScrolledOrOpen = isScrolled || mobileMenuOpen;
+  const isSolid = isScrolled || mobileMenuOpen || propForceSolid || isLightModePage;
+  const isScrolledOrOpen = isSolid;
 
   return (
     <header
