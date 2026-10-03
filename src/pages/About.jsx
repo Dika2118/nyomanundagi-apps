@@ -1,10 +1,7 @@
 import React from "react";
 import aboutBanner from "../assets/images/about-banner.jpg";
 import nyomanImg from "../assets/images/nyoman.png";
-import banner1 from "../assets/images/banner1.jpg";
-import banner2 from "../assets/images/banner2.jpg";
-import banner3 from "../assets/images/banner3.jpg";
-import porto1 from "../assets/images/porto1.webp";
+import kantorImg from "../assets/images/kantor.jpg";
 
 export default function About({ onNavigate }) {
   const conceptPillars = [
@@ -35,27 +32,6 @@ export default function About({ onNavigate }) {
     { year: "2015", title: "Ekspansi Regional", desc: "Menyelesaikan 100+ proyek villa mewah dan residensial di seluruh Bali dan Lombok." },
     { year: "2019", title: "Penghargaan Internasional", desc: "Meraih pengakuan di Asia Pacific Property Awards dan asosiasi arsitek IAI Bali." },
     { year: "2024+", title: "Jangkauan Global", desc: "Menangani 450+ proyek dan bermitra di Singapura, Thailand, Bahama, Nigeria, & India." },
-  ];
-
-  const studios = [
-    {
-      city: "Bali (Pusat)",
-      address: "Jl. Sunset Road No. 88, Seminyak, Kuta, Bali",
-      phone: "+62 859-1065-32925",
-      type: "Studio Desain & Workshop",
-    },
-    {
-      city: "Jakarta",
-      address: "SCBD District 8, Senopati, Jakarta Selatan",
-      phone: "+62 821-4567-8900",
-      type: "Kantor Representatif",
-    },
-    {
-      city: "Thailand",
-      address: "Phuket Villa Arcade, Cherngtalay, Phuket",
-      phone: "+66 81-234-5678",
-      type: "Studio Kolaboratif",
-    },
   ];
 
   return (
@@ -103,33 +79,226 @@ export default function About({ onNavigate }) {
       {/* ========================================================================= */}
       <section id="konsep-kami" className="w-full py-16 sm:py-24 md:py-28 px-6 sm:px-10 lg:px-16 border-b border-stone-100">
         <div className="max-w-360 mx-auto">
-          {/* Section Header Line */}
-          <div className="flex items-center gap-3.5 mb-8 sm:mb-12">
-            <span className="w-10 sm:w-14 h-0.5 bg-[#111111]" />
-            <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-[#111111]">
-              KONSEP KAMI
-            </h2>
-          </div>
+          {/* Big Editorial Narrative with Studio/Office Image */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-16 sm:mb-20">
+            {/* Left Content */}
+            <div className="lg:col-span-6 flex flex-col justify-center">
+              {/* Section Header Line */}
+              <div className="flex items-center gap-3.5 mb-6">
+                <span className="w-10 sm:w-14 h-0.5 bg-[#111111]" />
+                <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-[#111111]">
+                  KONSEP KAMI
+                </h2>
+              </div>
 
-          {/* Big Editorial Narrative */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-16 sm:mb-20">
-            <div className="lg:col-span-6">
+              {/* Editorial Heading */}
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-normal leading-tight tracking-tight text-[#111111]">
                 Menghadirkan harmoni antara ketenangan alam Bali dan ketegasan arsitektur modern dunia.
               </h3>
+
+              {/* Divider Bar Under Heading */}
+              <div className="w-12 sm:w-16 h-1 bg-[#111111] my-6 sm:my-8" />
+
+              {/* Narrative Paragraphs */}
+              <div className="space-y-5 text-stone-600 text-sm sm:text-base leading-relaxed font-light text-justify">
+                <p>
+                  Bagi kami, arsitektur bukan sekadar membangun struktur fisik, melainkan menyusun sebuah perjalanan emosional. Setiap sudut, sirkulasi cahaya, dan hembusan angin tropis dirancang untuk menghadirkan rasa pulang, kedamaian, dan koneksi yang mendalam dengan alam.
+                </p>
+                <p>
+                  Dengan memadukan kearifan lokal Bali dan teknik konstruksi kontemporer, Lumbung Architect menciptakan karya yang abadi—bangunan yang tidak tergerus oleh tren, melainkan semakin berkarakter dan bermakna seiring berjalannya waktu.
+                </p>
+              </div>
             </div>
-            <div className="lg:col-span-6 space-y-5 text-stone-600 text-sm sm:text-base leading-relaxed font-light text-justify">
-              <p>
-                Bagi kami, arsitektur bukan sekadar membangun struktur fisik, melainkan menyusun sebuah perjalanan emosional. Setiap sudut, sirkulasi cahaya, dan hembusan angin tropis dirancang untuk menghadirkan rasa pulang, kedamaian, dan koneksi yang mendalam dengan alam.
-              </p>
-              <p>
-                Dengan memadukan kearifan lokal Bali dan teknik konstruksi kontemporer, Lumbung Architect menciptakan karya yang abadi—bangunan yang tidak tergerus oleh tren, melainkan semakin berkarakter dan bermakna seiring berjalannya waktu.
-              </p>
+
+            {/* Right: Office / Studio Image */}
+            <div className="lg:col-span-6 w-full h-full flex items-center justify-center">
+              <div className="w-full aspect-4/3 sm:aspect-16/10 lg:aspect-4/3 xl:aspect-auto lg:h-120 overflow-hidden bg-stone-100">
+                <img
+                  src={kantorImg}
+                  alt="Studio Lumbung Architect Office"
+                  className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 ease-out"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="max-w-260 mx-auto mb-14 sm:mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+              <div className="bg-[#0a2b16] rounded-2xl sm:rounded-3xl p-7 sm:p-9 lg:p-10 text-white flex flex-col justify-between relative overflow-hidden shadow-sm">
+                <div>
+                  {/* Header Tag */}
+                  <div className="flex items-center gap-3 mb-5 sm:mb-6">
+                    <span className="w-7 sm:w-8 h-0.5 bg-emerald-400/80" />
+                    <span className="text-xs font-bold tracking-[0.22em] text-emerald-300 uppercase">
+                      OUR VISION
+                    </span>
+                  </div>
+
+                  {/* Vision Quote */}
+                  <h3 className="text-xl sm:text-2xl font-bold leading-snug tracking-tight text-white mb-5">
+                    &ldquo;To be a world-class architecture company that brings exceptional Balinese style all over the world.&rdquo;
+                  </h3>
+
+                  {/* Divider Line */}
+                  <div className="w-10 h-0.5 bg-emerald-500/40 my-5 sm:my-6" />
+
+                  {/* Vision Description */}
+                  <p className="text-xs sm:text-[13px] text-stone-300 font-light leading-relaxed">
+                    Positioning Bali Tropical Modern architecture on the international stage through built work, not just representation. The standard is defined by the quality of completed projects.
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Card: OUR MISSION (White Card) */}
+              <div className="bg-white rounded-2xl sm:rounded-3xl p-7 sm:p-9 lg:p-10 border border-stone-200 text-[#111111] flex flex-col justify-between relative overflow-hidden shadow-xs">
+                <div>
+                  <div className="flex items-center gap-3 mb-5 sm:mb-6">
+                    <span className="w-7 sm:w-8 h-0.5 bg-[#111111]" />
+                    <span className="text-xs font-bold tracking-[0.22em] text-[#111111] uppercase">
+                      OUR MISSION
+                    </span>
+                  </div>
+
+                  {/* Mission Quote */}
+                  <h3 className="text-xl sm:text-2xl font-bold leading-snug tracking-tight text-[#111111] mb-5">
+                    &ldquo;Providing service excellence in every single activity to actualize the world-class design.&rdquo;
+                  </h3>
+
+                  {/* Divider Line */}
+                  <div className="w-10 h-0.5 bg-[#111111] my-5 sm:my-6" />
+
+                  {/* Mission Description */}
+                  <p className="text-xs sm:text-[13px] text-stone-600 font-light leading-relaxed">
+                    Service excellence applied across every phase of the architectural process. Each team member operates under this standard, from initial programming through project handover.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ========================================================================= */}
+          {/* STATS / NUMBERS ROW (Sesuai Referensi Gambar) */}
+          {/* ========================================================================= */}
+          <div className="max-w-270 mx-auto mb-16 sm:mb-20 py-8 sm:py-12 border-y border-stone-200/60">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 text-center">
+              <div className="flex flex-col items-center">
+                <span className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#111111]">
+                  16+
+                </span>
+                <span className="text-[10px] sm:text-xs font-semibold tracking-[0.24em] text-stone-700 uppercase mt-2.5 sm:mt-3.5">
+                  YEARS EXPERIENCE
+                </span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#111111]">
+                  67
+                </span>
+                <span className="text-[10px] sm:text-xs font-semibold tracking-[0.24em] text-stone-700 uppercase mt-2.5 sm:mt-3.5">
+                  PROFESSIONALS
+                </span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#111111]">
+                  450+
+                </span>
+                <span className="text-[10px] sm:text-xs font-semibold tracking-[0.24em] text-stone-700 uppercase mt-2.5 sm:mt-3.5">
+                  PROJECTS
+                </span>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#111111]">
+                  4
+                </span>
+                <span className="text-[10px] sm:text-xs font-semibold tracking-[0.24em] text-stone-700 uppercase mt-2.5 sm:mt-3.5">
+                  DESIGN AWARDS
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* ========================================================================= */}
+          {/* LOKASI KANTOR PUSAT BALI (SINGLE OFFICE LOCATION) */}
+          {/* ========================================================================= */}
+          <div className="max-w-270 mx-auto mb-16 sm:mb-24">
+            <div className="p-8 sm:p-10 lg:p-12 rounded-2xl sm:rounded-3xl bg-stone-50 border border-stone-200/80 shadow-xs">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-stone-200">
+                <div>
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <span className="w-6 h-0.5 bg-[#111111]" />
+                    <span className="text-[11px] sm:text-xs font-bold tracking-[0.25em] text-stone-600 uppercase">
+                      LOKASI KANTOR &amp; STUDIO
+                    </span>
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#111111]">
+                    Bali Studio &amp; Workshop
+                  </h3>
+                  <p className="text-xs sm:text-sm text-stone-500 font-light mt-1">
+                    Kantor Pusat &amp; Pusat Kreatif Perancangan Arsitektur
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 shrink-0">
+                  <a
+                    href="https://maps.google.com/?q=Sunset+Road+Seminyak+Bali"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-black hover:bg-stone-800 text-white text-xs font-semibold tracking-wider uppercase transition-colors"
+                  >
+                    <span>Petunjuk Arah</span>
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pt-8">
+                {/* Alamat */}
+                <div className="flex flex-col">
+                  <span className="text-[11px] font-bold tracking-widest text-stone-400 uppercase mb-2">
+                    ALAMAT STUDIO
+                  </span>
+                  <p className="text-sm text-stone-800 font-normal leading-relaxed">
+                    Jl. Sunset Road No. 88, Seminyak, Kuta, Bali 80361, Indonesia
+                  </p>
+                </div>
+
+                {/* Kontak & Email */}
+                <div className="flex flex-col">
+                  <span className="text-[11px] font-bold tracking-widest text-stone-400 uppercase mb-2">
+                    KONTAK &amp; EMAIL
+                  </span>
+                  <a
+                    href="tel:+62859106532925"
+                    className="text-sm text-stone-800 font-semibold hover:text-black transition-colors"
+                  >
+                    +62 859-1065-32925
+                  </a>
+                  <a
+                    href="mailto:info@lumbungarchitect.com"
+                    className="text-xs text-stone-500 font-light mt-1 hover:underline"
+                  >
+                    info@lumbungarchitect.com
+                  </a>
+                </div>
+
+                {/* Jam Operasional */}
+                <div className="flex flex-col">
+                  <span className="text-[11px] font-bold tracking-widest text-stone-400 uppercase mb-2">
+                    JAM OPERASIONAL
+                  </span>
+                  <p className="text-sm text-stone-800 font-normal">
+                    Senin &ndash; Jumat: 09:00 &ndash; 18:00 WITA
+                  </p>
+                  <p className="text-xs text-stone-500 font-light mt-1">
+                    Sabtu: 09:00 &ndash; 14:00 WITA (Janji Temu)
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Concept Pillars Bento Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-14 sm:mb-20">
             {conceptPillars.map((pillar) => (
               <div
                 key={pillar.num}
@@ -217,164 +386,6 @@ export default function About({ onNavigate }) {
                 </h4>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 4. SECTION: STATS / PENGHARGAAN SPLIT BAR (FULL WIDTH) */}
-      {/* ========================================================================= */}
-      <section className="w-full border-y border-stone-200">
-        <div className="w-full grid grid-cols-1 md:grid-cols-2">
-          {/* Left Card: Penghargaan Internasional (Black) */}
-          <div className="bg-[#111111] hover:bg-black text-white py-10 sm:py-14 pl-6 sm:pl-10 md:pl-14 lg:pl-20 xl:pl-32 pr-6 sm:pr-10 lg:pr-16 flex items-center justify-between group transition-colors duration-300">
-            <div className="flex items-center gap-6 sm:gap-8">
-              <span className="text-4xl sm:text-5xl lg:text-6xl font-extralight text-stone-200 tracking-tight shrink-0">
-                4
-              </span>
-              <div className="flex flex-col">
-                <h4 className="text-sm sm:text-base font-bold text-white tracking-wide mb-1">
-                  Penghargaan Internasional
-                </h4>
-                <p className="text-xs sm:text-[13px] text-stone-400 font-light leading-relaxed">
-                  Asia Pacific Property Awards, IAI Bali Awards, dan Destinasi Desain Tropis
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Card: Mitra Global (White) */}
-          <div className="bg-white hover:bg-stone-50 text-[#111111] py-10 sm:py-14 pl-6 sm:pl-10 md:pl-12 lg:pl-16 pr-6 sm:pr-10 md:pr-14 lg:pr-20 xl:pr-32 flex items-center justify-between border-t md:border-t-0 md:border-l border-stone-200 group transition-colors duration-300">
-            <div className="flex items-center gap-6 sm:gap-8">
-              <span className="text-4xl sm:text-5xl lg:text-6xl font-extralight text-stone-900 tracking-tight shrink-0">
-                20+
-              </span>
-              <div className="flex flex-col">
-                <h4 className="text-sm sm:text-base font-bold text-[#111111] tracking-wide mb-1">
-                  Mitra Global & Internasional
-                </h4>
-                <p className="text-xs sm:text-[13px] text-stone-500 font-light leading-relaxed">
-                  Dipercaya di Bali, Singapura, Thailand, Bahama, Nigeria, dan India
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 5. SECTION: TIMELINES & MILESTONES */}
-      {/* ========================================================================= */}
-      <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16 bg-white">
-        <div className="max-w-360 mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-18">
-            <div className="inline-flex items-center justify-center gap-3 mb-3">
-              <span className="w-7 h-[1.5px] bg-stone-900" />
-              <span className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-stone-900 uppercase">
-                JEJAK LANGKAH KAMI
-              </span>
-              <span className="w-7 h-[1.5px] bg-stone-900" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-stone-900">
-              Perjalanan Dedikasi Sejak 2010
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {milestones.map((m, idx) => (
-              <div key={idx} className="relative p-6 rounded-xl border border-stone-200 bg-stone-50/50 hover:bg-white hover:shadow-lg transition-all duration-300">
-                <span className="text-3xl sm:text-4xl font-bold tracking-tight text-black block mb-2">
-                  {m.year}
-                </span>
-                <h4 className="text-sm sm:text-base font-bold text-stone-900 mb-2">
-                  {m.title}
-                </h4>
-                <p className="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
-                  {m.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 6. SECTION: STUDIO LOCATIONS */}
-      {/* ========================================================================= */}
-      <section className="w-full py-16 sm:py-20 px-6 sm:px-10 lg:px-16 bg-stone-50 border-t border-stone-200">
-        <div className="max-w-360 mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
-            <div>
-              <span className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-stone-500 uppercase block mb-2">
-                KANTOR & STUDIO KAMI
-              </span>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-stone-900">
-                Hadir di Pusat Budaya & Desain
-              </h3>
-            </div>
-            <button
-              type="button"
-              onClick={() => onNavigate && onNavigate("CONTACT")}
-              className="inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase text-black hover:underline cursor-pointer"
-            >
-              <span>Lihat Detail Kontak</span>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {studios.map((studio, idx) => (
-              <div key={idx} className="p-8 rounded-2xl bg-white border border-stone-200 shadow-xs hover:shadow-md transition-all">
-                <span className="inline-block px-3 py-1 bg-stone-100 text-stone-700 text-[11px] font-semibold tracking-wider uppercase rounded-full mb-4">
-                  {studio.type}
-                </span>
-                <h4 className="text-xl font-bold text-stone-900 mb-2">
-                  {studio.city}
-                </h4>
-                <p className="text-xs sm:text-sm text-stone-600 font-light leading-relaxed mb-4">
-                  {studio.address}
-                </p>
-                <a
-                  href={`tel:${studio.phone.replace(/[^0-9+]/g, "")}`}
-                  className="text-xs font-semibold text-black hover:text-stone-600 transition-colors"
-                >
-                  {studio.phone}
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 7. SECTION: CTA MULAI KONSULTASI DESAIN */}
-      {/* ========================================================================= */}
-      <section className="w-full py-20 sm:py-28 px-6 sm:px-10 lg:px-16 bg-white text-center">
-        <div className="max-w-3xl mx-auto">
-          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold tracking-tight text-[#111111] mb-4">
-            Mulai Konsultasi Desain
-          </h3>
-          <p className="text-xs sm:text-sm md:text-[14.5px] text-[#737373] font-light max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-            Wujudkan hunian impian Anda bersama tim arsitek berpengalaman kami di Bali, Jakarta, dan Thailand.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="https://wa.me/62859106532925"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-10 sm:px-12 py-3.5 sm:py-4 bg-[#181818] hover:bg-black text-white text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-            >
-              KIRIM PESAN WHATSAPP
-            </a>
-            <button
-              type="button"
-              onClick={() => onNavigate && onNavigate("PORTFOLIO")}
-              className="inline-block px-8 sm:px-10 py-3.5 sm:py-4 bg-stone-100 hover:bg-stone-200 text-stone-900 text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase transition-all duration-300 cursor-pointer"
-            >
-              LIHAT PORTOFOLIO
-            </button>
           </div>
         </div>
       </section>
