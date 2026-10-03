@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PortfolioDetail from "./PortfolioDetail";
 import banner1 from "../assets/images/banner1.jpg";
 import banner2 from "../assets/images/banner2.jpg";
 import banner3 from "../assets/images/banner3.jpg";
@@ -16,69 +17,115 @@ const categories = [
 
 const projects = [
   {
-    id: 1,
+    id: "casa-alyce",
+    title: "Casa Alyce",
+    category: "vila",
+    image: porto1,
+    heroImage: banner1,
+    mainImage: porto1,
+    location: "Umalas, Bali",
+    year: "2025",
+    buildingArea: "548 m²",
+    landArea: "963 m²",
+    area: "548 m²",
+    type: "Commercial Villa Sanctuary",
+    status: "Built",
+    desc: "Vila komersial ikonik di Umalas, Bali dengan kurva organik asimetris, focal point kolam dangkal, dan keterbukaan ruang tanpa batas.",
+  },
+  {
+    id: "djelantik-house",
     title: "Djelantik House",
     category: "kompleks-vila",
     image: banner1,
+    heroImage: banner1,
+    mainImage: banner1,
     location: "Dewi Sri, Bali",
     year: "2024",
+    buildingArea: "1,200 m²",
+    landArea: "1,800 m²",
     area: "1,200 m²",
     type: "Complex Villa Sanctuary",
+    status: "Built",
     desc: "Kombinasi pavilion terbuka dengan aksen kayu jati dan batu paras lokal untuk menciptakan suasana oasis tropis privat.",
   },
   {
-    id: 2,
+    id: "amala-retreat",
     title: "Amala Retreat",
     category: "vila",
     image: banner2,
+    heroImage: banner2,
+    mainImage: banner2,
     location: "Ubud, Bali",
     year: "2023",
+    buildingArea: "850 m²",
+    landArea: "1,400 m²",
     area: "850 m²",
     type: "Eco Luxury Sanctuary",
+    status: "Built",
     desc: "Vila berkonsep vernakular kontemporer yang menyatu dengan lembah sungai dan rimbunnya hutan tropis Ubud.",
   },
   {
-    id: 3,
+    id: "samudra-residence",
     title: "Samudra Residence",
     category: "residensial",
     image: banner3,
+    heroImage: banner3,
+    mainImage: banner3,
     location: "Canggu, Bali",
     year: "2024",
+    buildingArea: "980 m²",
+    landArea: "1,350 m²",
     area: "980 m²",
     type: "Private Modern Residence",
+    status: "Built",
     desc: "Hunian modern tropis dengan pencahayaan alami optimal, kolam infinity berteras, dan keterbukaan visual tanpa batas.",
   },
   {
-    id: 4,
+    id: "nirvana-cliff-estate",
     title: "Nirvana Cliff Estate",
     category: "vila",
     image: banner4,
+    heroImage: banner4,
+    mainImage: banner4,
     location: "Uluwatu, Bali",
     year: "2023",
+    buildingArea: "1,600 m²",
+    landArea: "2,500 m²",
     area: "1,600 m²",
     type: "Cliffside Resort Villa",
+    status: "Built",
     desc: "Arsitektur tebing pantai bergaris minimalis dengan panorama Samudra Hindia 180 derajat yang dramatis.",
   },
   {
-    id: 5,
+    id: "villa-sukma",
     title: "Villa Sukma",
     category: "vila",
     image: banner5,
+    heroImage: banner5,
+    mainImage: banner5,
     location: "Sanur, Bali",
     year: "2022",
+    buildingArea: "650 m²",
+    landArea: "950 m²",
     area: "650 m²",
     type: "Boutique Timber Villa",
+    status: "Built",
     desc: "Eksplorasi ketukangan kayu ulin dan jati daur ulang yang memberikan kehangatan dan ketenangan abadi.",
   },
   {
-    id: 6,
+    id: "new-york-office-suites",
     title: "New York Office Suites",
     category: "apartemen",
     image: porto1,
+    heroImage: porto1,
+    mainImage: porto1,
     location: "Sudirman, Jakarta",
     year: "2024",
+    buildingArea: "2,400 m²",
+    landArea: "1,800 m²",
     area: "2,400 m²",
     type: "Commercial & Workspace",
+    status: "Built",
     desc: "Ruang kerja premium modern yang memadukan estetika biophilic dan efisiensi ruang tingkat tinggi.",
   },
 ];
@@ -86,6 +133,18 @@ const projects = [
 export default function Portfolio({ onNavigate }) {
   const [activeFilter, setActiveFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
+
+  // If user selected a project, render the full Portfolio Detail page
+  if (selectedProject) {
+    return (
+      <PortfolioDetail
+        project={selectedProject}
+        onBack={() => setSelectedProject(null)}
+        onNavigate={onNavigate}
+        onSelectProject={(proj) => setSelectedProject(proj)}
+      />
+    );
+  }
 
   const filteredProjects =
     activeFilter === "all"
@@ -137,8 +196,9 @@ export default function Portfolio({ onNavigate }) {
                   key={cat.id}
                   type="button"
                   onClick={() => setActiveFilter(cat.id)}
-                  className={`relative pb-2.5 text-xs sm:text-sm font-bold tracking-widest uppercase transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0 ${isActive ? "text-stone-900" : "text-stone-400 hover:text-stone-700"
-                    }`}
+                  className={`relative pb-2.5 text-xs sm:text-sm font-bold tracking-widest uppercase transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0 ${
+                    isActive ? "text-stone-900" : "text-stone-400 hover:text-stone-700"
+                  }`}
                 >
                   {cat.label}
                   {isActive && (
@@ -199,68 +259,7 @@ export default function Portfolio({ onNavigate }) {
           </div>
         </div>
       </section>
-
-      {/* Project Modal Preview */}
-      {selectedProject && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
-          onClick={() => setSelectedProject(null)}
-        >
-          <div
-            className="relative w-full max-w-4xl bg-white rounded-3xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              type="button"
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center transition-colors cursor-pointer"
-            >
-              &times;
-            </button>
-
-            <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="relative h-64 md:h-auto min-h-80 bg-stone-900">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="p-8 sm:p-10 flex flex-col justify-between">
-                <div>
-                  <span className="text-xs font-bold tracking-[0.2em] text-stone-500 uppercase block mb-2">
-                    {selectedProject.location} &bull; {selectedProject.year}
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-stone-900 mb-2">
-                    {selectedProject.title}
-                  </h3>
-                  <p className="text-xs font-semibold text-stone-700 uppercase tracking-wider mb-4">
-                    {selectedProject.type} &bull; Luas: {selectedProject.area}
-                  </p>
-                  <p className="text-sm text-stone-600 font-light leading-relaxed mb-6">
-                    {selectedProject.desc}
-                  </p>
-                </div>
-
-                <div className="pt-6 border-t border-stone-200 flex flex-col gap-3">
-                  <a
-                    href={`https://wa.me/62859106532925?text=Halo%20Lumbung%20Architect,%20saya%20tertarik%20dengan%20proyek%20${encodeURIComponent(selectedProject.title)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3.5 bg-black hover:bg-stone-800 text-white text-center text-xs font-bold tracking-widest uppercase rounded-full transition-colors"
-                  >
-                    Konsultasikan Proyek Serupa
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
+
