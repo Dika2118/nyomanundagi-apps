@@ -127,7 +127,7 @@ export default function Home({ onNavigate }) {
   return (
     <div className="w-full bg-white text-[#111111]">
       {/* ================= HERO BANNER SECTION (Full-Bleed Matching Reference) ================= */}
-      <section id="hero" className="relative w-full h-[100dvh] min-h-[580px] max-h-[1100px] overflow-hidden bg-stone-950 flex flex-col justify-end">
+      <section id="hero" className="relative w-full h-dvh min-h-145 max-h-275 overflow-hidden bg-stone-950 flex flex-col justify-end">
         {/* Background Images & Crossfade Carousel */}
         {slides.map((slide, index) => {
           const isActive = index === currentSlide;
@@ -181,7 +181,7 @@ export default function Home({ onNavigate }) {
                       type="button"
                       onClick={() => setCurrentSlide(idx)}
                       aria-label={`Go to slide ${idx + 1}`}
-                      className={`h-[2px] transition-all duration-400 rounded-full cursor-pointer ${isActive
+                      className={`h-0.5 transition-all duration-400 rounded-full cursor-pointer ${isActive
                         ? "w-10 sm:w-14 bg-white shadow-xs"
                         : "w-5 sm:w-7 bg-white/35 hover:bg-white/70"
                         }`}

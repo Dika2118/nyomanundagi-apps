@@ -63,7 +63,7 @@ export default function About({ onNavigate }) {
       {/* ========================================================================= */}
       {/* 1. HERO BANNER ABOUT (Sesuai Referensi Gambar) */}
       {/* ========================================================================= */}
-      <section className="relative w-full h-[65vh] sm:h-[72vh] md:h-[78vh] min-h-[460px] max-h-[680px] bg-stone-900 overflow-hidden flex items-end">
+      <section className="relative w-full h-[65vh] sm:h-[72vh] md:h-[78vh] min-h-115 max-h-170 bg-stone-900 overflow-hidden flex items-end">
         {/* Background Image with Parallax-feel & Dark Gradient Overlay */}
         <div className="absolute inset-0 z-0">
           <img
@@ -105,7 +105,7 @@ export default function About({ onNavigate }) {
         <div className="max-w-360 mx-auto">
           {/* Section Header Line */}
           <div className="flex items-center gap-3.5 mb-8 sm:mb-12">
-            <span className="w-10 sm:w-14 h-[2px] bg-[#111111]" />
+            <span className="w-10 sm:w-14 h-0.5 bg-[#111111]" />
             <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-[#111111]">
               KONSEP KAMI
             </h2>
@@ -114,7 +114,7 @@ export default function About({ onNavigate }) {
           {/* Big Editorial Narrative */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start mb-16 sm:mb-20">
             <div className="lg:col-span-6">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-normal leading-[1.25] tracking-tight text-[#111111]">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-normal leading-tight tracking-tight text-[#111111]">
                 Menghadirkan harmoni antara ketenangan alam Bali dan ketegasan arsitektur modern dunia.
               </h3>
             </div>

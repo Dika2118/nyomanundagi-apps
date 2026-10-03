@@ -49,7 +49,7 @@ export default function Blog({ onNavigate }) {
   return (
     <div className="w-full bg-white text-[#111111]">
       {/* ================= HERO BANNER BLOG ================= */}
-      <section className="relative w-full h-[55vh] sm:h-[62vh] min-h-[400px] max-h-[580px] bg-stone-900 overflow-hidden flex items-end">
+      <section className="relative w-full h-[55vh] sm:h-[62vh] min-h-100 max-h-145 bg-stone-900 overflow-hidden flex items-end">
         <div className="absolute inset-0 z-0">
           <img
             src={banner2}
@@ -84,7 +84,7 @@ export default function Blog({ onNavigate }) {
                 key={article.id}
                 className="group cursor-pointer rounded-2xl overflow-hidden bg-stone-50 border border-stone-200 hover:shadow-xl transition-all duration-300 flex flex-col"
               >
-                <div className="relative aspect-16/9 overflow-hidden bg-stone-200">
+                <div className="relative aspect-video overflow-hidden bg-stone-200">
                   <img
                     src={article.image}
                     alt={article.title}

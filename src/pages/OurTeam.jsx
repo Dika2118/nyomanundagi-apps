@@ -88,7 +88,7 @@ export default function OurTeam({ onNavigate }) {
       {/* ========================================================================= */}
       {/* HERO BANNER OUR TEAM */}
       {/* ========================================================================= */}
-      <section className="relative w-full h-[55vh] sm:h-[65vh] min-h-[420px] max-h-[600px] bg-stone-900 overflow-hidden flex items-end">
+      <section className="relative w-full h-[55vh] sm:h-[65vh] min-h-105 max-h-150 bg-stone-900 overflow-hidden flex items-end">
         <div className="absolute inset-0 z-0">
           <img
             src={banner2}
@@ -120,7 +120,7 @@ export default function OurTeam({ onNavigate }) {
       <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16 border-b border-stone-100">
         <div className="max-w-360 mx-auto">
           <div className="flex items-center gap-3.5 mb-8 sm:mb-12">
-            <span className="w-10 sm:w-14 h-[2px] bg-[#0b3b24]" />
+            <span className="w-10 sm:w-14 h-0.5 bg-[#0b3b24]" />
             <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-[#0b3b24]">
               LEADERSHIP & VISION
             </h2>
@@ -190,7 +190,7 @@ export default function OurTeam({ onNavigate }) {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
             <div>
               <div className="flex items-center gap-3.5 mb-3">
-                <span className="w-10 sm:w-14 h-[2px] bg-[#0b3b24]" />
+                <span className="w-10 sm:w-14 h-0.5 bg-[#0b3b24]" />
                 <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-[#0b3b24]">
                   STUDIO TEAM
                 </h2>
@@ -254,7 +254,7 @@ export default function OurTeam({ onNavigate }) {
       <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16 bg-stone-900 text-white">
         <div className="max-w-360 mx-auto">
           <div className="flex items-center gap-3.5 mb-8 sm:mb-12">
-            <span className="w-10 sm:w-14 h-[2px] bg-emerald-400" />
+            <span className="w-10 sm:w-14 h-0.5 bg-emerald-400" />
             <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-emerald-400">
               NILAI & BUDAYA KERJA
             </h2>

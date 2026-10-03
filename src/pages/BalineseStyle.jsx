@@ -103,7 +103,7 @@ export default function BalineseStyle({ onNavigate }) {
       {/* ========================================================================= */}
       {/* HERO BANNER BALINESE STYLE */}
       {/* ========================================================================= */}
-      <section className="relative w-full h-[55vh] sm:h-[65vh] min-h-[420px] max-h-[600px] bg-stone-900 overflow-hidden flex items-end">
+      <section className="relative w-full h-[55vh] sm:h-[65vh] min-h-105 max-h-150 bg-stone-900 overflow-hidden flex items-end">
         <div className="absolute inset-0 z-0">
           <img
             src={banner5}
@@ -135,7 +135,7 @@ export default function BalineseStyle({ onNavigate }) {
       <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16 border-b border-stone-100">
         <div className="max-w-360 mx-auto">
           <div className="flex items-center gap-3.5 mb-8 sm:mb-12">
-            <span className="w-10 sm:w-14 h-[2px] bg-[#0b3b24]" />
+            <span className="w-10 sm:w-14 h-0.5 bg-[#0b3b24]" />
             <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-[#0b3b24]">
               ESENSI ARSITEKTUR BALI
             </h2>
@@ -143,7 +143,7 @@ export default function BalineseStyle({ onNavigate }) {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             <div className="lg:col-span-6">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-normal leading-[1.25] tracking-tight text-[#111111]">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-normal leading-tight tracking-tight text-[#111111]">
                 Bukan sekadar dekorasi etnik, melainkan filosofi tata ruang yang bernyawa dan selaras dengan semesta.
               </h3>
             </div>
@@ -165,7 +165,7 @@ export default function BalineseStyle({ onNavigate }) {
       <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16 bg-stone-50/70 border-b border-stone-200/60">
         <div className="max-w-360 mx-auto">
           <div className="flex items-center gap-3.5 mb-8 sm:mb-12">
-            <span className="w-10 sm:w-14 h-[2px] bg-[#0b3b24]" />
+            <span className="w-10 sm:w-14 h-0.5 bg-[#0b3b24]" />
             <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-[#0b3b24]">
               4 FILOSOFI DASAR TATA RUANG
             </h2>
@@ -218,7 +218,7 @@ export default function BalineseStyle({ onNavigate }) {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
             <div>
               <div className="flex items-center gap-3.5 mb-3">
-                <span className="w-10 sm:w-14 h-[2px] bg-[#0b3b24]" />
+                <span className="w-10 sm:w-14 h-0.5 bg-[#0b3b24]" />
                 <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-[#0b3b24]">
                   MATERIALITAS & ELEMEN
                 </h2>
@@ -272,7 +272,7 @@ export default function BalineseStyle({ onNavigate }) {
       <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16 bg-stone-900 text-white">
         <div className="max-w-360 mx-auto">
           <div className="flex items-center gap-3.5 mb-8 sm:mb-12">
-            <span className="w-10 sm:w-14 h-[2px] bg-emerald-400" />
+            <span className="w-10 sm:w-14 h-0.5 bg-emerald-400" />
             <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-emerald-400">
               MODERN TROPICAL FUSION
             </h2>

@@ -97,7 +97,7 @@ export default function Portfolio({ onNavigate }) {
       {/* ========================================================================= */}
       {/* HERO BANNER PORTFOLIO */}
       {/* ========================================================================= */}
-      <section className="relative w-full h-[55vh] sm:h-[62vh] min-h-[400px] max-h-[580px] bg-stone-900 overflow-hidden flex items-end">
+      <section className="relative w-full h-[55vh] sm:h-[62vh] min-h-100 max-h-145 bg-stone-900 overflow-hidden flex items-end">
         <div className="absolute inset-0 z-0">
           <img
             src={banner3}
