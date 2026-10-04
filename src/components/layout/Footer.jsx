@@ -277,11 +277,10 @@ export default function Footer({ onNavigate }) {
           type="button"
           onClick={scrollToTop}
           aria-label="Scroll to top"
-          className={`w-10 h-10 rounded-full bg-[#181818] hover:bg-black text-white flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer ${
-            showScrollTop
+          className={`w-10 h-10 rounded-full bg-[#181818] hover:bg-black text-white flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer ${showScrollTop
               ? "opacity-100 scale-100 pointer-events-auto"
               : "opacity-0 scale-75 pointer-events-none"
-          }`}
+            }`}
         >
           <svg
             className="w-4 h-4 fill-none stroke-current stroke-[2.5]"

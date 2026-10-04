@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import nyomanImg from "../assets/images/nyoman.png";
-import banner2 from "../assets/images/banner2.jpg";
+import fotoKantorImg from "../assets/images/fotokantor.jpg";
 import banner1 from "../assets/images/banner1.jpg";
-import banner3 from "../assets/images/banner3.jpg";
-import porto1 from "../assets/images/porto1.webp";
+import {
+  Home,
+  Activity,
+  Users,
+  DollarSign,
+  Heart,
+  Monitor,
+} from "lucide-react";
 
 export default function OurTeam({ onNavigate }) {
+  const [activeCategory, setActiveCategory] = useState("ALL");
   const leadership = {
     name: "I Nyoman Undagi, IAI",
     role: "Founder & Principal Architect",
@@ -13,6 +20,169 @@ export default function OurTeam({ onNavigate }) {
     quote: "“Arsitektur yang baik adalah yang bernyawa—mampu menghadirkan ketenangan jiwa bagi penghuninya dan menghormati tanah tempat ia berpijak.”",
     specialty: "Tropical Sanctuary & Vernacular Contemporary",
   };
+
+  const departments = [
+    {
+      title: "Design Team",
+      icon: Home,
+      desc: "Architects and Interior Designers responsible for designing and developing projects from concept through construction documentation. The team covers schematic design, 3D visualization, and drawing packages.",
+    },
+    {
+      title: "Marketing",
+      icon: Activity,
+      desc: "Campaign and lead generation. Create compelling content that showcases our architectural excellence to the world.",
+    },
+    {
+      title: "Sales",
+      icon: Users,
+      desc: "Client handling and business development. Help property owners realize their vision through SLA's design expertise.",
+      highlight: true,
+    },
+    {
+      title: "Finance & Accounting",
+      icon: DollarSign,
+      desc: "Financial reporting, invoicing, and budget management. Ensure sustainable growth and project cost control.",
+    },
+    {
+      title: "Human Resource & GA",
+      icon: Heart,
+      desc: "Recruit, develop, and support our 67+ professionals. Build the SLA culture through training and IPA sessions.",
+    },
+    {
+      title: "IT Development",
+      icon: Monitor,
+      desc: "Technology infrastructure, digital tools, and software systems that power our design and business operations.",
+    },
+  ];
+
+  const peopleCategories = [
+    "ALL",
+    "BOARD OF DIRECTOR",
+    "ARCHITECT",
+    "DESIGN DIVISION",
+    "INTERIOR DESIGN",
+    "ENGINEERING",
+    "MARKETING",
+    "SALES",
+    "FINANCE & ACCOUNTING",
+    "HRGA",
+    "IT",
+    "CORPORATE SECRETARY",
+    "SUPPORT",
+  ];
+
+  const peopleMembers = [
+    {
+      id: 1,
+      name: "I Gusti Ngurah Andri Saputra",
+      role: "CEO / Principal Architect",
+      category: "BOARD OF DIRECTOR",
+      img: nyomanImg,
+    },
+    {
+      id: 2,
+      name: "Wayan Darmawan, S.Ars",
+      role: "Lead Project Architect",
+      category: "ARCHITECT",
+      img: nyomanImg,
+    },
+    {
+      id: 3,
+      name: "Made Ayu Laksmi, M.Ds",
+      role: "Senior Interior Designer",
+      category: "INTERIOR DESIGN",
+      img: nyomanImg,
+    },
+    {
+      id: 4,
+      name: "Ketut Arya Wirawan, S.T",
+      role: "Lead Structural Engineer",
+      category: "ENGINEERING",
+      img: nyomanImg,
+    },
+    {
+      id: 5,
+      name: "Gede Sukadana",
+      role: "Master Undagi & Craft Specialist",
+      category: "DESIGN DIVISION",
+      img: nyomanImg,
+    },
+    {
+      id: 6,
+      name: "Putu Raditya, S.T",
+      role: "Senior Project Manager & QC",
+      category: "ENGINEERING",
+      img: nyomanImg,
+    },
+    {
+      id: 7,
+      name: "Ni Luh Dewi Lestari",
+      role: "Brand & Marketing Specialist",
+      category: "MARKETING",
+      img: nyomanImg,
+    },
+    {
+      id: 8,
+      name: "Agus Pratama, S.E",
+      role: "Senior Sales & Client Handling",
+      category: "SALES",
+      img: nyomanImg,
+    },
+    {
+      id: 9,
+      name: "Komang Triana, S.Ak",
+      role: "Finance & Accounting Lead",
+      category: "FINANCE & ACCOUNTING",
+      img: nyomanImg,
+    },
+    {
+      id: 10,
+      name: "Dewa Gede Yoga",
+      role: "IT & Digital Systems Lead",
+      category: "IT",
+      img: nyomanImg,
+    },
+    {
+      id: 11,
+      name: "Ida Bagus Made",
+      role: "HR & General Affairs",
+      category: "HRGA",
+      img: nyomanImg,
+    },
+    {
+      id: 12,
+      name: "Ni Putu Saraswati",
+      role: "Corporate Secretary",
+      category: "CORPORATE SECRETARY",
+      img: nyomanImg,
+    },
+    {
+      id: 13,
+      name: "I Wayan Suweta",
+      role: "Studio Support & Logistics",
+      category: "SUPPORT",
+      img: nyomanImg,
+    },
+    {
+      id: 14,
+      name: "Kadek Pradnya Paramita, S.Ars",
+      role: "Landscape Architect",
+      category: "ARCHITECT",
+      img: nyomanImg,
+    },
+    {
+      id: 15,
+      name: "Anak Agung Rai",
+      role: "3D BIM Visualization Specialist",
+      category: "DESIGN DIVISION",
+      img: nyomanImg,
+    },
+  ];
+
+  const filteredPeople =
+    activeCategory === "ALL"
+      ? peopleMembers
+      : peopleMembers.filter((m) => m.category === activeCategory);
 
   const teamMembers = [
     {
@@ -86,216 +256,169 @@ export default function OurTeam({ onNavigate }) {
   return (
     <div className="w-full bg-white text-[#111111]">
       {/* ========================================================================= */}
-      {/* HERO BANNER OUR TEAM */}
+      {/* HERO BANNER OUR TEAM — FOTO BERSAMA */}
       {/* ========================================================================= */}
-      <section className="relative w-full h-[55vh] sm:h-[65vh] min-h-105 max-h-150 bg-stone-900 overflow-hidden flex items-end">
+      <section className="relative w-full h-[65vh] sm:h-[75vh] md:h-[80vh] min-h-120 max-h-190 bg-stone-900 overflow-hidden flex items-end">
+        {/* Background Image: Foto Bersama (Grayscale) */}
         <div className="absolute inset-0 z-0">
           <img
-            src={banner2}
-            alt="Our Team Banner"
-            className="w-full h-full object-cover object-center scale-100 hover:scale-105 transition-transform duration-1200 ease-out"
+            src={fotoKantorImg}
+            alt="Join Our Team - Foto Kantor"
+            className="w-full h-full object-cover object-center scale-100 hover:scale-[1.02] transition-transform duration-700 ease-out"
           />
-          <div className="absolute inset-0 bg-linear-to-r from-black/85 via-black/55 to-black/30 pointer-events-none" />
-          <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/30 to-transparent pointer-events-none" />
+
+          {/* Overlay gradient top (untuk navbar) */}
+          <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-transparent pointer-events-none" />
+
+          {/* Overlay gradient left (untuk keterbacaan teks judul) */}
+          <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-transparent pointer-events-none" />
+
+          {/* Overlay gradient bottom */}
+          <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/25 to-transparent pointer-events-none" />
         </div>
 
-        <div className="relative z-10 w-full max-w-360 mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pb-12 sm:pb-16 md:pb-20">
+        {/* Hero Content (Bottom-Left) */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pb-12 sm:pb-16 md:pb-20">
           <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-4 duration-700">
             <p className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-stone-300 uppercase mb-2 sm:mb-3 drop-shadow-sm">
-              TIM KAMI
+              CAREERS
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-none mb-3 sm:mb-4 drop-shadow-md">
-              Our Team
+              Join Our Team
             </h1>
             <p className="text-[11px] sm:text-xs md:text-sm font-medium tracking-[0.22em] text-stone-200 uppercase leading-relaxed max-w-2xl drop-shadow-sm">
-              TALENTA KREATIF, PRAKTISI ARSITEKTUR, DAN PERAJIN UNDAGI YANG BERDEDIKASI
+              CURRENT TEAM STRUCTURE AND OPPORTUNITIES AT LUMBUNG ARCHITECT.
             </p>
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION: FOUNDER & PRINCIPAL ARCHITECT */}
+      {/* SECTION: OUR DEPARTMENTS (FIND YOUR PLACE) */}
       {/* ========================================================================= */}
-      <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16 border-b border-stone-100">
-        <div className="max-w-360 mx-auto">
-          <div className="flex items-center gap-3.5 mb-8 sm:mb-12">
-            <span className="w-10 sm:w-14 h-0.5 bg-[#0b3b24]" />
-            <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-[#0b3b24]">
-              LEADERSHIP & VISION
-            </h2>
+      <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16 bg-white border-b border-stone-100">
+        <div className="max-w-7xl mx-auto">
+          {/* Header: OUR DEPARTMENTS / Find Your Place */}
+          <div className="flex flex-col items-center justify-center text-center mb-12 sm:mb-16">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <span className="w-8 sm:w-12 h-0.5 bg-stone-900" />
+              <h2 className="text-xs sm:text-sm font-bold tracking-[0.25em] text-stone-900 uppercase">
+                OUR DEPARTMENTS
+              </h2>
+            </div>
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-stone-900">
+              Find Your Place
+            </h3>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center bg-stone-50 rounded-3xl p-8 sm:p-12 md:p-16 border border-stone-200/80">
-            {/* Foto Principal */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-64 sm:w-80 aspect-4/5 rounded-2xl overflow-hidden shadow-2xl bg-stone-900 border-4 border-white">
-                <img
-                  src={nyomanImg}
-                  alt={leadership.name}
-                  className="w-full h-full object-cover object-top"
-                  onError={(e) => {
-                    e.currentTarget.src = banner1;
-                  }}
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <p className="text-xs font-semibold tracking-widest uppercase text-emerald-400">
-                    {leadership.specialty}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Informasi Principal */}
-            <div className="lg:col-span-7 space-y-6">
-              <div>
-                <span className="text-xs font-bold tracking-widest uppercase text-stone-500 block mb-1">
-                  {leadership.role}
-                </span>
-                <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-stone-900">
-                  {leadership.name}
-                </h3>
-              </div>
-
-              <blockquote className="text-base sm:text-lg italic text-[#0b3b24] font-medium border-l-3 border-[#0b3b24] pl-4 py-1 leading-relaxed">
-                {leadership.quote}
-              </blockquote>
-
-              <p className="text-stone-600 text-sm sm:text-base leading-relaxed font-light text-justify">
-                {leadership.bio}
-              </p>
-
-              <div className="pt-4 flex flex-wrap gap-3">
-                <span className="text-xs font-semibold bg-white border border-stone-300 text-stone-700 px-3.5 py-1.5 rounded-full">
-                  Ikatan Arsitek Indonesia (IAI)
-                </span>
-                <span className="text-xs font-semibold bg-white border border-stone-300 text-stone-700 px-3.5 py-1.5 rounded-full">
-                  15+ Tahun Praktik
-                </span>
-                <span className="text-xs font-semibold bg-white border border-stone-300 text-stone-700 px-3.5 py-1.5 rounded-full">
-                  450+ Karya Terbangun
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* SECTION: CORE TEAM MEMBERS */}
-      {/* ========================================================================= */}
-      <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16 border-b border-stone-100">
-        <div className="max-w-360 mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
-            <div>
-              <div className="flex items-center gap-3.5 mb-3">
-                <span className="w-10 sm:w-14 h-0.5 bg-[#0b3b24]" />
-                <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-[#0b3b24]">
-                  STUDIO TEAM
-                </h2>
-              </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-normal tracking-tight text-stone-900">
-                Pilar Keahlian di Balik Setiap Karya
-              </h3>
-            </div>
-            <p className="text-xs sm:text-sm text-stone-500 max-w-md font-light leading-relaxed">
-              Kolektif profesional muda dan praktisi senior yang berkolaborasi mewujudkan standar arsitektur kelas dunia.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member, i) => (
-              <div
-                key={i}
-                className="bg-stone-50/70 p-8 rounded-2xl border border-stone-200/80 hover:border-stone-400 hover:bg-white hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-[11px] font-bold tracking-wider uppercase text-[#0b3b24] bg-[#0b3b24]/10 px-3 py-1 rounded-full">
-                      {member.department}
-                    </span>
-                    <span className="text-xs font-semibold text-stone-400">
-                      {member.experience}
-                    </span>
+          {/* Department Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {departments.map((dept, index) => {
+              const Icon = dept.icon;
+              return (
+                <div
+                  key={index}
+                  className={`bg-white rounded-2xl p-8 sm:p-9 flex flex-col items-start transition-all duration-300 group cursor-default ${dept.highlight
+                    ? "border border-stone-900 shadow-sm"
+                    : "border border-stone-200 hover:border-stone-900 hover:shadow-md"
+                    }`}
+                >
+                  <div className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center text-stone-800 mb-6 group-hover:bg-stone-900 group-hover:text-white transition-colors duration-300">
+                    <Icon className="w-5 h-5 stroke-[1.75]" />
                   </div>
-
-                  <h4 className="text-xl font-bold text-stone-900 tracking-tight mb-1 group-hover:text-[#0b3b24] transition-colors">
-                    {member.name}
+                  <h4 className="text-lg sm:text-xl font-bold text-stone-900 mb-3 tracking-tight">
+                    {dept.title}
                   </h4>
-                  <p className="text-xs font-bold text-stone-500 uppercase tracking-wider mb-4">
-                    {member.role}
-                  </p>
-
-                  <p className="text-xs sm:text-sm text-stone-600 font-light leading-relaxed mb-6">
-                    {member.desc}
+                  <p className="text-xs sm:text-sm text-stone-500 font-light leading-relaxed">
+                    {dept.desc}
                   </p>
                 </div>
-
-                <div className="pt-4 border-t border-stone-200/70 flex flex-wrap gap-1.5">
-                  {member.tags.map((tag, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="text-[10px] font-medium bg-stone-200/60 text-stone-700 px-2.5 py-0.5 rounded-xs"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION: WORK VALUES */}
+      {/* SECTION: OUR PEOPLE (BEHIND EVERY DESIGN) */}
       {/* ========================================================================= */}
-      <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16 bg-stone-900 text-white">
-        <div className="max-w-360 mx-auto">
-          <div className="flex items-center gap-3.5 mb-8 sm:mb-12">
-            <span className="w-10 sm:w-14 h-0.5 bg-emerald-400" />
-            <h2 className="text-xs sm:text-sm font-bold tracking-[0.28em] uppercase text-emerald-400">
-              NILAI & BUDAYA KERJA
-            </h2>
+      <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16 bg-white border-b border-stone-100">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="flex flex-col items-center justify-center text-center mb-8 sm:mb-10">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <span className="w-8 sm:w-12 h-0.5 bg-stone-900" />
+              <h2 className="text-xs sm:text-sm font-bold tracking-[0.25em] text-stone-900 uppercase">
+                OUR PEOPLE
+              </h2>
+            </div>
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-stone-900">
+              Behind Every Design
+            </h3>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {workValues.map((val, idx) => (
+          {/* Category Filter Tabs */}
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-5xl mx-auto mb-10 sm:mb-12">
+            {peopleCategories.map((cat) => {
+              const isActive = activeCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => setActiveCategory(cat)}
+                  className={`px-3.5 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-bold tracking-wider uppercase rounded-sm transition-all cursor-pointer ${isActive
+                    ? "bg-[#0b3b24] text-white border border-[#0b3b24] shadow-xs"
+                    : "bg-white text-stone-700 hover:text-black border border-stone-300 hover:border-stone-500"
+                    }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* People Grid (5 Columns) */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+            {filteredPeople.map((person) => (
               <div
-                key={idx}
-                className="p-8 rounded-2xl bg-stone-800/70 border border-stone-700/60 hover:border-emerald-500/50 transition-all"
+                key={person.id}
+                className="group relative aspect-4/5 bg-stone-100 rounded-sm overflow-hidden border border-stone-200 shadow-xs hover:shadow-md transition-all duration-300"
               >
-                <span className="text-xs font-mono text-emerald-400 uppercase tracking-widest block mb-4">
-                  {val.badge}
-                </span>
-                <h4 className="text-xl font-bold text-white tracking-tight mb-3">
-                  {val.title}
-                </h4>
-                <p className="text-xs sm:text-sm text-stone-300 font-light leading-relaxed">
-                  {val.desc}
-                </p>
+                <img
+                  src={person.img}
+                  alt={person.name}
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
+                />
+
+                {/* Hover Reveal Information (Sesuai Referensi Gambar) */}
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex flex-col justify-end p-4 sm:p-5 text-left pointer-events-none">
+                  <h4 className="font-bold text-sm sm:text-base md:text-[17px] text-white tracking-tight leading-snug drop-shadow-sm">
+                    {person.name}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-stone-300 font-normal leading-tight mt-1 drop-shadow-xs">
+                    {person.role}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
-
       {/* ========================================================================= */}
       {/* SECTION: CTA */}
       {/* ========================================================================= */}
-      <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16 bg-white">
-        <div className="max-w-360 mx-auto bg-stone-100 rounded-3xl p-8 sm:p-14 md:p-18 border border-stone-200 text-center flex flex-col items-center">
-          <span className="text-xs font-bold tracking-[0.25em] text-[#0b3b24] uppercase mb-3">
+      <section className="w-full py-20 sm:py-28 px-6 sm:px-10 lg:px-16 bg-white border-t border-stone-100">
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+          <span className="text-xs font-bold tracking-[0.25em] text-[#0b3b24] uppercase mb-4">
             KOLABORASI BERSAMA KAMI
           </span>
-          <h3 className="text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-stone-900 max-w-2xl leading-tight mb-4">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-stone-900 max-w-2xl leading-tight mb-4">
             Siap Mewujudkan Proyek Impian Anda?
           </h3>
           <p className="text-xs sm:text-sm md:text-base text-stone-600 font-light max-w-xl leading-relaxed mb-8">
             Konsultasikan ide desain, perencanaan anggaran, atau tata ruang bersama tim arsitek kami hari ini.
           </p>
-          <div className="flex flex-col sm:flex-row items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               type="button"
               onClick={() => onNavigate && onNavigate("CONTACT")}

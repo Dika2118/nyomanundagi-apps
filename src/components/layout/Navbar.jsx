@@ -45,8 +45,7 @@ export default function Navbar({ currentRoute = "HOME", onNavigate, forceSolid: 
     { label: "ABOUT", href: "#/about" },
     { label: "PORTFOLIO", href: "#/portfolio" },
     { label: "BLOG", href: "#/blog" },
-    { label: "BALINESE STYLE", href: "#/balinese-style" },
-    { label: "CAREERS", href: "#/our-team" },
+    { label: "OUR TEAM", href: "#/our-team" },
     { label: "CONTACT", href: "#/contact" },
   ];
 
