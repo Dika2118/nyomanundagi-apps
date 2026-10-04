@@ -48,7 +48,7 @@ export default function Footer({ onNavigate }) {
               >
                 <img
                   src={logoImg}
-                  alt="Lumbung Architect"
+                  alt="Nyoman Undagi"
                   className="h-10 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
@@ -159,10 +159,10 @@ export default function Footer({ onNavigate }) {
               </h4>
               <nav className="flex flex-col gap-3 text-[13px] text-[#737373]">
                 <a
-                  href="mailto:info@lumbungarchitect.com"
+                  href="mailto:info@nyomanundagi.com"
                   className="hover:text-black transition-colors duration-200 break-all"
                 >
-                  info@lumbungarchitect.com
+                  info@nyomanundagi.com
                 </a>
                 <a
                   href="https://wa.me/62859106532925"
@@ -173,7 +173,7 @@ export default function Footer({ onNavigate }) {
                   WhatsApp (+62 859-1065-32925)
                 </a>
                 <a
-                  href="https://www.instagram.com/lumbungarchitect/"
+                  href="https://www.instagram.com/nyomanundagi/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-black transition-colors duration-200"
@@ -181,7 +181,7 @@ export default function Footer({ onNavigate }) {
                   Instagram
                 </a>
                 <a
-                  href="https://www.facebook.com/Lumbungarchitect"
+                  href="https://www.facebook.com/nyomanundagi"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-black transition-colors duration-200"
@@ -189,7 +189,7 @@ export default function Footer({ onNavigate }) {
                   Facebook
                 </a>
                 <a
-                  href="https://www.linkedin.com/company/lumbung-architect/"
+                  href="https://www.linkedin.com/company/nyoman-undagi/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-black transition-colors duration-200"
@@ -202,7 +202,7 @@ export default function Footer({ onNavigate }) {
 
           <div className="pt-7 border-t border-[#eaeaea] flex flex-col md:flex-row items-center justify-between gap-4 text-[12px] text-[#737373]">
             <div className="text-center md:text-left leading-relaxed">
-              <span>© {currentYear} Lumbung Architect. Hak Cipta Dilindungi. </span>
+              <span>© {currentYear} Nyoman Undagi. Hak Cipta Dilindungi. </span>
               <button
                 type="button"
                 onClick={() => handleNav("CONTACT")}
@@ -214,7 +214,7 @@ export default function Footer({ onNavigate }) {
 
             <div className="flex items-center gap-4 text-[#737373]">
               <a
-                href="https://www.instagram.com/lumbungarchitect/"
+                href="https://www.instagram.com/nyomanundagi/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -236,7 +236,7 @@ export default function Footer({ onNavigate }) {
               </a>
 
               <a
-                href="https://www.facebook.com/Lumbungarchitect"
+                href="https://www.facebook.com/nyomanundagi"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
@@ -252,7 +252,7 @@ export default function Footer({ onNavigate }) {
               </a>
 
               <a
-                href="https://www.linkedin.com/company/lumbung-architect/"
+                href="https://www.linkedin.com/company/nyoman-undagi/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"

@@ -12,26 +12,26 @@ import { getBlogs, resolveImageUrl } from "../api/client";
 
 const defaultFeaturedArticle = {
   id: "featured-1",
-  title: "Lumbung Architect Featured in Bali Interiors",
+  title: "Nyoman Undagi Featured in Bali Interiors",
   category: "NEWS",
   date: "17 June 2025",
   readTime: "1 min read",
   image: porto1,
   excerpt:
-    "Lumbung Architect has been featured in Bali Interiors, celebrating our signature approach to tropical contemporary living, seamless indoor-outdoor connections, and the timeless artistry of Balinese Undagi craftsmanship.",
+    "Nyoman Undagi has been featured in Bali Interiors, celebrating our signature approach to tropical contemporary living, seamless indoor-outdoor connections, and the timeless artistry of Balinese Undagi craftsmanship.",
 };
 
 const defaultBlogPosts = [
   {
     id: "post-1",
-    title: "Lumbung Architect: A Story of Growth and Vision",
+    title: "Nyoman Undagi: A Story of Growth and Vision",
     category: "NEWS",
     date: "14 Mar 2025",
     readTime: "3 min read",
     image: nyomanImg,
     isPortrait: true,
     excerpt:
-      "In 2025, Lumbung Architect celebrates its 15th anniversary. A letter from Gus Pra, COO & co-founder, reflecting on fifteen years of architectural practice and continuous innovation.",
+      "In 2025, Nyoman Undagi celebrates its 15th anniversary. A letter reflecting on fifteen years of architectural practice and continuous innovation.",
   },
   {
     id: "post-2",
@@ -75,7 +75,7 @@ const defaultBlogPosts = [
   },
   {
     id: "post-6",
-    title: "Lumbung Architect Annual Design Retrospective: 2024 Year in Review",
+    title: "Nyoman Undagi Annual Design Retrospective: 2024 Year in Review",
     category: "ACHIEVEMENT",
     date: "20 Dec 2024",
     readTime: "3 min read",

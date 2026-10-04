@@ -15,7 +15,7 @@ export default function BlogDetail({ article, onBack, onNavigate, onSelectArticl
   // Default article data matching reference screenshot
   const currentArticle = article || {
     id: "featured-1",
-    title: "Lumbung Architect Featured in Bali Interiors",
+    title: "Nyoman Undagi Featured in Bali Interiors",
     category: "NEWS",
     date: "17 June 2025",
     readTime: "1 min read",
@@ -52,7 +52,7 @@ export default function BlogDetail({ article, onBack, onNavigate, onSelectArticl
     },
     {
       id: "related-3",
-      title: "Lumbung Architect Featured by Liputan6",
+      title: "Nyoman Undagi Featured by Liputan6",
       category: "NEWS",
       date: "01 Dec 2024",
       readTime: "4 min read",

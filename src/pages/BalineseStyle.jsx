@@ -152,7 +152,7 @@ export default function BalineseStyle({ onNavigate }) {
                 Arsitektur Bali yang sejati dibangun atas dasar ketukangan spiritual para <em>Undagi</em> (arsitek tradisional Bali) yang memperhitungkan keseimbangan kosmis, aliran angin tropis, dan karakter unik setiap lahan.
               </p>
               <p>
-                Di Lumbung Architect, kami mentransformasikan esensi filosofi adiluhung ini ke dalam bentuk modern minimalis—menghilangkan kesan kuno yang berat, lalu menghadirkan ruang peristirahatan yang lapang, bersih, teduh, dan berkelas dunia.
+                Di Nyoman Undagi, kami mentransformasikan esensi filosofi adiluhung ini ke dalam bentuk modern minimalis—menghilangkan kesan kuno yang berat, lalu menghadirkan ruang peristirahatan yang lapang, bersih, teduh, dan berkelas dunia.
               </p>
             </div>
           </div>

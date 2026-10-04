@@ -28,7 +28,7 @@ export default function About({ onNavigate }) {
   ];
 
   const milestones = [
-    { year: "2010", title: "Pendirian Studio", desc: "Lumbung Architect didirikan di Denpasar, Bali dengan fokus pada arsitektur tropis kontekstual." },
+    { year: "2010", title: "Pendirian Studio", desc: "Nyoman Undagi didirikan di Denpasar, Bali dengan fokus pada arsitektur tropis kontekstual." },
     { year: "2015", title: "Ekspansi Regional", desc: "Menyelesaikan 100+ proyek villa mewah dan residensial di seluruh Bali dan Lombok." },
     { year: "2019", title: "Penghargaan Internasional", desc: "Meraih pengakuan di Asia Pacific Property Awards dan asosiasi arsitek IAI Bali." },
     { year: "2024+", title: "Jangkauan Global", desc: "Menangani 450+ proyek dan bermitra di Singapura, Thailand, Bahama, Nigeria, & India." },
@@ -44,7 +44,7 @@ export default function About({ onNavigate }) {
         <div className="absolute inset-0 z-0">
           <img
             src={aboutBanner}
-            alt="About Lumbung Architect - Interior Architecture"
+            alt="About Nyoman Undagi - Interior Architecture"
             className="w-full h-full object-cover object-center scale-100 hover:scale-105 transition-transform duration-1000 ease-out"
           />
           {/* Gradients to ensure pristine contrast matching the reference */}
@@ -105,7 +105,7 @@ export default function About({ onNavigate }) {
                   Bagi kami, arsitektur bukan sekadar membangun struktur fisik, melainkan menyusun sebuah perjalanan emosional. Setiap sudut, sirkulasi cahaya, dan hembusan angin tropis dirancang untuk menghadirkan rasa pulang, kedamaian, dan koneksi yang mendalam dengan alam.
                 </p>
                 <p>
-                  Dengan memadukan kearifan lokal Bali dan teknik konstruksi kontemporer, Lumbung Architect menciptakan karya yang abadi—bangunan yang tidak tergerus oleh tren, melainkan semakin berkarakter dan bermakna seiring berjalannya waktu.
+                  Dengan memadukan kearifan lokal Bali dan teknik konstruksi kontemporer, Nyoman Undagi menciptakan karya yang abadi—bangunan yang tidak tergerus oleh tren, melainkan semakin berkarakter dan bermakna seiring berjalannya waktu.
                 </p>
               </div>
             </div>
@@ -115,7 +115,7 @@ export default function About({ onNavigate }) {
               <div className="w-full aspect-4/3 sm:aspect-16/10 lg:aspect-4/3 xl:aspect-auto lg:h-120 overflow-hidden bg-stone-100">
                 <img
                   src={kantorImg}
-                  alt="Studio Lumbung Architect Office"
+                  alt="Studio Nyoman Undagi Office"
                   className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 ease-out"
                 />
               </div>
@@ -274,10 +274,10 @@ export default function About({ onNavigate }) {
                     +62 859-1065-32925
                   </a>
                   <a
-                    href="mailto:info@lumbungarchitect.com"
+                    href="mailto:info@nyomanundagi.com"
                     className="text-xs text-stone-500 font-light mt-1 hover:underline"
                   >
-                    info@lumbungarchitect.com
+                    info@nyomanundagi.com
                   </a>
                 </div>
 
@@ -317,7 +317,7 @@ export default function About({ onNavigate }) {
                 </div>
                 <div className="mt-6 pt-4 border-t border-stone-200 group-hover:border-stone-800 transition-colors flex justify-end">
                   <span className="text-xs tracking-wider uppercase font-semibold text-stone-400 group-hover:text-stone-300">
-                    Lumbung Standard
+                    Nyoman Undagi Standard
                   </span>
                 </div>
               </div>
@@ -366,13 +366,13 @@ export default function About({ onNavigate }) {
 
               <div className="space-y-4 text-[13px] sm:text-[14px] leading-[1.85] text-[#555555] font-light text-justify">
                 <p>
-                  I Gusti Ngurah Andri Saputra, arsitek kelahiran Bali, mendirikan Lumbung Architect pada tahun 2010. Setelah lulus dari Universitas Udayana, beliau tidak langsung membuka firma sendiri. Beliau menghabiskan bertahun-tahun belajar dari pengalaman nyata, bekerja di firma arsitektur Australia dan Prancis di Bali untuk mengasah keahlian dan kedisiplinannya.
+                  I Gusti Ngurah Andri Saputra, arsitek kelahiran Bali, mendirikan Nyoman Undagi pada tahun 2010. Setelah lulus dari Universitas Udayana, beliau tidak langsung membuka firma sendiri. Beliau menghabiskan bertahun-tahun belajar dari pengalaman nyata, bekerja di firma arsitektur Australia dan Prancis di Bali untuk mengasah keahlian dan kedisiplinannya.
                 </p>
                 <p>
                   Yang menggerakkan beliau sangat personal. Tumbuh besar di Bali, dikelilingi keluarga dan komunitas, beliau melihat bagaimana sebuah rumah membentuk orang-orang di dalamnya. Kenangan masa kecil itulah yang menjadi tujuan hidupnya: merancang ruang di mana keluarga saling terhubung, persahabatan tumbuh, dan hidup terasa pas.
                 </p>
                 <p>
-                  Hari ini, Lumbung Architect adalah tim yang terdiri dari 67 profesional. Diakui melalui 450+ proyek di Bali dan destinasi global seperti Singapura, Thailand, Bahama, Nigeria, dan India, karya kami mencerminkan arsitektur abadi dengan sensibilitas internasional dan pengalaman hidup yang lebih tinggi.
+                  Hari ini, Nyoman Undagi adalah tim yang terdiri dari 67 profesional. Diakui melalui 450+ proyek di Bali dan destinasi global seperti Singapura, Thailand, Bahama, Nigeria, dan India, karya kami mencerminkan arsitektur abadi dengan sensibilitas internasional dan pengalaman hidup yang lebih tinggi.
                 </p>
               </div>
 

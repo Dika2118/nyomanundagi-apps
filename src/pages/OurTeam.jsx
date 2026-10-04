@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getTeamMembers, resolveImageUrl } from "../api/client";
 import nyomanImg from "../assets/images/nyoman.png";
 import fotoKantorImg from "../assets/images/fotokantor.jpg";
@@ -303,7 +303,7 @@ export default function OurTeam({ onNavigate }) {
               Join Our Team
             </h1>
             <p className="text-[11px] sm:text-xs md:text-sm font-medium tracking-[0.22em] text-stone-200 uppercase leading-relaxed max-w-2xl drop-shadow-sm">
-              CURRENT TEAM STRUCTURE AND OPPORTUNITIES AT LUMBUNG ARCHITECT.
+              CURRENT TEAM STRUCTURE AND OPPORTUNITIES AT NYOMAN UNDAGI.
             </p>
           </div>
         </div>

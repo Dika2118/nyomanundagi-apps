@@ -13,7 +13,7 @@ export default function Contact({ onNavigate }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const waMessage = `Halo Lumbung Architect,%0A%0ANama: ${encodeURIComponent(formData.name)}%0ANo Telepon: ${encodeURIComponent(formData.phone || "-")}%0AEmail: ${encodeURIComponent(formData.email)}%0AKeperluan: ${encodeURIComponent(formData.purpose || "-")}%0APesan: ${encodeURIComponent(formData.message)}`;
+    const waMessage = `Halo Nyoman Undagi,%0A%0ANama: ${encodeURIComponent(formData.name)}%0ANo Telepon: ${encodeURIComponent(formData.phone || "-")}%0AEmail: ${encodeURIComponent(formData.email)}%0AKeperluan: ${encodeURIComponent(formData.purpose || "-")}%0APesan: ${encodeURIComponent(formData.message)}`;
     window.open(`https://wa.me/62859106532925?text=${waMessage}`, "_blank");
     setIsSubmitted(true);
   };
@@ -80,7 +80,7 @@ export default function Contact({ onNavigate }) {
                     </h3>
                   </div>
                   <p className="text-xs sm:text-sm text-stone-600 mb-6 leading-relaxed font-light">
-                    Terima kasih telah menghubungi kami. Kami telah membuka tautan WhatsApp agar Anda dapat langsung berkomunikasi dengan tim Lumbung Architect.
+                    Terima kasih telah menghubungi kami. Kami telah membuka tautan WhatsApp agar Anda dapat langsung berkomunikasi dengan tim Nyoman Undagi.
                   </p>
                   <button
                     type="button"
@@ -225,8 +225,8 @@ export default function Contact({ onNavigate }) {
               {/* Google Maps Embed */}
               <div className="w-full aspect-[4/3] sm:aspect-[16/10] lg:h-[290px] rounded-none overflow-hidden border border-stone-200 bg-stone-100 shadow-xs relative">
                 <iframe
-                  title="Lumbung Architect Bali Location"
-                  src="https://maps.google.com/maps?q=Lumbung+Architect,+Jl.+Muding+Indah+XIII,+Kerobokan+Kaja,+Badung,+Bali&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  title="Nyoman Undagi Bali Location"
+                  src="https://maps.google.com/maps?q=Nyoman+Undagi,+Jl.+Muding+Indah+XIII,+Kerobokan+Kaja,+Badung,+Bali&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -239,7 +239,7 @@ export default function Contact({ onNavigate }) {
 
               {/* Single Location Details: Headquarters Bali (Clickable Navigate to Google Maps) */}
               <a
-                href="https://maps.google.com/?q=Lumbung+Architect,+Jl.+Muding+Indah+XIII,+Kerobokan+Kaja,+Badung,+Bali"
+                href="https://maps.google.com/?q=Nyoman+Undagi,+Jl.+Muding+Indah+XIII,+Kerobokan+Kaja,+Badung,+Bali"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Buka lokasi & navigasi di Google Maps"
@@ -294,28 +294,28 @@ export default function Contact({ onNavigate }) {
                   <div className="space-y-1.5 text-xs sm:text-sm">
                     <p className="flex items-center gap-2 flex-wrap">
                       <a
-                        href="mailto:info@lumbungarchitect.com"
+                        href="mailto:info@nyomanundagi.com"
                         className="font-semibold text-stone-900 hover:text-stone-600 transition-colors"
                       >
-                        info@lumbungarchitect.com
+                        info@nyomanundagi.com
                       </a>
                       <span className="text-stone-400 font-light">&mdash; General</span>
                     </p>
                     <p className="flex items-center gap-2 flex-wrap">
                       <a
-                        href="mailto:project@lumbungarchitect.com"
+                        href="mailto:project@nyomanundagi.com"
                         className="font-semibold text-stone-900 hover:text-stone-600 transition-colors"
                       >
-                        project@lumbungarchitect.com
+                        project@nyomanundagi.com
                       </a>
                       <span className="text-stone-400 font-light">&mdash; Projects</span>
                     </p>
                     <p className="flex items-center gap-2 flex-wrap">
                       <a
-                        href="mailto:career@lumbungarchitect.com"
+                        href="mailto:career@nyomanundagi.com"
                         className="font-semibold text-stone-900 hover:text-stone-600 transition-colors"
                       >
-                        career@lumbungarchitect.com
+                        career@nyomanundagi.com
                       </a>
                       <span className="text-stone-400 font-light">&mdash; Careers</span>
                     </p>
@@ -347,7 +347,7 @@ export default function Contact({ onNavigate }) {
                   <div className="flex items-center gap-3">
                     {/* Instagram */}
                     <a
-                      href="https://www.instagram.com/lumbungarchitect/"
+                      href="https://www.instagram.com/nyomanundagi/"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Instagram"
@@ -370,7 +370,7 @@ export default function Contact({ onNavigate }) {
 
                     {/* Facebook */}
                     <a
-                      href="https://www.facebook.com/Lumbungarchitect"
+                      href="https://www.facebook.com/nyomanundagi"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Facebook"
@@ -387,7 +387,7 @@ export default function Contact({ onNavigate }) {
 
                     {/* LinkedIn */}
                     <a
-                      href="https://www.linkedin.com/company/lumbung-architect/"
+                      href="https://www.linkedin.com/company/nyoman-undagi/"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="LinkedIn"

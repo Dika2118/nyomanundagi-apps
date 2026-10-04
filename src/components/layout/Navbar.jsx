@@ -79,7 +79,7 @@ export default function Navbar({ currentRoute = "HOME", onNavigate, forceSolid: 
           >
             <img
               src={logoImg}
-              alt="Lumbung Architect Logo"
+              alt="Nyoman Undagi Logo"
               className={`h-7 sm:h-8 md:h-9 w-auto object-contain transition-all duration-300 group-hover:scale-105 ${isSolid
                 ? "filter-none"
                 : "brightness-0 invert drop-shadow-md"
