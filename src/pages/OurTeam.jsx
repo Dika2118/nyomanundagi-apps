@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+﻿import React, { useState, useEffect } from "react";
+import { getTeamMembers, resolveImageUrl } from "../api/client";
 import nyomanImg from "../assets/images/nyoman.png";
 import fotoKantorImg from "../assets/images/fotokantor.jpg";
 import banner1 from "../assets/images/banner1.jpg";
@@ -13,6 +14,23 @@ import {
 
 export default function OurTeam({ onNavigate }) {
   const [activeCategory, setActiveCategory] = useState("ALL");
+  const [members, setMembers] = useState([]);
+
+  useEffect(() => {
+    getTeamMembers().then((res) => {
+      if (res && res.length > 0) {
+        setMembers(
+          res.map((m) => ({
+            id: m.id,
+            name: m.name,
+            role: m.position || "Architect",
+            category: "ALL",
+            img: resolveImageUrl(m.photo || m.photo_url, nyomanImg),
+          }))
+        );
+      }
+    });
+  }, []);
   const leadership = {
     name: "I Nyoman Undagi, IAI",
     role: "Founder & Principal Architect",
@@ -179,10 +197,8 @@ export default function OurTeam({ onNavigate }) {
     },
   ];
 
-  const filteredPeople =
-    activeCategory === "ALL"
-      ? peopleMembers
-      : peopleMembers.filter((m) => m.category === activeCategory);
+  const activeList = members.length > 0 ? members : peopleMembers;
+  const filteredPeople = activeCategory === 'ALL' ? activeList : activeList.filter((m) => m.category === activeCategory);
 
   const teamMembers = [
     {

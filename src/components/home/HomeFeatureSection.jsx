@@ -40,9 +40,8 @@ function Card({ item, on, onClick }) {
       <div className="absolute left-[14px] top-[7px] h-[40px] w-[40px] flex items-center justify-center pointer-events-none z-20">
         {Icon && (
           <Icon
-            className={`w-[18px] h-[18px] transition-colors duration-300 ${
-              on ? "text-white" : "text-neutral-800"
-            }`}
+            className={`w-[18px] h-[18px] transition-colors duration-300 ${on ? "text-white" : "text-neutral-800"
+              }`}
           />
         )}
       </div>
@@ -51,17 +50,15 @@ function Card({ item, on, onClick }) {
       <div className="relative z-10 pt-3.5 pb-4.5 pl-5 sm:pl-6 pr-5 sm:pr-6">
         {/* Judul di baris atas (sejajar ke kanan dari lingkaran) */}
         <span
-          className={`block pl-[68px] sm:pl-[72px] text-[15px] sm:text-base font-bold transition-colors duration-300 leading-tight ${
-            on ? "text-white" : "text-black"
-          }`}
+          className={`block pl-[68px] sm:pl-[72px] text-[15px] sm:text-base font-bold transition-colors duration-300 leading-tight ${on ? "text-white" : "text-black"
+            }`}
         >
           {item.title}
         </span>
         {/* Teks penjelasan diturunkan agar ada jarak aman dengan garis lengkungan */}
         <span
-          className={`mt-6 sm:mt-6.5 block pl-1.5 text-[11.5px] sm:text-xs leading-[1.65] transition-colors duration-300 font-normal w-full ${
-            on ? "text-gray-200" : "text-neutral-500"
-          }`}
+          className={`mt-6 sm:mt-6.5 block pl-1.5 text-[11.5px] sm:text-xs leading-[1.65] transition-colors duration-300 font-normal w-full ${on ? "text-gray-200" : "text-neutral-500"
+            }`}
         >
           {item.desc}
         </span>
@@ -111,13 +108,6 @@ export default function HomeFeatureSection({ onNavigate }) {
             <p className="text-xs sm:text-sm md:text-[14.5px] text-neutral-500 leading-relaxed">
               We help people find modern and comfortable homes in the best locations. Our goal is to provide trusted service.
             </p>
-            <button
-              type="button"
-              onClick={() => (onNavigate ? onNavigate("ABOUT") : null)}
-              className="inline-flex items-center justify-center px-6 py-2.5 rounded-full border border-neutral-300 text-xs sm:text-sm font-semibold text-neutral-800 hover:bg-neutral-900 hover:text-white hover:border-neutral-900 transition-all duration-300 shadow-2xs hover:shadow-md cursor-pointer"
-            >
-              Learn More
-            </button>
           </div>
         </div>
 
@@ -134,17 +124,9 @@ export default function HomeFeatureSection({ onNavigate }) {
                     Our Vision
                   </h3>
                   <p className="mt-3 text-xs sm:text-[13.5px] text-neutral-500 leading-relaxed">
-                    Our vision is to redefine the way people discover and experience modern living.
+                    Our vision is to redefine the way people discover and experience modern living. We are dedicated to crafting timeless architectural sanctuaries that seamlessly blend authentic tropical charm, refined contemporary design, and enduring comfort for your future.
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => (onNavigate ? onNavigate("ABOUT") : null)}
-                  className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-700 hover:text-neutral-950 transition-colors cursor-pointer group"
-                >
-                  <span>Learn More</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </button>
               </div>
 
               {/* Card 2: Modern Villa Landscape Image */}
@@ -168,14 +150,6 @@ export default function HomeFeatureSection({ onNavigate }) {
                   We offer a carefully curated selection of modern properties designed to meet the needs of today&apos;s lifestyle. Our portfolio includes houses, villas, and residential spaces located in strategic and desirable areas, ensuring comfort, accessibility, and long-term value. Our platform is built to provide a seamless and intuitive experience.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={() => (onNavigate ? onNavigate("PORTFOLIO") : null)}
-                className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-neutral-400 hover:text-white transition-colors cursor-pointer group w-fit"
-              >
-                <span>Learn More</span>
-                <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </button>
             </div>
           </div>
 
