@@ -1,6 +1,135 @@
 import React, { useState, useEffect } from "react";
 import { getBlogs, resolveImageUrl } from "../api/client";
 
+/**
+ * Format inline text (e.g. **bold**, "quoted titles", etc.)
+ */
+function formatInlineText(text) {
+  if (!text) return "";
+  const regex = /(\*\*.*?\*\*|".*?"|“.*?”)/g;
+  const parts = [];
+  let lastIdx = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIdx) {
+      parts.push(text.slice(lastIdx, match.index));
+    }
+    const token = match[0];
+    if (token.startsWith("**") && token.endsWith("**")) {
+      parts.push(
+        <strong key={match.index} className="font-semibold text-stone-900">
+          {token.slice(2, -2)}
+        </strong>
+      );
+    } else {
+      // Quoted titles like "Take a Peek Into My Paradise."
+      parts.push(
+        <strong key={match.index} className="font-semibold text-stone-900">
+          {token}
+        </strong>
+      );
+    }
+    lastIdx = regex.lastIndex;
+  }
+  if (lastIdx < text.length) {
+    parts.push(text.slice(lastIdx));
+  }
+  return parts.length > 0 ? parts : text;
+}
+
+/**
+ * Render content inside Blog Highlights from "Konten Lengkap Artikel" (article.content)
+ */
+function renderHighlightsContent(content) {
+  if (!content) return null;
+
+  // Split by double newlines or single newlines
+  const rawBlocks = content.split(/\r?\n\s*\r?\n/).map((b) => b.trim()).filter(Boolean);
+
+  return rawBlocks.map((block, bIdx) => {
+    const rawLines = block.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+
+    // Strip redundant "Blog Highlights" / "Design Highlights" line if user happened to type it
+    const lines = rawLines.filter(
+      (l) => !/^(#+\s*)?(design|blog)\s*highlights:?$/i.test(l)
+    );
+
+    if (lines.length === 0) return null;
+
+    // Check if lines represent a list of items
+    const hasBulletPrefix = lines.some((l) => /^([-*•]|\d+\.)\s+/.test(l));
+    const isMultiLine = lines.length >= 2;
+
+    if (hasBulletPrefix || isMultiLine) {
+      // Check if first line is an introductory narrative paragraph
+      const isFirstLineNarrative =
+        lines.length > 2 &&
+        lines[0].length > 130 &&
+        !/^([-*•]|\d+\.)\s+/.test(lines[0]);
+
+      const leadPara = isFirstLineNarrative ? lines[0] : null;
+      const listCandidates = isFirstLineNarrative ? lines.slice(1) : lines;
+
+      // Check if last line is a descriptive concluding paragraph (e.g. "The garden measures...")
+      const lastLine = listCandidates[listCandidates.length - 1] || "";
+      const isLastLineClosingPara =
+        listCandidates.length > 3 &&
+        lastLine.length > 55 &&
+        !/^([-*•]|\d+\.)\s+/.test(lastLine) &&
+        /^(the|in|pada|dengan|secara|adapun|selain|untuk|bangunan|desain)\s+/i.test(lastLine);
+
+      const items = (isLastLineClosingPara ? listCandidates.slice(0, -1) : listCandidates)
+        .map((l) => l.replace(/^([-*•]|\d+\.)\s+/, "").trim())
+        .filter(Boolean);
+
+      const closingPara = isLastLineClosingPara ? lastLine : null;
+
+      return (
+        <div key={bIdx} className="space-y-5">
+          {/* Introductory paragraph if present */}
+          {leadPara && (
+            <p className="leading-relaxed text-stone-700 text-sm sm:text-base font-light">
+              {formatInlineText(leadPara)}
+            </p>
+          )}
+
+          {/* List of bullet points */}
+          {items.length > 0 && (
+            <ul className="space-y-3.5 pt-1 text-stone-700">
+              {items.map((item, idx) => (
+                <li key={idx} className="flex items-start gap-3.5 text-sm sm:text-base font-light leading-relaxed">
+                  <span className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 shrink-0" />
+                  <span>{formatInlineText(item)}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {/* Closing paragraph if present */}
+          {closingPara && (
+            <p className="leading-relaxed text-stone-700 text-sm sm:text-base font-light pt-2">
+              {formatInlineText(closingPara)}
+            </p>
+          )}
+        </div>
+      );
+    }
+
+    // Single paragraph
+    return (
+      <p key={bIdx} className="leading-relaxed text-stone-700 text-sm sm:text-base font-light">
+        {lines.map((line, lIdx) => (
+          <React.Fragment key={lIdx}>
+            {formatInlineText(line)}
+            {lIdx < lines.length - 1 && <br />}
+          </React.Fragment>
+        ))}
+      </p>
+    );
+  });
+}
+
 export default function BlogDetail({ article, onBack, onNavigate, onSelectArticle }) {
   const [relatedArticles, setRelatedArticles] = useState([]);
 
@@ -161,20 +290,35 @@ export default function BlogDetail({ article, onBack, onNavigate, onSelectArticl
         )}
 
         {/* ========================================================================= */}
-        {/* 2. ARTICLE NARRATIVE */}
+        {/* 2. ARTICLE NARRATIVE & BLOG HIGHLIGHTS */}
         {/* ========================================================================= */}
-        <div className="w-full space-y-6 text-stone-700 text-sm sm:text-base font-light leading-relaxed mb-12 sm:mb-16">
-          {article.content ? (
-            <div className="whitespace-pre-line leading-relaxed text-stone-800 text-base">
-              {article.content}
+        <div className="w-full mb-12 sm:mb-16 space-y-8">
+          {/* Ringkasan Singkat / Excerpt di paling atas */}
+          {article.excerpt && (
+            <div className="text-stone-700 text-sm sm:text-base font-light leading-relaxed">
+              <p>{formatInlineText(article.excerpt)}</p>
             </div>
-          ) : article.excerpt ? (
-            <p className="text-stone-700 leading-relaxed text-base">
-              {article.excerpt}
-            </p>
-          ) : (
-            <p className="text-stone-400 italic">Konten artikel belum tersedia.</p>
           )}
+
+          {/* Bagian Blog Highlights (Judul Hardcode, isinya dari Konten Lengkap Artikel) */}
+          <div className="space-y-5 pt-2">
+            {/* Heading Blog Highlights (Permanen / Hardcode) */}
+            <div className="pt-2 pb-1">
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#111111] inline-block relative pb-2.5">
+                Blog Highlights
+                <span className="absolute bottom-0 left-0 w-16 h-0.75 bg-[#111111]" />
+              </h2>
+            </div>
+
+            {/* Isi Blog Highlights dari Konten Lengkap Artikel */}
+            {article.content ? (
+              <div className="space-y-6">
+                {renderHighlightsContent(article.content)}
+              </div>
+            ) : (
+              <p className="text-stone-400 italic">Poin Blog Highlights belum ditambahkan.</p>
+            )}
+          </div>
         </div>
 
         {/* ========================================================================= */}
