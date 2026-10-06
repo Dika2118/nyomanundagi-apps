@@ -1,68 +1,70 @@
-import React, { useEffect } from "react";
-import banner1 from "../assets/images/banner1.jpg";
-import banner2 from "../assets/images/banner2.jpg";
-import banner3 from "../assets/images/banner3.jpg";
-import banner4 from "../assets/images/banner4.webp";
-import banner5 from "../assets/images/banner5.webp";
-import porto1 from "../assets/images/porto1.webp";
-import { resolveImageUrl } from "../api/client";
+import React, { useState, useEffect } from "react";
+import { getBlogs, resolveImageUrl } from "../api/client";
 
 export default function BlogDetail({ article, onBack, onNavigate, onSelectArticle }) {
+  const [relatedArticles, setRelatedArticles] = useState([]);
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [article]);
 
-  // Default article data matching reference screenshot
-  const currentArticle = article || {
-    id: "featured-1",
-    title: "Nyoman Undagi Featured in Bali Interiors",
-    category: "NEWS",
-    date: "17 June 2025",
-    readTime: "1 min read",
-    image: banner1,
-  };
+  // Fetch real related articles from backend nyomanundagi-api
+  useEffect(() => {
+    if (!article?.id) return;
+    getBlogs({ all: true })
+      .then((res) => {
+        const list = Array.isArray(res) ? res : (res?.data || []);
+        const published = list.filter((b) => !b.status || b.status.toLowerCase() === "published");
+        const activeList = published.length > 0 ? published : list;
 
-  const designHighlights = [
-    "A feng shui-influenced layout consulted by a Jakarta-based master",
-    "Kitchen with avocado green tones and marble dining table seating eight",
-    "Custom five-month sofa in the living room",
-    "Children's bedrooms personalized to each child's preferences",
-    "Master suite with rose gold fixtures and sensor-activated toilet",
-    "Small home office (4x4 meters) for sketching and meetings",
-    "Cross-ventilation and strategic window placement for climate control",
-    "The garden measures 40 square meters and features custom-patterned traditional tiles and glass blocks for openness.",
-  ];
+        const others = activeList
+          .filter((b) => String(b.id) !== String(article.id))
+          .slice(0, 3)
+          .map((b) => ({
+            id: b.id,
+            title: b.title,
+            category: b.category ? b.category.toUpperCase() : "JOURNAL",
+            date: b.published_at || b.created_at
+              ? new Date(b.published_at || b.created_at).toLocaleDateString("id-ID", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })
+              : "Rilis Terbaru",
+            image: resolveImageUrl(b.image || b.thumbnail),
+            excerpt: b.excerpt || (b.content ? b.content.slice(0, 160) + "..." : ""),
+            content: b.content || "",
+            raw: b,
+          }));
 
-  const relatedArticles = [
-    {
-      id: "related-1",
-      title: "Rumah Semilir: A Villa That Embraces Nature in Cemagi, Bali",
-      category: "NEWS",
-      date: "01 Jun 2024",
-      readTime: "3 min read",
-      image: banner2,
-    },
-    {
-      id: "related-2",
-      title: "5 Sustainable Design Practices We Implement in Every Bali Villa",
-      category: "INSIGHTS",
-      date: "15 May 2024",
-      readTime: "5 min read",
-      image: banner3,
-    },
-    {
-      id: "related-3",
-      title: "Nyoman Undagi Featured by Liputan6",
-      category: "NEWS",
-      date: "01 Dec 2024",
-      readTime: "4 min read",
-      image: banner4,
-    },
-  ];
+        setRelatedArticles(others);
+      })
+      .catch((err) => {
+        console.error("Error fetching related blogs:", err);
+        setRelatedArticles([]);
+      });
+  }, [article?.id]);
 
-  const shareUrl = encodeURIComponent(window.location.href);
-  const shareText = encodeURIComponent(currentArticle.title);
-  const articleCover = resolveImageUrl(currentArticle.image, banner1);
+  if (!article) {
+    return (
+      <div data-navbar-light="true" className="w-full bg-white text-[#111111] pt-32 pb-20 px-6 sm:px-10 max-w-280 mx-auto text-center min-h-screen">
+        <h2 className="text-xl sm:text-2xl font-bold mb-4">Artikel Tidak Ditemukan</h2>
+        <p className="text-stone-500 text-sm mb-8">Artikel yang Anda cari tidak tersedia atau telah dihapus.</p>
+        <button
+          type="button"
+          onClick={() => onBack ? onBack() : onNavigate && onNavigate("BLOG")}
+          className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white text-xs font-bold uppercase tracking-wider rounded-lg hover:bg-stone-800 transition-colors cursor-pointer"
+        >
+          <span>&larr;</span>
+          <span>Kembali ke Blog</span>
+        </button>
+      </div>
+    );
+  }
+
+  const shareUrl = typeof window !== "undefined" ? encodeURIComponent(window.location.href) : "";
+  const shareText = encodeURIComponent(article.title || "");
+  const articleCover = resolveImageUrl(article.image || article.raw?.image || article.raw?.thumbnail);
 
   return (
     <div data-navbar-light="true" className="w-full bg-white text-[#111111] pt-20 sm:pt-24 min-h-screen">
@@ -88,20 +90,20 @@ export default function BlogDetail({ article, onBack, onNavigate, onSelectArticl
             Blog
           </button>
           <span className="text-stone-300">/</span>
-          <span className="text-stone-800 font-semibold truncate max-w-xs">{currentArticle.title}</span>
+          <span className="text-stone-800 font-semibold truncate max-w-xs">{article.title}</span>
         </nav>
 
         {/* Main Article Title */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#111111] leading-tight mb-8">
-          {currentArticle.title}
+          {article.title}
         </h1>
 
         {/* Meta Bar: Date & Share Buttons */}
         <div className="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-stone-100">
           <div className="flex items-center gap-2 text-xs sm:text-[13px] text-stone-500 font-light">
-            <span>{currentArticle.date}</span>
-            <span>&bull;</span>
-            <span className="uppercase">{currentArticle.category || currentArticle.readTime || "JOURNAL"}</span>
+            {article.date && <span>{article.date}</span>}
+            {article.date && article.category && <span>&bull;</span>}
+            {article.category && <span className="uppercase">{article.category}</span>}
           </div>
 
           <div className="flex items-center gap-3">
@@ -140,62 +142,43 @@ export default function BlogDetail({ article, onBack, onNavigate, onSelectArticl
               aria-label="Share on X"
               className="w-8 h-8 rounded-full border border-stone-200 hover:border-stone-900 flex items-center justify-center text-stone-700 hover:text-black transition-colors cursor-pointer"
             >
-              <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </a>
           </div>
         </div>
 
-        {/* Featured Full Image */}
-        <div className="w-full aspect-16/10 sm:aspect-video overflow-hidden bg-stone-100 my-8 sm:my-10 shadow-xs rounded-xl">
-          <img
-            src={articleCover}
-            alt={currentArticle.title}
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
+        {/* Featured Full Image (if exists) */}
+        {articleCover && (
+          <div className="w-full aspect-16/10 sm:aspect-video overflow-hidden bg-stone-100 my-8 sm:my-10 shadow-xs rounded-xl">
+            <img
+              src={articleCover}
+              alt={article.title}
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+        )}
 
         {/* ========================================================================= */}
         {/* 2. ARTICLE NARRATIVE */}
         {/* ========================================================================= */}
         <div className="w-full space-y-6 text-stone-700 text-sm sm:text-base font-light leading-relaxed mb-12 sm:mb-16">
-          {currentArticle.content ? (
+          {article.content ? (
             <div className="whitespace-pre-line leading-relaxed text-stone-800 text-base">
-              {currentArticle.content}
+              {article.content}
             </div>
+          ) : article.excerpt ? (
+            <p className="text-stone-700 leading-relaxed text-base">
+              {article.excerpt}
+            </p>
           ) : (
-            <>
-              <p>
-                Bali Interiors recently showcased the personal residence of Andri Saputra, principal architect at Nyoman Undagi Architect, in a video titled <strong className="font-semibold text-black">&ldquo;Take a Peek Into My Paradise.&rdquo;</strong>
-              </p>
-              <p>
-                The home combines contemporary and traditional design elements. Completed in 2025 after conceptualization in 2023, it features four bedrooms, four bathrooms, and open-plan living spaces. Construction and interior styling were handled by Bentuk Ruang.
-              </p>
-
-              {/* Subheading: Design Highlights */}
-              <div className="pt-6 pb-2">
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#111111] inline-block relative pb-2">
-                  Design Highlights
-                  <span className="absolute bottom-0 left-0 w-12 h-0.5 bg-[#111111]" />
-                </h2>
-              </div>
-
-              {/* Highlights List */}
-              <ul className="space-y-3 pt-2 text-stone-600">
-                {designHighlights.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2 shrink-0" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </>
+            <p className="text-stone-400 italic">Konten artikel belum tersedia.</p>
           )}
         </div>
 
         {/* ========================================================================= */}
-        {/* 3. BOTTOM SHARE & PREVIOUS ARTICLE BOX */}
+        {/* 3. BOTTOM BACK BUTTON */}
         {/* ========================================================================= */}
         <div className="w-full pt-8 pb-14 border-t border-stone-200">
           <div className="flex items-center justify-between gap-4 mb-8">
@@ -205,62 +188,66 @@ export default function BlogDetail({ article, onBack, onNavigate, onSelectArticl
               className="inline-flex items-center gap-1.5 text-xs font-bold tracking-widest text-[#111111] hover:text-stone-600 uppercase cursor-pointer"
             >
               <span>&larr;</span>
-              <span>BACK TO BLOG</span>
+              <span>KEMBALI KE BLOG</span>
             </button>
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 4. RELATED ARTICLES */}
+      {/* 4. RELATED ARTICLES (HANYA DITAMPILKAN JIKA ADA ARTIKEL LAIN DARI DATABASE) */}
       {/* ========================================================================= */}
-      <section className="w-full py-16 sm:py-24 bg-stone-50 px-6 sm:px-10 lg:px-16 border-t border-stone-200">
-        <div className="max-w-360 mx-auto">
-          <div className="flex items-center justify-between mb-8 sm:mb-12">
-            <div>
-              <span className="text-xs font-semibold tracking-[0.25em] text-stone-400 uppercase block mb-1">
-                EKSPLORASI LAINNYA
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-stone-900">
-                Artikel Terkait
-              </h2>
-            </div>
-            <button
-              type="button"
-              onClick={() => onBack ? onBack() : onNavigate && onNavigate("BLOG")}
-              className="text-xs sm:text-sm font-bold uppercase tracking-wider text-black hover:underline cursor-pointer"
-            >
-              Semua Artikel &rarr;
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {relatedArticles.map((rel) => (
-              <div
-                key={rel.id}
-                onClick={() => onSelectArticle ? onSelectArticle(rel) : null}
-                className="group cursor-pointer rounded-xl overflow-hidden bg-white border border-stone-200 hover:border-black transition-all shadow-xs hover:shadow-md"
-              >
-                <div className="aspect-16/10 overflow-hidden bg-stone-100">
-                  <img
-                    src={rel.image}
-                    alt={rel.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-5">
-                  <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block mb-1.5">
-                    {rel.category}
-                  </span>
-                  <h3 className="text-base font-bold text-stone-900 group-hover:text-black line-clamp-2">
-                    {rel.title}
-                  </h3>
-                </div>
+      {relatedArticles.length > 0 && (
+        <section className="w-full py-16 sm:py-24 bg-stone-50 px-6 sm:px-10 lg:px-16 border-t border-stone-200">
+          <div className="max-w-360 mx-auto">
+            <div className="flex items-center justify-between mb-8 sm:mb-12">
+              <div>
+                <span className="text-xs font-semibold tracking-[0.25em] text-stone-400 uppercase block mb-1">
+                  EKSPLORASI LAINNYA
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-stone-900">
+                  Artikel Terkait
+                </h2>
               </div>
-            ))}
+              <button
+                type="button"
+                onClick={() => onBack ? onBack() : onNavigate && onNavigate("BLOG")}
+                className="text-xs sm:text-sm font-bold uppercase tracking-wider text-black hover:underline cursor-pointer"
+              >
+                Semua Artikel &rarr;
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {relatedArticles.map((rel) => (
+                <div
+                  key={rel.id}
+                  onClick={() => onSelectArticle ? onSelectArticle(rel) : null}
+                  className="group cursor-pointer rounded-xl overflow-hidden bg-white border border-stone-200 hover:border-black transition-all shadow-xs hover:shadow-md"
+                >
+                  {rel.image && (
+                    <div className="aspect-16/10 overflow-hidden bg-stone-100">
+                      <img
+                        src={rel.image}
+                        alt={rel.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  )}
+                  <div className="p-5">
+                    <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest block mb-1.5">
+                      {rel.category}
+                    </span>
+                    <h3 className="text-base font-bold text-stone-900 group-hover:text-black line-clamp-2">
+                      {rel.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 }

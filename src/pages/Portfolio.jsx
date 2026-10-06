@@ -4,6 +4,15 @@ import banner3 from "../assets/images/banner3.jpg";
 import porto1 from "../assets/images/porto1.webp";
 import { getProjects, getProjectCategories, resolveImageUrl } from "../api/client";
 
+function getProjectIdFromHash() {
+  const hash = window.location.hash.replace(/^#\/?/, "");
+  const parts = hash.split("/").filter(Boolean);
+  if (parts.length >= 2 && parts[0].toLowerCase() === "portfolio") {
+    return decodeURIComponent(parts[1].split("?")[0]);
+  }
+  return null;
+}
+
 export default function Portfolio({ onNavigate }) {
   const [activeFilter, setActiveFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
@@ -35,32 +44,43 @@ export default function Portfolio({ onNavigate }) {
     getProjects({ all: true })
       .then((res) => {
         if (Array.isArray(res)) {
-          setProjects(
-            res.map((p) => {
-              const img = resolveImageUrl(p.thumbnail || p.thumbnail_url, porto1);
-              return {
-                id: p.id,
-                title: p.title,
-                category: String(p.category_id),
-                categorySlug: p.category?.name?.toLowerCase().replace(/\s+/g, "-"),
-                categoryName: p.category?.name || "Kategori",
-                image: img,
-                heroImage: img,
-                mainImage: img,
-                location: p.location || "Bali, Indonesia",
-                year: p.year || "-",
-                buildingArea: p.building_area ? `${p.building_area} m²` : "-",
-                landArea: p.land_area ? `${p.land_area} m²` : "-",
-                area: p.building_area ? `${p.building_area} m²` : "-",
-                client: p.client_name || "-",
-                type: p.category?.name || "Architectural Project",
-                status: p.status || "Built",
-                desc: p.description || p.short_description || "",
-                images: p.images || [],
-                raw: p,
-              };
-            })
-          );
+          const mapped = res.map((p) => {
+            const img = resolveImageUrl(p.thumbnail || p.thumbnail_url, porto1);
+            return {
+              id: p.id,
+              title: p.title,
+              category: String(p.category_id),
+              categorySlug: p.category?.name?.toLowerCase().replace(/\s+/g, "-"),
+              categoryName: p.category?.name || "Kategori",
+              image: img,
+              heroImage: img,
+              mainImage: img,
+              location: p.location || "Bali, Indonesia",
+              year: p.year || "-",
+              buildingArea: p.building_area ? `${p.building_area} m²` : "-",
+              landArea: p.land_area ? `${p.land_area} m²` : "-",
+              area: p.building_area ? `${p.building_area} m²` : "-",
+              client: p.client_name || "-",
+              type: p.category?.name || "Architectural Project",
+              status: p.status || "Built",
+              desc: p.description || p.short_description || "",
+              images: p.images || [],
+              raw: p,
+            };
+          });
+          setProjects(mapped);
+
+          // Check if user came with project ID/slug in hash
+          const currentProjId = getProjectIdFromHash();
+          if (currentProjId) {
+            const found = mapped.find(
+              (p) =>
+                String(p.id) === String(currentProjId) ||
+                p.categorySlug === currentProjId ||
+                p.raw?.slug === currentProjId
+            );
+            if (found) setSelectedProject(found);
+          }
         } else {
           setProjects([]);
         }
@@ -74,15 +94,53 @@ export default function Portfolio({ onNavigate }) {
       });
   }, []);
 
+  // Listen to browser Back / Forward navigation (hashchange)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const projId = getProjectIdFromHash();
+      if (!projId) {
+        setSelectedProject(null);
+      } else {
+        const found = projects.find(
+          (p) =>
+            String(p.id) === String(projId) ||
+            p.categorySlug === projId ||
+            p.raw?.slug === projId
+        );
+        if (found) setSelectedProject(found);
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, [projects]);
+
+  const handleSelectProject = (project) => {
+    if (!project) return;
+    const identifier = project.raw?.slug || project.id;
+    const targetHash = `#/portfolio/${identifier}`;
+    if (window.location.hash !== targetHash) {
+      window.location.hash = targetHash;
+    }
+    setSelectedProject(project);
+  };
+
+  const handleBackToPortfolioList = () => {
+    setSelectedProject(null);
+    if (window.location.hash.toLowerCase().startsWith("#/portfolio/")) {
+      window.location.hash = "#/portfolio";
+    }
+  };
+
   // If user selected a project, render the full Portfolio Detail page
   if (selectedProject) {
     return (
       <PortfolioDetail
         project={selectedProject}
         allProjects={projects}
-        onBack={() => setSelectedProject(null)}
+        onBack={handleBackToPortfolioList}
         onNavigate={onNavigate}
-        onSelectProject={(proj) => setSelectedProject(proj)}
+        onSelectProject={handleSelectProject}
       />
     );
   }
@@ -186,7 +244,7 @@ export default function Portfolio({ onNavigate }) {
               {filteredProjects.map((project) => (
                 <article
                   key={project.id}
-                  onClick={() => setSelectedProject(project)}
+                  onClick={() => handleSelectProject(project)}
                   className="group cursor-pointer rounded-2xl overflow-hidden bg-stone-50 border border-stone-200 hover:border-stone-900 hover:shadow-2xl transition-all duration-500 flex flex-col"
                 >
                   {/* Image Wrap */}
