@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import banner1 from "../assets/images/banner1.jpg";
 import porto1 from "../assets/images/porto1.webp";
 import nyomanImg from "../assets/images/nyoman.png";
 import HomeFeatureSection from "../components/home/HomeFeatureSection";
@@ -51,10 +50,9 @@ export default function Home({ onNavigate }) {
           setSlides(
             res.map((b) => ({
               id: b.id,
-              image: resolveImageUrl(b.image || b.image_url, banner1),
-              title: (b.title || "NYOMAN UNDAGI").toUpperCase(),
-              location: (b.subtitle || "BALI, INDONESIA").toUpperCase(),
-              type: "ARCHITECTURE",
+              image: resolveImageUrl(b.image || b.image_url),
+              title: (b.title || "").toUpperCase(),
+              location: (b.subtitle || "").toUpperCase(),
             }))
           );
         } else {
@@ -119,19 +117,7 @@ export default function Home({ onNavigate }) {
       });
   }, []);
 
-  // Fallback brand slide if no banners uploaded yet in database
-  const displaySlides =
-    slides.length > 0
-      ? slides
-      : [
-          {
-            id: "default",
-            image: banner1,
-            title: "NYOMAN UNDAGI",
-            location: "BALI, INDONESIA",
-            type: "ARCHITECTURE",
-          },
-        ];
+  const displaySlides = slides;
 
   // Slide autoplay interval
   useEffect(() => {
@@ -155,11 +141,11 @@ export default function Home({ onNavigate }) {
     activeFilter === "all"
       ? allProjects
       : allProjects.filter(
-          (project) =>
-            project.category === activeFilter ||
-            project.categorySlug === activeFilter ||
-            String(project.id) === activeFilter
-        )
+        (project) =>
+          project.category === activeFilter ||
+          project.categorySlug === activeFilter ||
+          String(project.id) === activeFilter
+      )
   ).slice(0, 6);
 
   const activeSlide = displaySlides[currentSlide] || displaySlides[0];
@@ -174,16 +160,14 @@ export default function Home({ onNavigate }) {
           return (
             <div
               key={slide.id || index}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-              }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                }`}
             >
               <img
                 src={slide.image}
                 alt={slide.title}
-                className={`w-full h-full object-cover object-center transition-transform duration-1200 ease-out ${
-                  isActive ? "scale-100" : "scale-105"
-                }`}
+                className={`w-full h-full object-cover object-center transition-transform duration-1200 ease-out ${isActive ? "scale-100" : "scale-105"
+                  }`}
               />
               {/* Top Gradient for Navbar legibility */}
               <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/25 to-transparent h-48 pointer-events-none" />
@@ -204,14 +188,16 @@ export default function Home({ onNavigate }) {
                 key={`title-${currentSlide}`}
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-[0.14em] sm:tracking-[0.18em] text-white uppercase leading-[1.15] font-sans drop-shadow-md animate-in fade-in slide-in-from-bottom-2 duration-700"
               >
-                {activeSlide.title}
+                {activeSlide?.title}
               </h1>
-              <p
-                key={`sub-${currentSlide}`}
-                className="mt-2.5 sm:mt-3.5 text-xs sm:text-sm md:text-[14px] font-normal tracking-[0.22em] sm:tracking-[0.26em] text-stone-300 uppercase drop-shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100"
-              >
-                {activeSlide.location} <span className="mx-2 text-white/50">|</span> {activeSlide.type}
-              </p>
+              {activeSlide?.location && (
+                <p
+                  key={`sub-${currentSlide}`}
+                  className="mt-2.5 sm:mt-3.5 text-xs sm:text-sm md:text-[14px] font-normal tracking-[0.22em] sm:tracking-[0.26em] text-stone-300 uppercase drop-shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100"
+                >
+                  {activeSlide.location}
+                </p>
+              )}
 
               {/* Minimal Line Indicators (only if multiple slides exist) */}
               {displaySlides.length > 1 && (
@@ -224,43 +210,16 @@ export default function Home({ onNavigate }) {
                         type="button"
                         onClick={() => setCurrentSlide(idx)}
                         aria-label={`Go to slide ${idx + 1}`}
-                        className={`h-0.5 transition-all duration-400 rounded-full cursor-pointer ${
-                          isActive
-                            ? "w-10 sm:w-14 bg-white shadow-xs"
-                            : "w-5 sm:w-7 bg-white/35 hover:bg-white/70"
-                        }`}
+                        className={`h-0.5 transition-all duration-400 rounded-full cursor-pointer ${isActive
+                          ? "w-10 sm:w-14 bg-white shadow-xs"
+                          : "w-5 sm:w-7 bg-white/35 hover:bg-white/70"
+                          }`}
                       />
                     );
                   })}
                 </div>
               )}
             </div>
-
-            {/* Right Side: Circular Navigation Arrows (only if multiple slides exist) */}
-            {displaySlides.length > 1 && (
-              <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
-                <button
-                  type="button"
-                  onClick={handlePrevSlide}
-                  aria-label="Previous slide"
-                  className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-white/40 bg-black/30 backdrop-blur-md text-white flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer shadow-md"
-                >
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNextSlide}
-                  aria-label="Next slide"
-                  className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-white/40 bg-black/30 backdrop-blur-md text-white flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer shadow-md"
-                >
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            )}
           </div>
         </div>
       </section>
@@ -289,9 +248,8 @@ export default function Home({ onNavigate }) {
                       key={cat.id}
                       type="button"
                       onClick={() => setActiveFilter(cat.id)}
-                      className={`relative pb-2.5 text-xs sm:text-sm font-bold tracking-widest uppercase transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0 ${
-                        isActive ? "text-stone-900" : "text-stone-400 hover:text-stone-700"
-                      }`}
+                      className={`relative pb-2.5 text-xs sm:text-sm font-bold tracking-widest uppercase transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0 ${isActive ? "text-stone-900" : "text-stone-400 hover:text-stone-700"
+                        }`}
                     >
                       {cat.label}
                       {isActive && (
@@ -384,13 +342,12 @@ export default function Home({ onNavigate }) {
           ) : (
             /* Layout Responsif Bersih jika baru ada 1 - 3 proyek unggulan */
             <div
-              className={`grid gap-5 sm:gap-6 ${
-                filteredProjects.length === 1
-                  ? "grid-cols-1 max-w-2xl mx-auto"
-                  : filteredProjects.length === 2
+              className={`grid gap-5 sm:gap-6 ${filteredProjects.length === 1
+                ? "grid-cols-1 max-w-2xl mx-auto"
+                : filteredProjects.length === 2
                   ? "grid-cols-1 sm:grid-cols-2"
                   : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-              }`}
+                }`}
             >
               {filteredProjects.map((item) => (
                 <BentoCard

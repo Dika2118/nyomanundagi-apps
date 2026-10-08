@@ -1,9 +1,29 @@
 import React, { useState, useEffect } from "react";
 import logoImg from "../../assets/images/logo_removebg.png";
+import { getServices } from "../../api/client";
 
 export default function Footer({ onNavigate }) {
   const currentYear = new Date().getFullYear();
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [services, setServices] = useState([]);
+
+  // Fetch dynamic services from database
+  useEffect(() => {
+    let isMounted = true;
+    getServices()
+      .then((data) => {
+        if (isMounted && Array.isArray(data)) {
+          setServices(data);
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching services in footer:", err);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +52,19 @@ export default function Footer({ onNavigate }) {
     if (e) e.preventDefault();
     if (onNavigate) {
       onNavigate(route);
+    }
+  };
+
+  const handleServiceNav = (e) => {
+    if (e) e.preventDefault();
+    if (onNavigate) {
+      onNavigate("ABOUT");
+      setTimeout(() => {
+        const el = document.getElementById("layanan");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
     }
   };
 
@@ -88,13 +121,6 @@ export default function Footer({ onNavigate }) {
                 </button>
                 <button
                   type="button"
-                  onClick={(e) => handleNav("BALINESE STYLE", e)}
-                  className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
-                >
-                  Gaya Bali (Balinese Style)
-                </button>
-                <button
-                  type="button"
                   onClick={(e) => handleNav("OUR TEAM", e)}
                   className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
                 >
@@ -122,34 +148,26 @@ export default function Footer({ onNavigate }) {
                 LAYANAN
               </h4>
               <nav className="flex flex-col gap-3 text-[13px] text-[#737373]">
-                <button
-                  type="button"
-                  onClick={(e) => handleNav("PORTFOLIO", e)}
-                  className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
-                >
-                  Arsitektur Lengkap
-                </button>
-                <button
-                  type="button"
-                  onClick={(e) => handleNav("PORTFOLIO", e)}
-                  className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
-                >
-                  Arsitektur Dasar
-                </button>
-                <button
-                  type="button"
-                  onClick={(e) => handleNav("ABOUT", e)}
-                  className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
-                >
-                  Arsitektur Interior
-                </button>
-                <button
-                  type="button"
-                  onClick={(e) => handleNav("ABOUT", e)}
-                  className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
-                >
-                  Interior & Lanskap
-                </button>
+                {services.length > 0 ? (
+                  services.map((service) => (
+                    <button
+                      key={service.id}
+                      type="button"
+                      onClick={(e) => handleServiceNav(e)}
+                      className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
+                    >
+                      {service.title}
+                    </button>
+                  ))
+                ) : (
+                  <button
+                    type="button"
+                    onClick={(e) => handleServiceNav(e)}
+                    className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
+                  >
+                    Semua Layanan
+                  </button>
+                )}
               </nav>
             </div>
 
@@ -278,8 +296,8 @@ export default function Footer({ onNavigate }) {
           onClick={scrollToTop}
           aria-label="Scroll to top"
           className={`w-10 h-10 rounded-full bg-[#181818] hover:bg-black text-white flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer ${showScrollTop
-              ? "opacity-100 scale-100 pointer-events-auto"
-              : "opacity-0 scale-75 pointer-events-none"
+            ? "opacity-100 scale-100 pointer-events-auto"
+            : "opacity-0 scale-75 pointer-events-none"
             }`}
         >
           <svg
