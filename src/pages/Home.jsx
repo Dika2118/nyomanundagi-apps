@@ -9,7 +9,7 @@ function BentoCard({ item, className = "", onNavigate }) {
   return (
     <div
       onClick={() => onNavigate && onNavigate("PORTFOLIO")}
-      className={`relative rounded-3xl sm:rounded-[32px] overflow-hidden group cursor-pointer shadow-xs hover:shadow-2xl transition-all duration-500 bg-stone-950 ${className}`}
+      className={`relative rounded-3xl sm:rounded-[32px] overflow-hidden group cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 bg-stone-950 ${className}`}
     >
       <img
         src={item.image}
@@ -153,7 +153,7 @@ export default function Home({ onNavigate }) {
   return (
     <div className="w-full bg-white text-[#111111]">
       {/* ================= HERO BANNER SECTION (Full-Bleed Matching Reference) ================= */}
-      <section id="hero" className="relative w-full h-dvh min-h-145 max-h-275 overflow-hidden bg-stone-950 flex flex-col justify-end">
+      <section id="hero" className="relative w-full h-dvh min-h-[580px] max-h-[1100px] overflow-hidden bg-stone-950 flex flex-col justify-end">
         {/* Background Images & Crossfade Carousel */}
         {displaySlides.map((slide, index) => {
           const isActive = index === currentSlide;
@@ -170,17 +170,17 @@ export default function Home({ onNavigate }) {
                   }`}
               />
               {/* Top Gradient for Navbar legibility */}
-              <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/25 to-transparent h-48 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/25 to-transparent h-48 pointer-events-none" />
               {/* Overall Subtle Dark Tint */}
               <div className="absolute inset-0 bg-black/20 pointer-events-none" />
               {/* Bottom Gradient for Title & Subtitle legibility */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
             </div>
           );
         })}
 
         {/* Hero Overlay Content: Bottom-Left Typography + Bottom-Right Arrow Controls */}
-        <div className="relative z-20 w-full max-w-360 mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pb-12 sm:pb-16 md:pb-20">
+        <div className="relative z-20 w-full max-w-[1440px] mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pb-12 sm:pb-16 md:pb-20">
           <div className="flex items-end justify-between gap-6">
             {/* Left Side: Title, Subtitle, Slide Indicator Dashes */}
             <div className="max-w-3xl">
@@ -193,7 +193,7 @@ export default function Home({ onNavigate }) {
               {activeSlide?.location && (
                 <p
                   key={`sub-${currentSlide}`}
-                  className="mt-2.5 sm:mt-3.5 text-xs sm:text-sm md:text-[14px] font-normal tracking-[0.22em] sm:tracking-[0.26em] text-stone-300 uppercase drop-shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100"
+                  className="mt-2.5 sm:mt-3.5 text-xs sm:text-sm font-normal tracking-[0.22em] sm:tracking-[0.26em] text-stone-300 uppercase drop-shadow-sm animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100"
                 >
                   {activeSlide.location}
                 </p>
@@ -211,7 +211,7 @@ export default function Home({ onNavigate }) {
                         onClick={() => setCurrentSlide(idx)}
                         aria-label={`Go to slide ${idx + 1}`}
                         className={`h-0.5 transition-all duration-400 rounded-full cursor-pointer ${isActive
-                          ? "w-10 sm:w-14 bg-white shadow-xs"
+                          ? "w-10 sm:w-14 bg-white shadow-sm"
                           : "w-5 sm:w-7 bg-white/35 hover:bg-white/70"
                           }`}
                       />
@@ -225,7 +225,7 @@ export default function Home({ onNavigate }) {
       </section>
 
       {/* ================= SECTION 2: INTRO & COMMITMENT ================= */}
-      <div className="w-full max-w-360 mx-auto px-6 sm:px-10 lg:px-16">
+      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16">
         <HomeFeatureSection onNavigate={onNavigate} />
 
         {/* ================= SECTION 3: PROYEK PILIHAN / PORTFOLIO BENTO ================= */}
@@ -240,7 +240,7 @@ export default function Home({ onNavigate }) {
 
             {/* Category Filter Tabs */}
             {categories.length > 1 && (
-              <div className="mt-8 sm:mt-10 flex items-center justify-center gap-5 sm:gap-8 md:gap-10 overflow-x-auto pb-3 scrollbar-none px-2">
+              <div className="mt-8 sm:mt-10 flex items-center justify-center gap-5 sm:gap-8 md:gap-10 overflow-x-auto pb-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-2">
                 {categories.map((cat) => {
                   const isActive = activeFilter === cat.id;
                   return (
@@ -377,8 +377,8 @@ export default function Home({ onNavigate }) {
         </div>
 
         {/* ================= KENALI PRINSIPAL KAMI / ABOUT FOUNDER ================= */}
-        <div id="about" className="mt-28 sm:mt-36 pt-16 sm:pt-20 pb-16 sm:pb-24 border-t border-[#eaeaea]">
-          <div className="max-w-270 mx-auto">
+        <div id="about" className="mt-28 sm:mt-36 pt-16 sm:pt-20 pb-10 sm:pb-12 border-t border-[#eaeaea]">
+          <div className="max-w-[1080px] mx-auto">
             {/* Top Grid: Photo & Bio */}
             <div className="grid grid-cols-1 md:grid-cols-[140px_1fr] lg:grid-cols-[160px_1fr] gap-8 md:gap-10 lg:gap-14 items-start">
               {/* Left Column: Founder Photo */}
@@ -386,7 +386,7 @@ export default function Home({ onNavigate }) {
                 <img
                   src={nyomanImg}
                   alt="Ir. Ar. IGN Andri Saputra, IAI."
-                  className="w-full max-w-32.5 sm:max-w-36.25 lg:max-w-40 h-auto object-contain select-none"
+                  className="w-full max-w-[130px] sm:max-w-[145px] lg:max-w-40 h-auto object-contain select-none"
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                   }}
@@ -436,6 +436,37 @@ export default function Home({ onNavigate }) {
               <h4 className="text-xl sm:text-2xl md:text-[26px] font-normal italic text-[#111111] tracking-tight">
                 &ldquo;Perjalanan dalam Setiap Desain&rdquo;
               </h4>
+            </div>
+          </div>
+        </div>
+
+        {/* ================= SECTION: CTA (KOLABORASI BERSAMA KAMI) ================= */}
+        <div className="pt-10 sm:pt-14 pb-16 sm:pb-20 border-t border-[#eaeaea]">
+          <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+            <span className="text-xs font-bold tracking-[0.25em] text-[#0b3b24] uppercase mb-4">
+              KOLABORASI BERSAMA KAMI
+            </span>
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-stone-900 max-w-2xl leading-tight mb-4">
+              Siap Mewujudkan Proyek Impian Anda?
+            </h3>
+            <p className="text-xs sm:text-sm md:text-base text-stone-600 font-light max-w-xl leading-relaxed mb-8">
+              Konsultasikan ide desain, perencanaan anggaran, atau tata ruang bersama tim arsitek kami hari ini.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                type="button"
+                onClick={() => onNavigate && onNavigate("CONTACT")}
+                className="w-full sm:w-auto px-8 py-3.5 bg-[#0b3b24] hover:bg-[#072818] text-white text-xs font-bold tracking-widest uppercase rounded-sm shadow-md transition-all cursor-pointer"
+              >
+                Mulai Konsultasi
+              </button>
+              <button
+                type="button"
+                onClick={() => onNavigate && onNavigate("PORTFOLIO")}
+                className="w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-stone-50 text-stone-800 border border-stone-300 text-xs font-bold tracking-widest uppercase rounded-sm transition-all cursor-pointer"
+              >
+                Eksplorasi Karya
+              </button>
             </div>
           </div>
         </div>
