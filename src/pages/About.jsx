@@ -104,7 +104,7 @@ export default function About({ onNavigate }) {
       {/* ========================================================================= */}
       {/* 2. SECTION: KONSEP KAMI (EDITORIAL, VISION & MISSION, STATS) */}
       {/* ========================================================================= */}
-      <section id="konsep-kami" className="w-full py-16 sm:py-24 md:py-28 px-6 sm:px-10 lg:px-16 border-b border-stone-100">
+      <section id="konsep-kami" className="w-full pt-16 sm:pt-24 md:pt-28 pb-12 sm:pb-16 px-6 sm:px-10 lg:px-16 border-b border-stone-100">
         <div className="max-w-360 mx-auto">
           {/* Big Editorial Narrative with Studio/Office Image */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mb-16 sm:mb-20">
@@ -146,7 +146,7 @@ export default function About({ onNavigate }) {
           </div>
 
           {/* Stats / Numbers Row */}
-          <div className="max-w-300 mx-auto pt-8 pb-10 sm:pt-12 sm:pb-14 border-t border-stone-100">
+          <div className="max-w-300 mx-auto py-6 sm:py-8 border-t border-stone-100">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 text-center">
               <div className="flex flex-col items-center">
                 <span className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#111111]">
@@ -184,7 +184,7 @@ export default function About({ onNavigate }) {
           </div>
 
           {/* Vision & Mission Cards */}
-          <div className="max-w-300 mx-auto mt-6 sm:mt-10 mb-14 sm:mb-20">
+          <div className="max-w-300 mx-auto mt-3 sm:mt-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
               <div className="bg-[#0a2b16] rounded-2xl sm:rounded-3xl p-7 sm:p-9 lg:p-10 text-white flex flex-col justify-between relative overflow-hidden shadow-sm">
                 <div>
@@ -237,7 +237,7 @@ export default function About({ onNavigate }) {
       {/* 3. SECTION: LAYANAN KAMI / SERVICES (DYNAMIC FROM DATABASE) */}
       {/* Menggantikan Konsep Pilar dengan desain Card badge hijau yang elegan */}
       {/* ========================================================================= */}
-      <section id="layanan" className="w-full py-16 sm:py-24 md:py-28 px-6 sm:px-10 lg:px-16 bg-white border-b border-stone-100">
+      <section id="layanan" className="w-full pt-12 sm:pt-16 pb-16 sm:pb-24 md:pb-28 px-6 sm:px-10 lg:px-16 bg-white border-b border-stone-100">
         <div className="max-w-300 mx-auto">
           {/* Section Header */}
           <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20">
@@ -441,6 +441,39 @@ export default function About({ onNavigate }) {
                 Sabtu: 09:00 &ndash; 14:00 WITA (Janji Temu)
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 6. SECTION: CTA (KOLABORASI BERSAMA KAMI) */}
+      {/* ========================================================================= */}
+      <section className="w-full py-20 sm:py-28 px-6 sm:px-10 lg:px-16 bg-white border-t border-stone-100">
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+          <span className="text-xs font-bold tracking-[0.25em] text-[#0b3b24] uppercase mb-4">
+            KOLABORASI BERSAMA KAMI
+          </span>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-stone-900 max-w-2xl leading-tight mb-4">
+            Siap Mewujudkan Proyek Impian Anda?
+          </h3>
+          <p className="text-xs sm:text-sm md:text-base text-stone-600 font-light max-w-xl leading-relaxed mb-8">
+            Konsultasikan ide desain, perencanaan anggaran, atau tata ruang bersama tim arsitek kami hari ini.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              type="button"
+              onClick={() => onNavigate && onNavigate("CONTACT")}
+              className="w-full sm:w-auto px-8 py-3.5 bg-[#0b3b24] hover:bg-[#072818] text-white text-xs font-bold tracking-widest uppercase rounded-sm shadow-md transition-all cursor-pointer"
+            >
+              Mulai Konsultasi
+            </button>
+            <button
+              type="button"
+              onClick={() => onNavigate && onNavigate("PORTFOLIO")}
+              className="w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-stone-50 text-stone-800 border border-stone-300 text-xs font-bold tracking-widest uppercase rounded-sm transition-all cursor-pointer"
+            >
+              Eksplorasi Karya
+            </button>
           </div>
         </div>
       </section>
