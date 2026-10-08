@@ -30,9 +30,9 @@ export default function PortfolioDetail({ project, allProjects = [], onBack, onN
   const galleryImages =
     currentProject?.images && Array.isArray(currentProject.images) && currentProject.images.length > 0
       ? currentProject.images.map((img, i) => ({
-          src: resolveImageUrl(img.image, porto1),
-          alt: img.caption || `${currentProject.title} - Foto ${i + 1}`,
-        }))
+        src: resolveImageUrl(img.image, porto1),
+        alt: img.caption || `${currentProject.title} - Foto ${i + 1}`,
+      }))
       : [];
 
   // Related Projects from real loaded projects (exclude current project)
@@ -138,34 +138,34 @@ export default function PortfolioDetail({ project, allProjects = [], onBack, onN
               {/* BUILDING AREA */}
               {(currentProject.buildingArea || currentProject.building_area || currentProject.raw?.building_area) &&
                 (currentProject.buildingArea !== "-" && currentProject.building_area !== "-") && (
-                <div className="py-3.5 first:pt-0">
-                  <span className="text-[11px] font-bold tracking-[0.22em] text-stone-400 uppercase block mb-1">
-                    BUILDING AREA
-                  </span>
-                  <p className="text-sm sm:text-[15px] font-medium text-[#111111]">
-                    {(() => {
-                      const val = String(currentProject.buildingArea || currentProject.building_area || currentProject.raw?.building_area || "").trim();
-                      return val.includes("m²") || val.toLowerCase().includes("sqm") || val.toLowerCase().includes("m2") ? val : `${val} m²`;
-                    })()}
-                  </p>
-                </div>
-              )}
+                  <div className="py-3.5 first:pt-0">
+                    <span className="text-[11px] font-bold tracking-[0.22em] text-stone-400 uppercase block mb-1">
+                      BUILDING AREA
+                    </span>
+                    <p className="text-sm sm:text-[15px] font-medium text-[#111111]">
+                      {(() => {
+                        const val = String(currentProject.buildingArea || currentProject.building_area || currentProject.raw?.building_area || "").trim();
+                        return val.includes("m²") || val.toLowerCase().includes("sqm") || val.toLowerCase().includes("m2") ? val : `${val} m²`;
+                      })()}
+                    </p>
+                  </div>
+                )}
 
               {/* LAND AREA */}
               {(currentProject.landArea || currentProject.land_area || currentProject.raw?.land_area) &&
                 (currentProject.landArea !== "-" && currentProject.land_area !== "-") && (
-                <div className="py-3.5 first:pt-0">
-                  <span className="text-[11px] font-bold tracking-[0.22em] text-stone-400 uppercase block mb-1">
-                    LAND AREA
-                  </span>
-                  <p className="text-sm sm:text-[15px] font-medium text-[#111111]">
-                    {(() => {
-                      const val = String(currentProject.landArea || currentProject.land_area || currentProject.raw?.land_area || "").trim();
-                      return val.includes("m²") || val.toLowerCase().includes("sqm") || val.toLowerCase().includes("m2") ? val : `${val} m²`;
-                    })()}
-                  </p>
-                </div>
-              )}
+                  <div className="py-3.5 first:pt-0">
+                    <span className="text-[11px] font-bold tracking-[0.22em] text-stone-400 uppercase block mb-1">
+                      LAND AREA
+                    </span>
+                    <p className="text-sm sm:text-[15px] font-medium text-[#111111]">
+                      {(() => {
+                        const val = String(currentProject.landArea || currentProject.land_area || currentProject.raw?.land_area || "").trim();
+                        return val.includes("m²") || val.toLowerCase().includes("sqm") || val.toLowerCase().includes("m2") ? val : `${val} m²`;
+                      })()}
+                    </p>
+                  </div>
+                )}
 
               {/* CATEGORY */}
               {(currentProject.categoryName || currentProject.raw?.category?.name || currentProject.type) && (
@@ -235,12 +235,9 @@ export default function PortfolioDetail({ project, allProjects = [], onBack, onN
       {galleryImages.length > 0 && (
         <section className="w-full py-12 sm:py-16 px-6 sm:px-10 lg:px-16 max-w-360 mx-auto border-t border-stone-100">
           <div className="text-center max-w-xl mx-auto mb-10 sm:mb-14">
-            <span className="text-xs font-semibold tracking-[0.25em] text-stone-400 uppercase block mb-2">
-              GALERI FOTO
+            <span className="text-2xl sm:text-3xl font-bold tracking-tight text-stone-900">
+              GALERI PROYEK
             </span>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-stone-900">
-              Dokumentasi Proyek ({galleryImages.length})
-            </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
