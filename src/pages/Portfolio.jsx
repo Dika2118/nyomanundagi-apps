@@ -57,13 +57,18 @@ export default function Portfolio({ onNavigate }) {
               mainImage: img,
               location: p.location || "Bali, Indonesia",
               year: p.year || "-",
-              buildingArea: p.building_area ? `${p.building_area} m²` : "-",
-              landArea: p.land_area ? `${p.land_area} m²` : "-",
+              buildingArea: p.building_area ? (String(p.building_area).includes("m²") ? p.building_area : `${p.building_area} m²`) : "",
+              landArea: p.land_area ? (String(p.land_area).includes("m²") ? p.land_area : `${p.land_area} m²`) : "",
+              building_area: p.building_area || "",
+              land_area: p.land_area || "",
               area: p.building_area ? `${p.building_area} m²` : "-",
               client: p.client_name || "-",
               type: p.category?.name || "Architectural Project",
               status: p.status || "Built",
-              desc: p.description || p.short_description || "",
+              description: p.description || "",
+              desc: p.description || "",
+              shortDescription: p.short_description || "",
+              short_description: p.short_description || "",
               images: p.images || [],
               raw: p,
             };
@@ -274,9 +279,9 @@ export default function Portfolio({ onNavigate }) {
                       <h3 className="text-xl sm:text-2xl font-bold text-stone-900 group-hover:text-black transition-colors mb-2">
                         {project.title}
                       </h3>
-                      {project.desc && (
+                      {(project.shortDescription || project.desc) && (
                         <p className="text-xs sm:text-sm text-stone-600 font-light leading-relaxed line-clamp-2">
-                          {project.desc}
+                          {project.shortDescription || project.desc}
                         </p>
                       )}
                     </div>
