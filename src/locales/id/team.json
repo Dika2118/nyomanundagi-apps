@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "badge": "TIM PROFESIONAL KAMI",
+    "title": "Tim Kami",
+    "subtitle": "Kolektivitas Arsitek, Desainer, dan Tenaga Ahli yang Berdedikasi Mewujudkan Karya Bernilai Luhur"
+  },
+  "departments_badge": "DEPARTEMEN KAMI",
+  "departments_title": "Temukan Bidang Anda",
+  "people_badge": "ANGGOTA TIM",
+  "people_title": "Di Balik Setiap Desain",
+  "loading_members": "Memuat anggota tim...",
+  "empty_members": "Belum ada anggota tim yang ditampilkan.",
+  "empty_category": "Tidak ada anggota tim pada kategori \"{{category}}\".",
+  "join_us": "Bergabung Bersama Kami",
+  "open_positions": "Posisi yang Tersedia",
+  "send_cv": "Kirim Portofolio & CV"
+}

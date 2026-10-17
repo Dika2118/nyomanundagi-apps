@@ -1,0 +1,31 @@
+{
+  "hero": {
+    "badge": "GET IN TOUCH",
+    "title": "Contact Us",
+    "subtitle": "Begin Your Architectural Journey with Our Dedicated Studio"
+  },
+  "form": {
+    "badge": "SEND A MESSAGE",
+    "title": "Send a Message",
+    "desc": "Fill out the form below and our studio team will get back to you promptly.",
+    "name_label": "Full Name",
+    "name_placeholder": "Enter your name",
+    "phone_label": "Phone / WhatsApp",
+    "phone_placeholder": "+62 812 3456 7890",
+    "email_label": "Email Address",
+    "email_placeholder": "name@domain.com",
+    "purpose_label": "Project Type / Inquiries",
+    "purpose_placeholder": "Select or specify project type (Villa, Private Residence, Resort, Commercial)",
+    "message_label": "Message / Project Details",
+    "message_placeholder": "Share details regarding site location, approximate land area, or design vision...",
+    "submit_btn": "Send via WhatsApp",
+    "success_title": "Your Message Has Been Forwarded",
+    "success_desc": "Thank you for reaching out. We will connect with you via WhatsApp/Email shortly."
+  },
+  "info": {
+    "title": "Studio Information",
+    "office": "Principal Office",
+    "hours": "Working Hours",
+    "hours_val": "Monday - Friday: 09:00 - 18:00 WITA (GMT+8)"
+  }
+}

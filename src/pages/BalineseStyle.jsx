@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import banner5 from "../assets/images/banner5.webp";
 import banner1 from "../assets/images/banner1.jpg";
 import banner2 from "../assets/images/banner2.jpg";
@@ -7,6 +8,7 @@ import banner4 from "../assets/images/banner4.webp";
 import porto1 from "../assets/images/porto1.webp";
 
 export default function BalineseStyle({ onNavigate }) {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("philosophy");
 
   const philosophies = [
@@ -117,13 +119,13 @@ export default function BalineseStyle({ onNavigate }) {
         <div className="relative z-10 w-full max-w-360 mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pb-12 sm:pb-16 md:pb-20">
           <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-4 duration-700">
             <p className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-stone-300 uppercase mb-2 sm:mb-3 drop-shadow-sm">
-              GAYA ARSITEKTUR BALI
+              {t("balinese.hero.badge")}
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-none mb-3 sm:mb-4 drop-shadow-md">
-              Balinese Style
+              {t("balinese.hero.title")}
             </h1>
             <p className="text-[11px] sm:text-xs md:text-sm font-medium tracking-[0.22em] text-stone-200 uppercase leading-relaxed max-w-2xl drop-shadow-sm">
-              SINTESIS KEARIFAN TRADISI UNDAGI DENGAN KEMEWAHAN ARSITEKTUR KONTEMPORER
+              {t("balinese.hero.subtitle")}
             </p>
           </div>
         </div>

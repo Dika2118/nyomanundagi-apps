@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import banner4 from "../assets/images/banner4.webp";
 
 export default function Contact({ onNavigate }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -35,13 +37,13 @@ export default function Contact({ onNavigate }) {
         <div className="relative z-10 w-full max-w-360 mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pb-12 sm:pb-16">
           <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-4 duration-700">
             <p className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-stone-300 uppercase mb-2 sm:mb-3">
-              HUBUNGI KAMI
+              {t("contact.hero.badge")}
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-none mb-3 sm:mb-4">
-              Contact
+              {t("contact.hero.title")}
             </h1>
             <p className="text-[11px] sm:text-xs md:text-sm font-medium tracking-[0.22em] text-stone-200 uppercase leading-relaxed max-w-2xl">
-              Mulai Perjalanan Desain Arsitektur Anda Bersama Tim Kami
+              {t("contact.hero.subtitle")}
             </p>
           </div>
         </div>
@@ -51,22 +53,16 @@ export default function Contact({ onNavigate }) {
       <section className="w-full py-16 sm:py-24 px-6 sm:px-10 lg:px-16">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            
+
             {/* Left Column: Send a Message Form */}
             <div className="lg:col-span-7">
               {/* Header */}
               <div className="mb-8 sm:mb-10">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="w-5 h-[2px] bg-stone-800 inline-block"></span>
-                  <span className="text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase text-stone-800">
-                    SEND A MESSAGE
-                  </span>
-                </div>
                 <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-semibold text-[#111111] tracking-tight leading-tight mb-2">
-                  Send a Message
+                  {t("contact.form.title")}
                 </h2>
                 <p className="text-xs sm:text-sm text-stone-500 font-normal">
-                  Fill out the form and we'll get back to you as soon as possible.
+                  {t("contact.form.desc")}
                 </p>
               </div>
 
@@ -106,7 +102,7 @@ export default function Contact({ onNavigate }) {
                     <input
                       type="text"
                       required
-                      placeholder="Full Name *"
+                      placeholder={t("contact.form.name_label") + " *"}
                       value={formData.name}
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
@@ -119,7 +115,7 @@ export default function Contact({ onNavigate }) {
                   <div className="relative">
                     <input
                       type="tel"
-                      placeholder="Phone Number"
+                      placeholder={t("contact.form.phone_label")}
                       value={formData.phone}
                       onChange={(e) =>
                         setFormData({ ...formData, phone: e.target.value })
@@ -133,7 +129,7 @@ export default function Contact({ onNavigate }) {
                     <input
                       type="email"
                       required
-                      placeholder="Email Address *"
+                      placeholder={t("contact.form.email_label") + " *"}
                       value={formData.email}
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
@@ -150,12 +146,11 @@ export default function Contact({ onNavigate }) {
                       onChange={(e) =>
                         setFormData({ ...formData, purpose: e.target.value })
                       }
-                      className={`w-full pb-3 pt-1 bg-transparent border-0 border-b border-stone-300 focus:outline-none focus:border-stone-900 transition-colors text-xs sm:text-sm cursor-pointer appearance-none rounded-none ${
-                        formData.purpose ? "text-stone-900" : "text-stone-400"
-                      }`}
+                      className={`w-full pb-3 pt-1 bg-transparent border-0 border-b border-stone-300 focus:outline-none focus:border-stone-900 transition-colors text-xs sm:text-sm cursor-pointer appearance-none rounded-none ${formData.purpose ? "text-stone-900" : "text-stone-400"
+                        }`}
                     >
                       <option value="" disabled className="text-stone-400">
-                        Purpose of Inquiry *
+                        {t("contact.form.purpose_label")} *
                       </option>
                       <option value="Vila Privat / Private Villa" className="text-stone-900">
                         Vila Privat / Private Villa
@@ -198,7 +193,7 @@ export default function Contact({ onNavigate }) {
                     <textarea
                       rows={4}
                       required
-                      placeholder="Tell us about your project *"
+                      placeholder={t("contact.form.message_label") + " *"}
                       value={formData.message}
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
@@ -213,7 +208,7 @@ export default function Contact({ onNavigate }) {
                       type="submit"
                       className="px-8 py-3.5 bg-[#0e2714] hover:bg-[#163a1e] text-white text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-200 cursor-pointer shadow-xs"
                     >
-                      SEND MESSAGE
+                      {t("contact.form.submit_btn")}
                     </button>
                   </div>
                 </form>

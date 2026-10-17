@@ -1,0 +1,31 @@
+{
+  "hero": {
+    "badge": "HUBUNGI KAMI",
+    "title": "Kontak Kami",
+    "subtitle": "Mulai Perjalanan Desain Arsitektur Anda Bersama Tim Kami"
+  },
+  "form": {
+    "badge": "KIRIM PESAN",
+    "title": "Hubungi Kami",
+    "desc": "Isi formulir di bawah ini dan tim kami akan segera menghubungi Anda.",
+    "name_label": "Nama Lengkap",
+    "name_placeholder": "Masukkan nama Anda",
+    "phone_label": "Nomor Telepon / WhatsApp",
+    "phone_placeholder": "+62 812 3456 7890",
+    "email_label": "Alamat Email",
+    "email_placeholder": "nama@domain.com",
+    "purpose_label": "Keperluan / Jenis Proyek",
+    "purpose_placeholder": "Pilih atau tulis jenis proyek (Villa, Rumah Tinggal, Hotel, Komersial)",
+    "message_label": "Pesan / Detail Proyek",
+    "message_placeholder": "Ceritakan rencana lokasi, perkiraan luas tanah, atau kebutuhan desain Anda...",
+    "submit_btn": "Kirim via WhatsApp",
+    "success_title": "Pesan Anda Telah Diteruskan",
+    "success_desc": "Terima kasih telah menghubungi kami. Kami akan merespons melalui WhatsApp/Email sesegera mungkin."
+  },
+  "info": {
+    "title": "Informasi Studio",
+    "office": "Kantor Utama",
+    "hours": "Jam Operasional",
+    "hours_val": "Senin - Jumat: 09:00 - 18:00 WITA"
+  }
+}

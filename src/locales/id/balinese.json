@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "badge": "FILOSOFI ARSITEKTUR BALI",
+    "title": "Gaya Arsitektur Bali",
+    "subtitle": "Kearifan Tata Ruang Kosmis, Harmoni Tri Hita Karana, dan Keagungan Ketukangan Undagi Tradisional"
+  },
+  "tabs": {
+    "philosophy": "Filosofi Tata Ruang",
+    "elements": "Elemen & Material",
+    "integration": "Integrasi Tropis Modern"
+  },
+  "cta": {
+    "title": "Ingin Menghadirkan Sentuhan Arsitektur Bali pada Hunian Anda?",
+    "desc": "Diskusikan interpretasi arsitektur Bali klasik maupun kontemporer bersama tim ahli kami.",
+    "button": "Konsultasikan Sekarang"
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import porto1 from "../assets/images/porto1.webp";
 import nyomanImg from "../assets/images/nyoman.png";
 import HomeFeatureSection from "../components/home/HomeFeatureSection";
@@ -34,6 +35,7 @@ function BentoCard({ item, className = "", onNavigate }) {
 }
 
 export default function Home({ onNavigate }) {
+  const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeFilter, setActiveFilter] = useState("all");
   const [slides, setSlides] = useState([]);
@@ -232,10 +234,10 @@ export default function Home({ onNavigate }) {
         <div id="portfolio" className="mt-16 sm:mt-24 pt-12 sm:pt-16 pb-20">
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
             <span className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-stone-500 uppercase block mb-2 sm:mb-3">
-              KARYA TERBARU
+              {t("home.portfolio_badge")}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-stone-900">
-              Proyek Pilihan
+              {t("home.portfolio_title")}
             </h2>
 
             {/* Category Filter Tabs */}
@@ -251,7 +253,7 @@ export default function Home({ onNavigate }) {
                       className={`relative pb-2.5 text-xs sm:text-sm font-bold tracking-widest uppercase transition-colors duration-200 cursor-pointer whitespace-nowrap shrink-0 ${isActive ? "text-stone-900" : "text-stone-400 hover:text-stone-700"
                         }`}
                     >
-                      {cat.label}
+                      {cat.id === "all" ? t("home.featured_works") : cat.label}
                       {isActive && (
                         <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-stone-900" />
                       )}
@@ -267,16 +269,16 @@ export default function Home({ onNavigate }) {
             <div className="py-20 text-center">
               <div className="inline-block w-8 h-8 border-2 border-stone-300 border-t-stone-900 rounded-full animate-spin mb-4" />
               <p className="text-xs sm:text-sm text-stone-500 uppercase tracking-widest font-semibold">
-                Memuat Karya Pilihan...
+                {t("home.loading_projects")}
               </p>
             </div>
           ) : filteredProjects.length === 0 ? (
             <div className="py-16 text-center max-w-md mx-auto bg-stone-50 rounded-3xl border border-stone-200/80 p-8">
               <p className="text-sm font-semibold text-stone-700 mb-1">
-                Belum Ada Proyek Unggulan
+                {t("home.empty_projects_title")}
               </p>
               <p className="text-xs text-stone-400 leading-relaxed">
-                Centang opsi &ldquo;Tampilkan sebagai Proyek Unggulan (Featured)&rdquo; pada proyek di panel admin untuk menampilkannya di bagian ini (maksimal 6 proyek).
+                {t("home.empty_projects_desc")}
               </p>
             </div>
           ) : filteredProjects.length >= 4 ? (
@@ -368,7 +370,7 @@ export default function Home({ onNavigate }) {
               id="see-more-projects-btn"
               className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#111111] hover:bg-black text-white text-xs sm:text-sm font-bold tracking-widest uppercase transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105 active:scale-95 group cursor-pointer"
             >
-              <span>See More Projects</span>
+              <span>{t("home.see_more_projects")}</span>
               <span className="text-sm font-bold transition-transform duration-300 group-hover:translate-x-1">
                 &rarr;
               </span>
@@ -396,22 +398,16 @@ export default function Home({ onNavigate }) {
               {/* Right Column: Bio Content */}
               <div className="flex flex-col items-start pt-1 md:pt-2">
                 <span className="text-[11.5px] font-bold tracking-[0.22em] text-[#111111] uppercase mb-2.5">
-                  KENALI PRINSIPAL KAMI
+                  {t("home.founder.subtitle")}
                 </span>
                 <h3 className="text-2xl sm:text-3xl lg:text-[32px] font-normal tracking-tight text-[#111111] mb-6">
                   Ir. Ar. IGN Andri Saputra, IAI.
                 </h3>
 
                 <div className="space-y-4 text-[13px] sm:text-[13.5px] leading-[1.85] text-[#555555] font-light text-justify">
-                  <p>
-                    I Gusti Ngurah Andri Saputra, arsitek kelahiran Bali, mendirikan Nyoman Undagi pada tahun 2010. Setelah lulus dari Universitas Udayana, beliau tidak langsung membuka firma sendiri. Beliau menghabiskan bertahun-tahun belajar dari pengalaman nyata, bekerja di firma arsitektur Australia dan Prancis di Bali untuk mengasah keahlian dan kedisiplinannya.
-                  </p>
-                  <p>
-                    Yang menggerakkan beliau sangat personal. Tumbuh besar di Bali, dikelilingi keluarga dan komunitas, beliau melihat bagaimana sebuah rumah membentuk orang-orang di dalamnya. Kenangan masa kecil itulah yang menjadi tujuan hidupnya: merancang ruang di mana keluarga saling terhubung, persahabatan tumbuh, dan hidup terasa pas.
-                  </p>
-                  <p>
-                    Hari ini, Nyoman Undagi adalah tim yang terdiri dari 67 profesional. Diakui melalui 450+ proyek di Bali dan destinasi global seperti Singapura, Thailand, Bahama, Nigeria, dan India, karya kami mencerminkan arsitektur abadi dengan sensibilitas internasional dan pengalaman hidup yang lebih tinggi.
-                  </p>
+                  <p>{t("home.founder.bio_p1")}</p>
+                  <p>{t("home.founder.bio_p2")}</p>
+                  <p>{t("home.founder.bio_p3")}</p>
                 </div>
 
                 <button
@@ -419,7 +415,7 @@ export default function Home({ onNavigate }) {
                   onClick={() => onNavigate && onNavigate("ABOUT")}
                   className="mt-6 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-black hover:underline cursor-pointer"
                 >
-                  <span>Baca Selengkapnya di Halaman About</span>
+                  <span>{t("home.founder.read_more_btn")}</span>
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -431,10 +427,10 @@ export default function Home({ onNavigate }) {
             <div className="mt-8 sm:mt-10 pt-1 flex flex-col items-start">
               <div className="w-12 h-px bg-[#cccccc] mb-4" />
               <p className="text-[13px] sm:text-[13.5px] text-[#737373] font-light leading-relaxed mb-2.5">
-                Hal ini menginspirasi kami untuk memberikan perjalanan desain yang bermakna bagi klien kami, bukan sekadar desain atau gambar.
+                {t("home.founder.quote_sub")}
               </p>
               <h4 className="text-xl sm:text-2xl md:text-[26px] font-normal italic text-[#111111] tracking-tight">
-                &ldquo;Perjalanan dalam Setiap Desain&rdquo;
+                &ldquo;{t("home.founder.quote")}&rdquo;
               </h4>
             </div>
           </div>
@@ -444,13 +440,13 @@ export default function Home({ onNavigate }) {
         <div className="pt-10 sm:pt-14 pb-16 sm:pb-20 border-t border-[#eaeaea]">
           <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
             <span className="text-xs font-bold tracking-[0.25em] text-[#0b3b24] uppercase mb-4">
-              KOLABORASI BERSAMA KAMI
+              {t("home.cta.subtitle")}
             </span>
             <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-stone-900 max-w-2xl leading-tight mb-4">
-              Siap Mewujudkan Proyek Impian Anda?
+              {t("home.cta.title")}
             </h3>
             <p className="text-xs sm:text-sm md:text-base text-stone-600 font-light max-w-xl leading-relaxed mb-8">
-              Konsultasikan ide desain, perencanaan anggaran, atau tata ruang bersama tim arsitek kami hari ini.
+              {t("home.cta.desc")}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
@@ -458,14 +454,14 @@ export default function Home({ onNavigate }) {
                 onClick={() => onNavigate && onNavigate("CONTACT")}
                 className="w-full sm:w-auto px-8 py-3.5 bg-[#0b3b24] hover:bg-[#072818] text-white text-xs font-bold tracking-widest uppercase rounded-sm shadow-md transition-all cursor-pointer"
               >
-                Mulai Konsultasi
+                {t("home.cta.consult_btn")}
               </button>
               <button
                 type="button"
                 onClick={() => onNavigate && onNavigate("PORTFOLIO")}
                 className="w-full sm:w-auto px-8 py-3.5 bg-white hover:bg-stone-50 text-stone-800 border border-stone-300 text-xs font-bold tracking-widest uppercase rounded-sm transition-all cursor-pointer"
               >
-                Eksplorasi Karya
+                {t("home.cta.explore_btn")}
               </button>
             </div>
           </div>

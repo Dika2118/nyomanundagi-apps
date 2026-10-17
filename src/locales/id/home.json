@@ -1,0 +1,47 @@
+{
+  "portfolio_badge": "KARYA TERBARU",
+  "portfolio_title": "Proyek Pilihan",
+  "loading_projects": "Memuat Karya Pilihan...",
+  "empty_projects_title": "Belum Ada Proyek Unggulan",
+  "empty_projects_desc": "Centang opsi “Tampilkan sebagai Proyek Unggulan (Featured)” pada proyek di panel admin untuk menampilkannya di bagian ini (maksimal 6 proyek).",
+  "featured_works": "KARYA PILIHAN",
+  "see_more_projects": "Lihat Semua Proyek",
+  "founder": {
+    "subtitle": "KENALI PRINSIPAL KAMI",
+    "name": "Ir. Ar. IGN Andri Saputra, IAI.",
+    "bio_p1": "I Gusti Ngurah Andri Saputra, arsitek kelahiran Bali, mendirikan Nyoman Undagi pada tahun 2010. Setelah lulus dari Universitas Udayana, beliau tidak langsung membuka firma sendiri. Beliau menghabiskan bertahun-tahun belajar dari pengalaman nyata, bekerja di firma arsitektur Australia dan Prancis di Bali untuk mengasah keahlian dan kedisiplinannya.",
+    "bio_p2": "Yang menggerakkan beliau sangat personal. Tumbuh besar di Bali, dikelilingi keluarga dan komunitas, beliau melihat bagaimana sebuah rumah membentuk orang-orang di dalamnya. Kenangan masa kecil itulah yang menjadi tujuan hidupnya: merancang ruang di mana keluarga saling terhubung, persahabatan tumbuh, dan hidup terasa pas.",
+    "bio_p3": "Hari ini, Nyoman Undagi adalah tim yang terdiri dari 67 profesional. Diakui melalui 450+ proyek di Bali dan destinasi global seperti Singapura, Thailand, Bahama, Nigeria, dan India, karya kami mencerminkan arsitektur abadi dengan sensibilitas internasional dan pengalaman hidup yang lebih tinggi.",
+    "read_more_btn": "Baca Selengkapnya di Halaman About",
+    "quote": "Perjalanan dalam Setiap Desain",
+    "quote_sub": "Hal ini menginspirasi kami untuk memberikan perjalanan desain yang bermakna bagi klien kami, bukan sekadar desain atau gambar."
+  },
+  "cta": {
+    "subtitle": "KOLABORASI BERSAMA KAMI",
+    "title": "Siap Mewujudkan Proyek Impian Anda?",
+    "desc": "Konsultasikan ide desain, perencanaan anggaran, atau tata ruang bersama tim arsitek kami hari ini.",
+    "consult_btn": "Mulai Konsultasi",
+    "explore_btn": "Eksplorasi Karya"
+  },
+  "features_section": {
+    "title_1_line1": "Berkomitmen Membantu Anda",
+    "title_1_line2": "Menemukan Hunian Impian",
+    "desc_1": "Kami membantu klien menemukan hunian modern dan nyaman di lokasi terbaik dengan pelayanan terpercaya.",
+    "vision_title": "Visi Kami",
+    "vision_desc": "Mendefinisikan kembali cara orang menikmati hunian modern, memadukan pesona tropis autentik dengan kenyamanan abadi.",
+    "offer_title": "Yang Kami Hadirkan",
+    "offer_desc": "Pilihan properti dan rancangan arsitektur berkelas yang disesuaikan dengan gaya hidup kontemporer serta nilai investasi jangka panjang.",
+    "title_2_line1": "Mengapa Kami Pilihan Tepat untuk",
+    "title_2_line2": "Hunian Masa Depan Anda",
+    "desc_2": "Kami memadukan keahlian terpercaya, desain arsitektur pilihan, dan pendampingan terpadu untuk memastikan terwujudnya hunian sempurna.",
+    "stat_customers": "Klien Puas",
+    "stat_units": "Desain Unit",
+    "stat_sold": "Proyek Terwujud",
+    "card_trusted_title": "Keahlian Terpercaya",
+    "card_trusted_desc": "Tim arsitek berpengalaman kami siap memberikan panduan andal dalam merancang properti terbaik.",
+    "card_properties_title": "Properti Modern Premium",
+    "card_properties_desc": "Karya arsitektur modern berstandar tinggi yang mengutamakan kenyamanan dan nilai investasi jangka panjang.",
+    "card_process_title": "Proses Lancar & Terpercaya",
+    "card_process_desc": "Dari konsultasi konsep hingga tahap realisasi, kami menjamin pengalaman yang transparan dan aman."
+  }
+}

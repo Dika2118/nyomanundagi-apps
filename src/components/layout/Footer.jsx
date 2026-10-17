@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import logoImg from "../../assets/images/logo_removebg.png";
 import { getServices } from "../../api/client";
 
 export default function Footer({ onNavigate }) {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [services, setServices] = useState([]);
@@ -89,13 +91,13 @@ export default function Footer({ onNavigate }) {
                 />
               </a>
               <p className="text-[13px] text-[#737373] leading-[1.75] max-w-72.5">
-                Perjalanan dalam Setiap Desain. Firma arsitektur internasional berprestasi dengan kantor di Bali, Jakarta, dan Thailand.
+                {t("footer.slogan")}
               </p>
             </div>
 
             <div className="flex flex-col items-start">
               <h4 className="text-[12.5px] font-bold tracking-[0.16em] uppercase text-[#111111] mb-5">
-                HALAMAN
+                {t("footer.pages_title")}
               </h4>
               <nav className="flex flex-col gap-3 text-[13px] text-[#737373]">
                 <button
@@ -103,35 +105,35 @@ export default function Footer({ onNavigate }) {
                   onClick={(e) => handleNav("HOME", e)}
                   className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
                 >
-                  Beranda
+                  {t("footer.links.home")}
                 </button>
                 <button
                   type="button"
                   onClick={(e) => handleNav("ABOUT", e)}
                   className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
                 >
-                  Tentang
+                  {t("footer.links.about")}
                 </button>
                 <button
                   type="button"
                   onClick={(e) => handleNav("PORTFOLIO", e)}
                   className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
                 >
-                  Portofolio
+                  {t("footer.links.portfolio")}
                 </button>
                 <button
                   type="button"
                   onClick={(e) => handleNav("OUR TEAM", e)}
                   className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
                 >
-                  Tim Kami (Our Team)
+                  {t("footer.links.our_team")}
                 </button>
                 <button
                   type="button"
                   onClick={(e) => handleNav("CONTACT", e)}
                   className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
                 >
-                  Kontak
+                  {t("footer.links.contact")}
                 </button>
                 <button
                   type="button"
@@ -145,7 +147,7 @@ export default function Footer({ onNavigate }) {
 
             <div className="flex flex-col items-start">
               <h4 className="text-[12.5px] font-bold tracking-[0.16em] uppercase text-[#111111] mb-5">
-                LAYANAN
+                {t("footer.services_title")}
               </h4>
               <nav className="flex flex-col gap-3 text-[13px] text-[#737373]">
                 {services.length > 0 ? (
@@ -165,7 +167,7 @@ export default function Footer({ onNavigate }) {
                     onClick={(e) => handleServiceNav(e)}
                     className="text-left hover:text-black transition-colors duration-200 cursor-pointer"
                   >
-                    Semua Layanan
+                    {t("common.all")} {t("footer.services_title")}
                   </button>
                 )}
               </nav>
@@ -173,7 +175,7 @@ export default function Footer({ onNavigate }) {
 
             <div className="flex flex-col items-start">
               <h4 className="text-[12.5px] font-bold tracking-[0.16em] uppercase text-[#111111] mb-5">
-                KONTAK
+                {t("footer.contact_title")}
               </h4>
               <nav className="flex flex-col gap-3 text-[13px] text-[#737373]">
                 <a
@@ -220,13 +222,13 @@ export default function Footer({ onNavigate }) {
 
           <div className="pt-7 border-t border-[#eaeaea] flex flex-col md:flex-row items-center justify-between gap-4 text-[12px] text-[#737373]">
             <div className="text-center md:text-left leading-relaxed">
-              <span>© {currentYear} Nyoman Undagi. Hak Cipta Dilindungi. </span>
+              <span>© {currentYear} Nyoman Undagi. {t("footer.all_rights_reserved")} </span>
               <button
                 type="button"
                 onClick={() => handleNav("CONTACT")}
-                className="underline underline-offset-3 hover:text-black transition-colors duration-200"
+                className="underline underline-offset-3 hover:text-black transition-colors duration-200 cursor-pointer"
               >
-                Kebijakan Privasi
+                {t("footer.privacy_policy")}
               </button>
             </div>
 

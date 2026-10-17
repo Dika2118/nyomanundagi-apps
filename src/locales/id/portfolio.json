@@ -1,0 +1,15 @@
+{
+  "hero": {
+    "badge": "PORTOFOLIO KARYA",
+    "title": "Portofolio Desain",
+    "subtitle": "Koleksi Karya Arsitektur Berkelas dari Residensial Eksklusif hingga Resor Tropis"
+  },
+  "filter_all": "Semua Proyek",
+  "view_project": "Lihat Proyek",
+  "location": "Lokasi",
+  "year": "Tahun",
+  "category": "Kategori",
+  "share": "Bagikan",
+  "next_project": "Proyek Berikutnya",
+  "prev_project": "Proyek Sebelumnya"
+}

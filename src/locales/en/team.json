@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "badge": "OUR PROFESSIONAL TEAM",
+    "title": "Our Team",
+    "subtitle": "A Collective of Architects, Designers, and Specialists Dedicated to Creating Living Spaces of Timeless Value"
+  },
+  "departments_badge": "OUR DEPARTMENTS",
+  "departments_title": "Find Your Place",
+  "people_badge": "OUR PEOPLE",
+  "people_title": "Behind Every Design",
+  "loading_members": "Loading team members...",
+  "empty_members": "No team members to display.",
+  "empty_category": "No team members found in \"{{category}}\" category.",
+  "join_us": "Join Our Practice",
+  "open_positions": "Available Positions",
+  "send_cv": "Submit Portfolio & CV"
+}

@@ -1,0 +1,21 @@
+{
+  "slogan": "The Journey in Every Design. An award-winning international architecture firm with offices in Bali, Jakarta, and Thailand.",
+  "pages_title": "PAGES",
+  "services_title": "SERVICES",
+  "contact_title": "CONTACT",
+  "address_label": "Office Address",
+  "email_label": "Email",
+  "phone_label": "Phone / WhatsApp",
+  "back_to_top": "Back to Top",
+  "all_rights_reserved": "All rights reserved.",
+  "privacy_policy": "Privacy Policy",
+  "terms_of_service": "Terms of Service",
+  "links": {
+    "home": "Home",
+    "about": "About Us",
+    "portfolio": "Portfolio",
+    "balinese_style": "Balinese Architecture",
+    "our_team": "Our Team",
+    "contact": "Contact"
+  }
+}

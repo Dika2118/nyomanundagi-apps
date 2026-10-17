@@ -1,0 +1,24 @@
+{
+  "hero": {
+    "badge": "ABOUT US",
+    "title": "About Nyoman Undagi",
+    "subtitle": "Bridging Cultural Heritage with Sustainable Architectural Innovation"
+  },
+  "story": {
+    "badge": "OUR HERITAGE",
+    "title": "The Journey in Every Design",
+    "p1": "Nyoman Undagi was founded with the aspiration to preserve authentic Balinese wisdom within contemporary architectural dialogues.",
+    "p2": "Every blueprint springs from deep attunement to tropical landscapes, natural rhythms, and the unique aspirations of those who dwell within."
+  },
+  "services": {
+    "badge": "OUR SERVICES",
+    "title": "Comprehensive Architectural Solutions",
+    "desc": "From initial master planning and conceptual design through turnkey construction supervision."
+  },
+  "stats": {
+    "years": "Years of Experience",
+    "projects": "Completed Projects",
+    "professionals": "Design Professionals",
+    "countries": "Global Destinations"
+  }
+}

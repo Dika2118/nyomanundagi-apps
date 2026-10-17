@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import PortfolioDetail from "./PortfolioDetail";
 import banner3 from "../assets/images/banner3.jpg";
 import porto1 from "../assets/images/porto1.webp";
@@ -14,6 +15,7 @@ function getProjectIdFromHash() {
 }
 
 export default function Portfolio({ onNavigate }) {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState(null);
   const [categories, setCategories] = useState([{ id: "all", label: "SEMUA KARYA" }]);
@@ -179,13 +181,13 @@ export default function Portfolio({ onNavigate }) {
         <div className="relative z-10 w-full max-w-360 mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pb-12 sm:pb-16">
           <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-4 duration-700">
             <p className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-stone-300 uppercase mb-2 sm:mb-3">
-              KARYA KAMI
+              {t("portfolio.hero.badge")}
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-none mb-3 sm:mb-4">
-              Portfolio
+              {t("portfolio.hero.title")}
             </h1>
             <p className="text-[11px] sm:text-xs md:text-sm font-medium tracking-[0.22em] text-stone-200 uppercase leading-relaxed max-w-2xl">
-              Eksplorasi Desain Arsitektur Tropis, Vila Mewah & Residensial Ikonik
+              {t("portfolio.hero.subtitle")}
             </p>
           </div>
         </div>
@@ -210,7 +212,7 @@ export default function Portfolio({ onNavigate }) {
                       isActive ? "text-stone-900" : "text-stone-400 hover:text-stone-700"
                     }`}
                   >
-                    {cat.label}
+                    {cat.id === "all" ? t("portfolio.filter_all") : cat.label}
                     {isActive && (
                       <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-stone-900" />
                     )}

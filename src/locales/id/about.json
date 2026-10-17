@@ -1,0 +1,24 @@
+{
+  "hero": {
+    "badge": "TENTANG KAMI",
+    "title": "Tentang Nyoman Undagi",
+    "subtitle": "Menghubungkan Warisan Luhur dengan Inovasi Arsitektur Berkelanjutan"
+  },
+  "story": {
+    "badge": "SEJARAH KAMI",
+    "title": "Perjalanan dalam Setiap Desain",
+    "p1": "Nyoman Undagi didirikan dengan visi melestarikan kearifan lokal Bali dalam arsitektur modern.",
+    "p2": "Setiap garis rancangan lahir dari pemahaman mendalam tentang lanskap tropis, ritme alam, dan kebutuhan penghuni."
+  },
+  "services": {
+    "badge": "LAYANAN KAMI",
+    "title": "Solusi Arsitektur Menyeluruh",
+    "desc": "Dari perencanaan konseptual hingga pengawasan konstruksi di lapangan."
+  },
+  "stats": {
+    "years": "Tahun Pengalaman",
+    "projects": "Proyek Selesai",
+    "professionals": "Profesional Arsitektur",
+    "countries": "Destinasi Global"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "portfolio_badge": "LATEST WORKS",
+  "portfolio_title": "Selected Projects",
+  "loading_projects": "Loading Featured Projects...",
+  "empty_projects_title": "No Featured Projects Yet",
+  "empty_projects_desc": "Check the \"Show as Featured Project\" option in the admin panel to display them here (up to 6 projects).",
+  "featured_works": "FEATURED WORKS",
+  "see_more_projects": "See More Projects",
+  "founder": {
+    "subtitle": "MEET OUR PRINCIPAL",
+    "name": "Ir. Ar. IGN Andri Saputra, IAI.",
+    "bio_p1": "I Gusti Ngurah Andri Saputra, a Balinese-born architect, founded Nyoman Undagi in 2010. Following his graduation from Udayana University, rather than immediately establishing his own practice, he spent formative years gaining hands-on mastery working alongside prominent Australian and French architectural firms in Bali to cultivate rigorous discipline and fine craft.",
+    "bio_p2": "His driving motivation is deeply personal. Growing up in Bali immersed within community and family traditions, he observed how homes nurture and shape lives. Those vivid childhood memories inspired his lifelong purpose: to design living spaces where families reconnect, friendships flourish, and life feels inherently balanced.",
+    "bio_p3": "Today, Nyoman Undagi comprises a dedicated team of 67 professionals. Celebrated across 450+ projects in Bali and prestigious international destinations including Singapore, Thailand, the Bahamas, Nigeria, and India, our work embodies timeless architecture infused with international sensibility and elevated living.",
+    "read_more_btn": "Read More on About Page",
+    "quote": "The Journey in Every Design",
+    "quote_sub": "This philosophy inspires us to deliver a deeply meaningful design journey for our clients, far beyond blueprints and drawings."
+  },
+  "cta": {
+    "subtitle": "COLLABORATE WITH US",
+    "title": "Ready to Bring Your Vision to Life?",
+    "desc": "Consult your design ideas, budget planning, and spatial architecture with our team of architects today.",
+    "consult_btn": "Start Consultation",
+    "explore_btn": "Explore Works"
+  },
+  "features_section": {
+    "title_1_line1": "Committed to Helping You",
+    "title_1_line2": "Find Your Perfect Home",
+    "desc_1": "We help people find modern and comfortable homes in the best locations. Our goal is to provide trusted service.",
+    "vision_title": "Our Vision",
+    "vision_desc": "Our vision is to redefine the way people experience modern living, crafting timeless sanctuaries blending tropical charm and lasting comfort.",
+    "offer_title": "What We Offer",
+    "offer_desc": "A carefully curated selection of modern properties and architectural designs tailored for contemporary lifestyles and long-term value.",
+    "title_2_line1": "Why We're the Right Choice for",
+    "title_2_line2": "Your Future Home",
+    "desc_2": "We combine trusted expertise, curated modern design, and a seamless end-to-end journey to help you realize your sanctuary with confidence.",
+    "stat_customers": "Customers",
+    "stat_units": "Ready Units",
+    "stat_sold": "Units Sold",
+    "card_trusted_title": "Trusted Expertise",
+    "card_trusted_desc": "Our experienced team provides reliable guidance and professional support to help you make confident property decisions.",
+    "card_properties_title": "Premium Modern Properties",
+    "card_properties_desc": "We offer a curated selection of high-quality homes designed with modern architecture, comfort, and long-term value in mind.",
+    "card_process_title": "Seamless & Secure Process",
+    "card_process_desc": "From browsing to ownership, we ensure a smooth, transparent, and secure experience every step of the way."
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import BlogDetail from "./BlogDetail";
 import banner5 from "../assets/images/banner5.webp";
 import { getBlogs, getBlogDetail, resolveImageUrl } from "../api/client";
@@ -14,6 +15,7 @@ function getArticleIdFromHash() {
 }
 
 export default function Blog({ onNavigate }) {
+  const { t } = useTranslation();
   const [selectedPost, setSelectedPost] = useState(null);
   const [featuredArticle, setFeaturedArticle] = useState(null);
   const [blogPosts, setBlogPosts] = useState([]);
@@ -173,13 +175,13 @@ export default function Blog({ onNavigate }) {
           <div className="flex items-center justify-center gap-3 mb-4">
             <span className="w-8 h-0.5 bg-stone-300" />
             <span className="text-xs sm:text-sm font-semibold tracking-[0.28em] text-stone-300 uppercase">
-              JOURNAL
+              {t("blog.hero.badge")}
             </span>
           </div>
 
           {/* Title */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-tight mb-4 drop-shadow-md">
-            Blog &amp; Insights
+            {t("blog.hero.title")}
           </h1>
 
           {/* Small Divider */}
@@ -187,7 +189,7 @@ export default function Blog({ onNavigate }) {
 
           {/* Subtitle */}
           <p className="text-xs sm:text-sm md:text-[15px] font-light text-stone-200 max-w-xl mx-auto leading-relaxed drop-shadow-sm">
-            News, achievements, press releases, and design insights from Nyoman Undagi Architect.
+            {t("blog.hero.subtitle")}
           </p>
         </div>
       </section>

@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import logoImg from "../../assets/images/logo_removebg.png";
 
 export default function Navbar({ currentRoute = "HOME", onNavigate, forceSolid: propForceSolid }) {
+  const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("ID");
+  const [selectedLang, setSelectedLang] = useState(
+    (i18n.language || "id").toUpperCase()
+  );
   const [isLightModePage, setIsLightModePage] = useState(false);
+
+  useEffect(() => {
+    setSelectedLang((i18n.language || "id").toUpperCase());
+  }, [i18n.language]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,22 +49,29 @@ export default function Navbar({ currentRoute = "HOME", onNavigate, forceSolid: 
   }, [currentRoute]);
 
   const navItems = [
-    { label: "HOME", href: "#/" },
-    { label: "ABOUT", href: "#/about" },
-    { label: "PORTFOLIO", href: "#/portfolio" },
-    { label: "BLOG", href: "#/blog" },
-    { label: "OUR TEAM", href: "#/our-team" },
-    { label: "CONTACT", href: "#/contact" },
+    { key: "HOME", label: t("navbar.home"), href: "#/" },
+    { key: "ABOUT", label: t("navbar.about"), href: "#/about" },
+    { key: "PORTFOLIO", label: t("navbar.portfolio"), href: "#/portfolio" },
+    { key: "BLOG", label: t("navbar.blog"), href: "#/blog" },
+    { key: "OUR TEAM", label: t("navbar.our_team"), href: "#/our-team" },
+    { key: "CONTACT", label: t("navbar.contact"), href: "#/contact" },
   ];
 
   const languages = ["ID", "EN"];
 
-  const handleNavClick = (label, e) => {
+  const handleNavClick = (routeKey, e) => {
     if (e) e.preventDefault();
     if (onNavigate) {
-      onNavigate(label);
+      onNavigate(routeKey);
     }
     setMobileMenuOpen(false);
+  };
+
+  const handleLanguageChange = (lang) => {
+    const langLower = lang.toLowerCase();
+    i18n.changeLanguage(langLower);
+    setSelectedLang(lang.toUpperCase());
+    setLangDropdownOpen(false);
   };
 
   const isSolid = isScrolled || mobileMenuOpen || propForceSolid || isLightModePage;
@@ -93,12 +108,12 @@ export default function Navbar({ currentRoute = "HOME", onNavigate, forceSolid: 
           {/* Desktop Navigation */}
           <nav className="hidden xl:flex items-center gap-6 2xl:gap-8">
             {navItems.map((item) => {
-              const isActive = currentRoute === item.label;
+              const isActive = currentRoute === item.key;
               return (
                 <a
-                  key={item.label}
+                  key={item.key}
                   href={item.href}
-                  onClick={(e) => handleNavClick(item.label, e)}
+                  onClick={(e) => handleNavClick(item.key, e)}
                   className={`relative py-1.5 text-xs font-bold tracking-wider transition-colors duration-200 uppercase cursor-pointer ${isSolid
                     ? isActive
                       ? "text-[#0b3b24]"
@@ -132,7 +147,7 @@ export default function Navbar({ currentRoute = "HOME", onNavigate, forceSolid: 
                   : "border border-white/60 bg-black/25 text-white hover:bg-black/40 backdrop-blur-xs shadow-sm"
                   }`}
                 aria-expanded={langDropdownOpen}
-                aria-label="Select Language"
+                aria-label={t("navbar.select_language")}
               >
                 <span>{selectedLang}</span>
                 <svg
@@ -163,10 +178,7 @@ export default function Navbar({ currentRoute = "HOME", onNavigate, forceSolid: 
                       <button
                         key={lang}
                         type="button"
-                        onClick={() => {
-                          setSelectedLang(lang);
-                          setLangDropdownOpen(false);
-                        }}
+                        onClick={() => handleLanguageChange(lang)}
                         className={`w-full text-left px-3 py-1.5 text-xs font-bold tracking-wider transition-colors cursor-pointer ${selectedLang === lang
                           ? "bg-[#0b3b24]/10 text-[#0b3b24]"
                           : "text-stone-700 hover:bg-stone-50 hover:text-black"
@@ -219,12 +231,12 @@ export default function Navbar({ currentRoute = "HOME", onNavigate, forceSolid: 
         {mobileMenuOpen && (
           <nav className="xl:hidden mt-4 pt-4 border-t border-stone-200 pb-3 flex flex-col gap-2 animate-in fade-in slide-in-from-top-2 duration-200">
             {navItems.map((item) => {
-              const isActive = currentRoute === item.label;
+              const isActive = currentRoute === item.key;
               return (
                 <a
-                  key={item.label}
+                  key={item.key}
                   href={item.href}
-                  onClick={(e) => handleNavClick(item.label, e)}
+                  onClick={(e) => handleNavClick(item.key, e)}
                   className={`px-3 py-2 rounded-md text-xs font-bold tracking-wider uppercase transition-colors cursor-pointer ${isActive
                     ? "bg-[#0b3b24]/10 text-[#0b3b24] border-l-4 border-[#0b3b24]"
                     : "text-stone-700 hover:bg-stone-50 hover:text-black"

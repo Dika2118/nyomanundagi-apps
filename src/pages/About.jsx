@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { getServices, resolveImageUrl } from "../api/client";
 import aboutBanner from "../assets/images/about-banner.jpg";
 import nyomanImg from "../assets/images/nyoman.png";
@@ -39,6 +40,7 @@ function renderServiceIcon(service) {
 }
 
 export default function About({ onNavigate }) {
+  const { t } = useTranslation();
   const [services, setServices] = useState([]);
   const [loadingServices, setLoadingServices] = useState(true);
 
@@ -87,15 +89,15 @@ export default function About({ onNavigate }) {
         <div className="relative z-10 w-full max-w-360 mx-auto px-6 sm:px-10 md:px-16 lg:px-20 pb-12 sm:pb-16 md:pb-20">
           <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-4 duration-700">
             <p className="text-xs sm:text-sm font-semibold tracking-[0.25em] text-stone-300 uppercase mb-2 sm:mb-3 drop-shadow-sm">
-              TENTANG KAMI
+              {t("about.hero.badge")}
             </p>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-none mb-3 sm:mb-4 drop-shadow-md">
-              About
+              {t("about.hero.title")}
             </h1>
 
             <p className="text-[11px] sm:text-xs md:text-sm font-medium tracking-[0.22em] sm:tracking-[0.26em] text-stone-200 uppercase leading-relaxed max-w-2xl drop-shadow-sm">
-              LAHIR DI BALI. BERAKAR PADA BUDAYA. MENDESAIN UNTUK DUNIA SEJAK 2010.
+              {t("about.hero.subtitle")}
             </p>
           </div>
         </div>

@@ -1,0 +1,15 @@
+{
+  "hero": {
+    "badge": "PORTFOLIO ARCHIVES",
+    "title": "Selected Works",
+    "subtitle": "A Curated Monograph of Distinguished Residences, Bespoke Estates, and Tropical Resorts"
+  },
+  "filter_all": "All Projects",
+  "view_project": "View Project",
+  "location": "Location",
+  "year": "Year",
+  "category": "Category",
+  "share": "Share",
+  "next_project": "Next Project",
+  "prev_project": "Previous Project"
+}

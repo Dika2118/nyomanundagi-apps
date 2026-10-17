@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ArrowUpRight, ShieldCheck, Home as HomeIcon, CheckCircle2 } from "lucide-react";
 import banner1 from "../../assets/images/banner1.jpg";
 import banner3 from "../../assets/images/banner3.jpg";
@@ -68,25 +69,26 @@ function Card({ item, on, onClick }) {
 }
 
 export default function HomeFeatureSection({ onNavigate }) {
+  const { t } = useTranslation();
   const [active, setActive] = useState(0);
 
   const items = [
     {
       id: 0,
-      title: "Trusted Expertise",
-      desc: "Our experienced team provides reliable guidance and professional support to help you make confident property decisions.",
+      title: t("home.features_section.card_trusted_title"),
+      desc: t("home.features_section.card_trusted_desc"),
       icon: ShieldCheck,
     },
     {
       id: 1,
-      title: "Premium Modern Properties",
-      desc: "We offer a curated selection of high-quality homes designed with modern architecture, comfort, and long-term value in mind.",
+      title: t("home.features_section.card_properties_title"),
+      desc: t("home.features_section.card_properties_desc"),
       icon: HomeIcon,
     },
     {
       id: 2,
-      title: "Seamless & Secure Process",
-      desc: "From browsing to ownership, we ensure a smooth, transparent, and secure experience every step of the way.",
+      title: t("home.features_section.card_process_title"),
+      desc: t("home.features_section.card_process_desc"),
       icon: CheckCircle2,
     },
   ];
@@ -99,14 +101,14 @@ export default function HomeFeatureSection({ onNavigate }) {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 mb-10 sm:mb-14">
           <div className="max-w-2xl">
             <h2 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-extrabold tracking-tight text-neutral-950 leading-[1.12]">
-              Committed to Helping You <br className="hidden sm:inline" />
-              Find Your Perfect Home
+              {t("home.features_section.title_1_line1")} <br className="hidden sm:inline" />
+              {t("home.features_section.title_1_line2")}
             </h2>
           </div>
 
           <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-start gap-4 max-w-md">
             <p className="text-xs sm:text-sm md:text-[14.5px] text-neutral-500 leading-relaxed">
-              We help people find modern and comfortable homes in the best locations. Our goal is to provide trusted service.
+              {t("home.features_section.desc_1")}
             </p>
           </div>
         </div>
@@ -121,10 +123,10 @@ export default function HomeFeatureSection({ onNavigate }) {
               <div className="bg-[#f4f4f6] rounded-3xl p-6 sm:p-7 flex flex-col justify-between min-h-[220px] sm:min-h-[240px] transition-transform duration-300 hover:-translate-y-1">
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-neutral-950 tracking-tight">
-                    Our Vision
+                    {t("home.features_section.vision_title")}
                   </h3>
                   <p className="mt-3 text-xs sm:text-[13.5px] text-neutral-500 leading-relaxed">
-                    Our vision is to redefine the way people discover and experience modern living. We are dedicated to crafting timeless architectural sanctuaries that seamlessly blend authentic tropical charm, refined contemporary design, and enduring comfort for your future.
+                    {t("home.features_section.vision_desc")}
                   </p>
                 </div>
               </div>
@@ -144,10 +146,10 @@ export default function HomeFeatureSection({ onNavigate }) {
             <div className="bg-[#0f0f10] text-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 shadow-lg">
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                  What We Offer
+                  {t("home.features_section.offer_title")}
                 </h3>
                 <p className="mt-3 text-xs sm:text-[13.5px] text-neutral-300 leading-relaxed font-light">
-                  We offer a carefully curated selection of modern properties designed to meet the needs of today&apos;s lifestyle. Our portfolio includes houses, villas, and residential spaces located in strategic and desirable areas, ensuring comfort, accessibility, and long-term value. Our platform is built to provide a seamless and intuitive experience.
+                  {t("home.features_section.offer_desc")}
                 </p>
               </div>
             </div>
@@ -172,12 +174,12 @@ export default function HomeFeatureSection({ onNavigate }) {
           <div className="lg:col-span-6 flex flex-col justify-between h-full">
             <div>
               <h2 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-extrabold tracking-tight text-neutral-950 leading-[1.12] max-w-2xl">
-                Why We&apos;re the Right Choice for <br className="hidden sm:inline" />
-                Your Future Home
+                {t("home.features_section.title_2_line1")} <br className="hidden sm:inline" />
+                {t("home.features_section.title_2_line2")}
               </h2>
 
               <p className="mt-5 sm:mt-6 text-xs sm:text-sm md:text-[15px] text-neutral-500 leading-relaxed font-light max-w-2xl text-justify sm:text-left">
-                We combine trusted expertise, carefully curated modern properties, and a seamless end-to-end experience to help you discover, evaluate, and secure the perfect home with confidence. Our commitment to quality, transparency, and innovation ensures peace of mind at every step.
+                {t("home.features_section.desc_2")}
               </p>
             </div>
 
@@ -188,7 +190,7 @@ export default function HomeFeatureSection({ onNavigate }) {
                   35k+
                 </span>
                 <span className="block mt-1 text-xs sm:text-sm font-medium text-neutral-500">
-                  Customers
+                  {t("home.features_section.stat_customers")}
                 </span>
               </div>
 
@@ -197,7 +199,7 @@ export default function HomeFeatureSection({ onNavigate }) {
                   12k+
                 </span>
                 <span className="block mt-1 text-xs sm:text-sm font-medium text-neutral-500">
-                  Ready Units
+                  {t("home.features_section.stat_units")}
                 </span>
               </div>
 
@@ -206,7 +208,7 @@ export default function HomeFeatureSection({ onNavigate }) {
                   18k+
                 </span>
                 <span className="block mt-1 text-xs sm:text-sm font-medium text-neutral-500">
-                  Units Sold
+                  {t("home.features_section.stat_sold")}
                 </span>
               </div>
             </div>
