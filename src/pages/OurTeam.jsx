@@ -234,9 +234,13 @@ export default function OurTeam({ onNavigate }) {
 
           {/* People Grid */}
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-16 gap-3 text-stone-400">
-              <Loader2 className="w-7 h-7 animate-spin text-stone-700" />
-              <p className="text-xs tracking-wider uppercase">{t("team.loading_members")}</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div
+                  key={i}
+                  className="aspect-4/5 bg-stone-200/80 rounded-sm animate-pulse border border-stone-200/50"
+                />
+              ))}
             </div>
           ) : filteredPeople.length === 0 ? (
             <div className="text-center py-16 text-stone-500">

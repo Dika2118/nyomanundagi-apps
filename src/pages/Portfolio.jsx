@@ -224,11 +224,14 @@ export default function Portfolio({ onNavigate }) {
 
           {/* Loading, Empty, or Projects Grid */}
           {loading ? (
-            <div className="py-24 text-center">
-              <div className="inline-block w-8 h-8 border-2 border-stone-300 border-t-stone-900 rounded-full animate-spin mb-4" />
-              <p className="text-xs sm:text-sm text-stone-500 uppercase tracking-widest font-semibold">
-                Memuat Portofolio...
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="animate-pulse space-y-3.5">
+                  <div className="w-full aspect-16/10 rounded-2xl bg-stone-200/80" />
+                  <div className="h-4 bg-stone-200 rounded w-3/4" />
+                  <div className="h-3 bg-stone-100 rounded w-1/2" />
+                </div>
+              ))}
             </div>
           ) : filteredProjects.length === 0 ? (
             <div className="py-24 text-center max-w-md mx-auto">

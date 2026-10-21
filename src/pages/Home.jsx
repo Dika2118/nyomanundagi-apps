@@ -266,11 +266,17 @@ export default function Home({ onNavigate }) {
 
           {/* ================= PORTFOLIO DISPLAY (REAL DATA ONLY, BENTO GRID LAYOUT) ================= */}
           {loading ? (
-            <div className="py-20 text-center">
-              <div className="inline-block w-8 h-8 border-2 border-stone-300 border-t-stone-900 rounded-full animate-spin mb-4" />
-              <p className="text-xs sm:text-sm text-stone-500 uppercase tracking-widest font-semibold">
-                {t("home.loading_projects")}
-              </p>
+            <div className="w-full space-y-5 sm:space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 items-stretch">
+                <div className="flex flex-col gap-5 sm:gap-6 justify-between">
+                  <div className="w-full aspect-[16/9] min-h-[220px] sm:min-h-[260px] rounded-3xl bg-stone-100 animate-pulse" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                    <div className="w-full aspect-square min-h-[190px] rounded-3xl bg-stone-100 animate-pulse" />
+                    <div className="w-full aspect-square min-h-[190px] rounded-3xl bg-stone-100 animate-pulse" />
+                  </div>
+                </div>
+                <div className="w-full h-full min-h-[340px] sm:min-h-[460px] rounded-3xl bg-stone-100 animate-pulse" />
+              </div>
             </div>
           ) : filteredProjects.length === 0 ? (
             <div className="py-16 text-center max-w-md mx-auto bg-stone-50 rounded-3xl border border-stone-200/80 p-8">

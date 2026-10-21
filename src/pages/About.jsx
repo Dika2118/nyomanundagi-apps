@@ -44,6 +44,7 @@ export default function About({ onNavigate }) {
   const [services, setServices] = useState([]);
   const [loadingServices, setLoadingServices] = useState(true);
   const [stats, setStats] = useState([]);
+  const [loadingStats, setLoadingStats] = useState(true);
 
   // Helper: render displayed value for a stat
   function renderStatValue(stat) {
@@ -59,19 +60,13 @@ export default function About({ onNavigate }) {
     return `${stat.value}${stat.suffix || ''}`;
   }
 
-  const FALLBACK_STATS = [
-    { key: 'years_founded', label: 'Years Experience', value: '2010', suffix: null },
-    { key: 'customers', label: 'Customers', value: '35000', suffix: 'k+' },
-    { key: 'projects', label: 'Projects', value: '6', suffix: '+' },
-    { key: 'awards', label: 'Design Awards', value: '4', suffix: null },
-  ];
-
-  const displayStats = stats.length > 0 ? stats : FALLBACK_STATS;
+  const displayStats = stats;
 
   // Fetch dynamic services from database (API: /services)
   useEffect(() => {
     let isMounted = true;
     setLoadingServices(true);
+    setLoadingStats(true);
 
     // Fetch services
     getServices()
@@ -83,8 +78,9 @@ export default function About({ onNavigate }) {
 
     // Fetch site stats
     getSiteStats()
-      .then((data) => { if (isMounted) setStats(data); })
-      .catch((err) => console.error("Error fetching stats:", err));
+      .then((data) => { if (isMounted) setStats(Array.isArray(data) ? data : []); })
+      .catch((err) => console.error("Error fetching stats:", err))
+      .finally(() => { if (isMounted) setLoadingStats(false); });
 
     return () => { isMounted = false; };
   }, []);
@@ -170,20 +166,33 @@ export default function About({ onNavigate }) {
           </div>
 
           {/* Stats / Numbers Row */}
-          <div className="max-w-300 mx-auto py-6 sm:py-8 border-t border-stone-100">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 text-center">
-              {displayStats.map((stat) => (
-                <div key={stat.key} className="flex flex-col items-center">
-                  <span className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#111111]">
-                    {renderStatValue(stat)}
-                  </span>
-                  <span className="text-[10px] sm:text-xs font-semibold tracking-[0.24em] text-stone-700 uppercase mt-2.5 sm:mt-3.5">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
+          {loadingStats ? (
+            <div className="max-w-300 mx-auto py-6 sm:py-8 border-t border-stone-100">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 text-center">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="flex flex-col items-center animate-pulse space-y-3">
+                    <div className="h-10 sm:h-12 lg:h-14 bg-stone-200/80 rounded-md w-24 sm:w-28" />
+                    <div className="h-3 bg-stone-100 rounded w-20 sm:w-24" />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          ) : displayStats.length > 0 ? (
+            <div className="max-w-300 mx-auto py-6 sm:py-8 border-t border-stone-100">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 text-center">
+                {displayStats.map((stat) => (
+                  <div key={stat.key} className="flex flex-col items-center">
+                    <span className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#111111]">
+                      {renderStatValue(stat)}
+                    </span>
+                    <span className="text-[10px] sm:text-xs font-semibold tracking-[0.24em] text-stone-700 uppercase mt-2.5 sm:mt-3.5">
+                      {stat.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
           {/* Vision & Mission Cards */}
           <div className="max-w-300 mx-auto mt-3 sm:mt-5">
@@ -260,11 +269,21 @@ export default function About({ onNavigate }) {
 
           {/* Dynamic Services Cards */}
           {loadingServices ? (
-            <div className="py-20 text-center">
-              <div className="inline-block w-8 h-8 border-2 border-stone-300 border-t-[#154d36] rounded-full animate-spin mb-4" />
-              <p className="text-xs font-semibold tracking-widest text-stone-400 uppercase">
-                Memuat Layanan...
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 items-stretch">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="pt-12 sm:pt-14 flex animate-pulse">
+                  <div className="relative w-full bg-stone-50/80 rounded-3xl border border-stone-100 pt-16 sm:pt-18 pb-10 px-7 sm:px-8 text-center flex flex-col items-center">
+                    <div className="absolute -top-11 sm:-top-12 left-1/2 -translate-x-1/2 w-22 h-22 sm:w-24 sm:h-24 rounded-full bg-stone-200 border-4 border-white" />
+                    <div className="h-6 bg-stone-200 rounded-md w-3/4 mb-3.5" />
+                    <div className="w-9 h-1 bg-stone-300 rounded-full mb-4" />
+                    <div className="space-y-2 w-full">
+                      <div className="h-3.5 bg-stone-200/70 rounded w-full" />
+                      <div className="h-3.5 bg-stone-200/70 rounded w-5/6 mx-auto" />
+                      <div className="h-3.5 bg-stone-200/70 rounded w-4/6 mx-auto" />
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           ) : services.length === 0 ? (
             <div className="py-16 text-center">

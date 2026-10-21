@@ -199,9 +199,27 @@ export default function Blog({ onNavigate }) {
       {/* ========================================================================= */}
       <section className="w-full py-12 sm:py-16 px-6 sm:px-10 lg:px-16 max-w-360 mx-auto">
         {loading ? (
-          <div className="py-24 text-center">
-            <div className="inline-block w-8 h-8 border-2 border-stone-300 border-t-stone-800 rounded-full animate-spin mb-4" />
-            <p className="text-xs font-semibold tracking-widest text-stone-400 uppercase">Memuat Artikel...</p>
+          <div className="space-y-12 animate-pulse">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center pb-12 border-b border-stone-100">
+              <div className="lg:col-span-7 aspect-16/10 rounded-xl bg-stone-200/80" />
+              <div className="lg:col-span-5 space-y-4">
+                <div className="h-4 bg-stone-200 rounded w-1/4" />
+                <div className="h-8 bg-stone-200 rounded w-4/5" />
+                <div className="space-y-2">
+                  <div className="h-3.5 bg-stone-100 rounded w-full" />
+                  <div className="h-3.5 bg-stone-100 rounded w-3/4" />
+                </div>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="space-y-3">
+                  <div className="aspect-16/10 rounded-xl bg-stone-200/80" />
+                  <div className="h-4 bg-stone-200 rounded w-2/3" />
+                  <div className="h-3 bg-stone-100 rounded w-full" />
+                </div>
+              ))}
+            </div>
           </div>
         ) : !featuredArticle && blogPosts.length === 0 ? (
           <div className="py-24 text-center">

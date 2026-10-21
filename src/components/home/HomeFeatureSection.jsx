@@ -73,11 +73,14 @@ export default function HomeFeatureSection({ onNavigate }) {
   const { t } = useTranslation();
   const [active, setActive] = useState(0);
   const [stats, setStats] = useState([]);
+  const [loadingStats, setLoadingStats] = useState(true);
 
   useEffect(() => {
+    setLoadingStats(true);
     getSiteStats()
-      .then((data) => setStats(data))
-      .catch(() => setStats([]));
+      .then((data) => setStats(Array.isArray(data) ? data : []))
+      .catch(() => setStats([]))
+      .finally(() => setLoadingStats(false));
   }, []);
 
   // Helper: render displayed value for a stat
@@ -96,15 +99,8 @@ export default function HomeFeatureSection({ onNavigate }) {
     return `${stat.value}${stat.suffix || ''}`;
   }
 
-  // Fallback stats if API not loaded yet
-  const FALLBACK_STATS = [
-    { key: 'customers', label: 'Customers', value: '35000', suffix: 'k+' },
-    { key: 'years_founded', label: 'Years in Business', value: '2010', suffix: null },
-    { key: 'projects', label: 'Projects', value: '6', suffix: '+' },
-  ];
-
   // Only show first 3 stats (customers, years, projects) in Home section
-  const displayStats = (stats.length > 0 ? stats : FALLBACK_STATS).slice(0, 3);
+  const displayStats = stats.slice(0, 3);
 
   const items = [
     {
@@ -218,18 +214,29 @@ export default function HomeFeatureSection({ onNavigate }) {
             </div>
 
             {/* Statistics Counters */}
-            <div className="mt-10 sm:mt-12 pt-8 border-t border-neutral-200 grid grid-cols-3 gap-6 sm:gap-8 max-w-2xl">
-              {displayStats.map((stat) => (
-                <div key={stat.key}>
-                  <span className="block text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-950 tracking-tight">
-                    {renderStatValue(stat)}
-                  </span>
-                  <span className="block mt-1 text-xs sm:text-sm font-medium text-neutral-500">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
+            {loadingStats ? (
+              <div className="mt-10 sm:mt-12 pt-8 border-t border-neutral-200 grid grid-cols-3 gap-6 sm:gap-8 max-w-2xl">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="animate-pulse space-y-2">
+                    <div className="h-8 sm:h-9 bg-neutral-200/80 rounded-md w-20 sm:w-24" />
+                    <div className="h-3.5 bg-neutral-100 rounded w-14 sm:w-16" />
+                  </div>
+                ))}
+              </div>
+            ) : displayStats.length > 0 ? (
+              <div className="mt-10 sm:mt-12 pt-8 border-t border-neutral-200 grid grid-cols-3 gap-6 sm:gap-8 max-w-2xl">
+                {displayStats.map((stat) => (
+                  <div key={stat.key}>
+                    <span className="block text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-950 tracking-tight">
+                      {renderStatValue(stat)}
+                    </span>
+                    <span className="block mt-1 text-xs sm:text-sm font-medium text-neutral-500">
+                      {stat.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           {/* Right Column: 3 Feature Cards (Span 6) */}
