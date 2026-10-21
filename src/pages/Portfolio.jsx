@@ -64,7 +64,7 @@ export default function Portfolio({ onNavigate }) {
               building_area: p.building_area || "",
               land_area: p.land_area || "",
               area: p.building_area ? `${p.building_area} m²` : "-",
-              client: p.client_name || "-",
+              client: p.customer?.name || p.client_name || "-",
               type: p.category?.name || "Architectural Project",
               status: p.status || "Built",
               description: p.description || "",

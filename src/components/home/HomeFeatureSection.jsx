@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowUpRight, ShieldCheck, Home as HomeIcon, CheckCircle2 } from "lucide-react";
+import { ShieldCheck, Home as HomeIcon, CheckCircle2 } from "lucide-react";
+import { getSiteStats } from "../../api/client";
 import banner1 from "../../assets/images/banner1.jpg";
 import banner3 from "../../assets/images/banner3.jpg";
 
@@ -71,6 +72,39 @@ function Card({ item, on, onClick }) {
 export default function HomeFeatureSection({ onNavigate }) {
   const { t } = useTranslation();
   const [active, setActive] = useState(0);
+  const [stats, setStats] = useState([]);
+
+  useEffect(() => {
+    getSiteStats()
+      .then((data) => setStats(data))
+      .catch(() => setStats([]));
+  }, []);
+
+  // Helper: render displayed value for a stat
+  // For 'years_founded' key, calculate elapsed years dynamically
+  function renderStatValue(stat) {
+    if (stat.key === 'years_founded') {
+      const years = new Date().getFullYear() - parseInt(stat.value, 10);
+      return `${years}+`;
+    }
+    // For customers: if value >= 1000, show abbreviated (e.g. 35000 -> 35k)
+    const num = parseInt(stat.value, 10);
+    if (stat.key === 'customers' && num >= 1000) {
+      const cleanSuffix = (stat.suffix || '+').replace(/^k+/i, '');
+      return `${Math.floor(num / 1000)}k${cleanSuffix || '+'}`;
+    }
+    return `${stat.value}${stat.suffix || ''}`;
+  }
+
+  // Fallback stats if API not loaded yet
+  const FALLBACK_STATS = [
+    { key: 'customers', label: 'Customers', value: '35000', suffix: 'k+' },
+    { key: 'years_founded', label: 'Years in Business', value: '2010', suffix: null },
+    { key: 'projects', label: 'Projects', value: '6', suffix: '+' },
+  ];
+
+  // Only show first 3 stats (customers, years, projects) in Home section
+  const displayStats = (stats.length > 0 ? stats : FALLBACK_STATS).slice(0, 3);
 
   const items = [
     {
@@ -185,32 +219,16 @@ export default function HomeFeatureSection({ onNavigate }) {
 
             {/* Statistics Counters */}
             <div className="mt-10 sm:mt-12 pt-8 border-t border-neutral-200 grid grid-cols-3 gap-6 sm:gap-8 max-w-2xl">
-              <div>
-                <span className="block text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-950 tracking-tight">
-                  35k+
-                </span>
-                <span className="block mt-1 text-xs sm:text-sm font-medium text-neutral-500">
-                  {t("home.features_section.stat_customers")}
-                </span>
-              </div>
-
-              <div>
-                <span className="block text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-950 tracking-tight">
-                  12k+
-                </span>
-                <span className="block mt-1 text-xs sm:text-sm font-medium text-neutral-500">
-                  {t("home.features_section.stat_units")}
-                </span>
-              </div>
-
-              <div>
-                <span className="block text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-950 tracking-tight">
-                  18k+
-                </span>
-                <span className="block mt-1 text-xs sm:text-sm font-medium text-neutral-500">
-                  {t("home.features_section.stat_sold")}
-                </span>
-              </div>
+              {displayStats.map((stat) => (
+                <div key={stat.key}>
+                  <span className="block text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-950 tracking-tight">
+                    {renderStatValue(stat)}
+                  </span>
+                  <span className="block mt-1 text-xs sm:text-sm font-medium text-neutral-500">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 

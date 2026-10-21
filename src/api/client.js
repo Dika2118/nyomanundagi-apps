@@ -110,6 +110,12 @@ export async function getBlogDetail(idOrSlug) {
   return data;
 }
 
+// ── Site Stats ──
+export async function getSiteStats() {
+  const data = await fetchJson('/site-stats');
+  return Array.isArray(data) ? data : [];
+}
+
 export default {
   resolveImageUrl,
   getHeroBanners,
@@ -120,4 +126,6 @@ export default {
   getTeamMembers,
   getBlogs,
   getBlogDetail,
+  getSiteStats,
 };
+

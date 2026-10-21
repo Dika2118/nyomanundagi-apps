@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { getServices, resolveImageUrl } from "../api/client";
+import { getServices, getSiteStats, resolveImageUrl } from "../api/client";
 import aboutBanner from "../assets/images/about-banner.jpg";
 import nyomanImg from "../assets/images/nyoman.png";
 import kantorImg from "../assets/images/kantor.jpg";
@@ -43,28 +43,50 @@ export default function About({ onNavigate }) {
   const { t } = useTranslation();
   const [services, setServices] = useState([]);
   const [loadingServices, setLoadingServices] = useState(true);
+  const [stats, setStats] = useState([]);
+
+  // Helper: render displayed value for a stat
+  function renderStatValue(stat) {
+    if (stat.key === 'years_founded') {
+      const years = new Date().getFullYear() - parseInt(stat.value, 10);
+      return `${years}+`;
+    }
+    const num = parseInt(stat.value, 10);
+    if (stat.key === 'customers' && num >= 1000) {
+      const cleanSuffix = (stat.suffix || '+').replace(/^k+/i, '');
+      return `${Math.floor(num / 1000)}k${cleanSuffix || '+'}`;
+    }
+    return `${stat.value}${stat.suffix || ''}`;
+  }
+
+  const FALLBACK_STATS = [
+    { key: 'years_founded', label: 'Years Experience', value: '2010', suffix: null },
+    { key: 'customers', label: 'Customers', value: '35000', suffix: 'k+' },
+    { key: 'projects', label: 'Projects', value: '6', suffix: '+' },
+    { key: 'awards', label: 'Design Awards', value: '4', suffix: null },
+  ];
+
+  const displayStats = stats.length > 0 ? stats : FALLBACK_STATS;
 
   // Fetch dynamic services from database (API: /services)
   useEffect(() => {
     let isMounted = true;
     setLoadingServices(true);
+
+    // Fetch services
     getServices()
       .then((data) => {
-        if (isMounted) {
-          const list = Array.isArray(data) ? data : [];
-          setServices(list);
-        }
+        if (isMounted) setServices(Array.isArray(data) ? data : []);
       })
-      .catch((err) => {
-        console.error("Error fetching services:", err);
-      })
-      .finally(() => {
-        if (isMounted) setLoadingServices(false);
-      });
+      .catch((err) => console.error("Error fetching services:", err))
+      .finally(() => { if (isMounted) setLoadingServices(false); });
 
-    return () => {
-      isMounted = false;
-    };
+    // Fetch site stats
+    getSiteStats()
+      .then((data) => { if (isMounted) setStats(data); })
+      .catch((err) => console.error("Error fetching stats:", err));
+
+    return () => { isMounted = false; };
   }, []);
 
   return (
@@ -150,38 +172,16 @@ export default function About({ onNavigate }) {
           {/* Stats / Numbers Row */}
           <div className="max-w-300 mx-auto py-6 sm:py-8 border-t border-stone-100">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 text-center">
-              <div className="flex flex-col items-center">
-                <span className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#111111]">
-                  16+
-                </span>
-                <span className="text-[10px] sm:text-xs font-semibold tracking-[0.24em] text-stone-700 uppercase mt-2.5 sm:mt-3.5">
-                  YEARS EXPERIENCE
-                </span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#111111]">
-                  67
-                </span>
-                <span className="text-[10px] sm:text-xs font-semibold tracking-[0.24em] text-stone-700 uppercase mt-2.5 sm:mt-3.5">
-                  PROFESSIONALS
-                </span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#111111]">
-                  450+
-                </span>
-                <span className="text-[10px] sm:text-xs font-semibold tracking-[0.24em] text-stone-700 uppercase mt-2.5 sm:mt-3.5">
-                  PROJECTS
-                </span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#111111]">
-                  4
-                </span>
-                <span className="text-[10px] sm:text-xs font-semibold tracking-[0.24em] text-stone-700 uppercase mt-2.5 sm:mt-3.5">
-                  DESIGN AWARDS
-                </span>
-              </div>
+              {displayStats.map((stat) => (
+                <div key={stat.key} className="flex flex-col items-center">
+                  <span className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-[#111111]">
+                    {renderStatValue(stat)}
+                  </span>
+                  <span className="text-[10px] sm:text-xs font-semibold tracking-[0.24em] text-stone-700 uppercase mt-2.5 sm:mt-3.5">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
